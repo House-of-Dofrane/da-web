@@ -1,5 +1,6 @@
 # dofraneacquisitions.com
 User-agent: *
 Allow: /
+Disallow: /_design/
 
 Sitemap: https://dofraneacquisitions.com/sitemap.xml

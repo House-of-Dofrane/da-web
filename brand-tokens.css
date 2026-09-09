@@ -1,0 +1,60 @@
+/* House of Dofrane — brand tokens. The single source.
+ *
+ * Values are the LOCKED palette from HOD_Brand_Playbook_v1.md §4, marked [LOCKED] 2026-07-28.
+ * If this file and any deck, PDF or page disagree, this file wins and the other is regenerated.
+ *
+ * Four of the five values were drifting in the shipped pages before this file existed
+ * (only oxblood was correct). Recorded in HOD_CMO/knowledge/da/CONTRAST.md.
+ *
+ * The playbook forbids off-palette neutrals by name: #333, #666, #999 are not part of the
+ * system. Every grey below is derived from Ink or Silver, never invented.
+ */
+
+:root {
+  /* ---- The locked five ---- */
+  --oxblood:   #6E1E2A;  /* anchor, ~30% of canvas: marks, rules, section anchors, CTA */
+  --ivory:     #F3ECDD;  /* ground, ~60% of canvas: the paper the brand sits on */
+  --ink:       #14100F;  /* type: warm near-black, body and display */
+  --champagne: #EFE3C0;  /* warm accent: the second band value, panels, dividers */
+  --silver:    #C9CDD2;  /* cool neutral: fine rules and chrome — never body text on light */
+
+  /* ---- Band alternation ----
+   * The reference's rhythm without its navy blocks: warm against warmer.
+   * Ink full-bleed is reserved for at most one moment, the hero. */
+  --band-1: var(--ivory);
+  --band-2: var(--champagne);
+  --band-dark: var(--ink);
+
+  /* ---- Derived, not invented ----
+   * Each is Ink at an alpha over the ground, so it stays inside the palette. */
+  --body:      color-mix(in srgb, var(--ink) 78%, var(--ivory));  /* long-form body copy */
+  --muted:     color-mix(in srgb, var(--ink) 58%, var(--ivory));  /* captions, labels */
+  --rule:      color-mix(in srgb, var(--ink) 16%, var(--ivory));  /* hairlines on light */
+  --rule-dark: color-mix(in srgb, var(--ivory) 18%, var(--ink));  /* hairlines on dark */
+
+  /* ---- Legibility pairs that are verified AA, and the ones that are not ----
+   * PASS (>= 4.5:1 body):  ink/ivory 16.07 · ink/champagne 14.78 · oxblood/ivory 9.49
+   *                        oxblood/champagne 8.72 · ivory/ink 16.07 · champagne/ink 14.78
+   *                        silver/ink 11.84 · ivory/oxblood 9.49 · champagne/oxblood 8.72
+   *                        silver/oxblood 6.98
+   * NEVER (fails at every size): oxblood on ink 1.69 · ink on oxblood 1.69
+   *                        champagne on ivory 1.09 · silver on ivory 1.36
+   *                        ivory on champagne 1.09 · silver on champagne 1.25
+   * Oxblood carries text safely on both light grounds. It carries none on dark —
+   * on Ink it is a fill colour only, stroked in champagne. */
+
+  /* ---- Type ----
+   * D1 is OPEN. HOD_Brand_Playbook_v1.md §5 is marked OPEN and says the font decision is
+   * deferred and must be resolved before any external launch. These stacks are what ships
+   * today: zero webfonts, zero network requests, part of why LCP measures 0.8 s.
+   * The candidate the brand docs name is Fraunces + Inter. Rendered side by side at
+   * /_design/d1 so the decision is made by looking. */
+  --serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, "Times New Roman", serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* ---- Scale ---- D6 ruled generous: few elements per screen, wide margins. */
+  --measure: 65ch;
+  --gap-1: .5rem;  --gap-2: 1rem;   --gap-3: 1.75rem;
+  --gap-4: 3rem;   --gap-5: 5.5rem; --gap-6: 9rem;
+  --hdr: 56px;
+}

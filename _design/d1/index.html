@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D1 · Type decision — Dofrane Acquisitions</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#14100F">
+<link rel="stylesheet" href="../../brand-tokens.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-display-italic.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-body.woff2">
+<style>
+/* ------------------------------------------------------------------
+   D1 · the type decision, made by looking.
+   Internal. noindex. Not in the sitemap. Not linked from the site.
+   Every colour below comes from ../../brand-tokens.css. Nothing invented.
+   ------------------------------------------------------------------ */
+
+/* Candidate B, self-hosted, latin subset, axes instanced. No CDN. */
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;
+  src:url(fonts/fraunces-display-italic.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;
+  src:url(fonts/fraunces-display-roman.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 500;font-display:swap;
+  src:url(fonts/inter-body.woff2) format("woff2")}
+
+/* The metric-matched fallbacks that stop the swap from shifting the page.
+   size-adjust values are measured, not guessed — see the cost table. */
+@font-face{font-family:"Fraunces fallback";src:local("Iowan Old Style Italic"),local("Georgia Italic");
+  size-adjust:93.1%;ascent-override:97.8%;descent-override:25.5%;line-gap-override:0%}
+@font-face{font-family:"Inter fallback";src:local("Helvetica Neue"),local("Arial");
+  size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-override:0%}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--body);
+  font-family:var(--sans);font-size:1rem;line-height:1.6;overflow-x:hidden}
+
+/* ---- the two stacks under test ---- */
+.a{--disp:var(--serif);--ui:var(--sans)}
+.b{--disp:"Fraunces","Fraunces fallback","Iowan Old Style",Georgia,serif;
+   --ui:"Inter","Inter fallback",system-ui,Helvetica,Arial,sans-serif}
+
+/* ---- page chrome ---- */
+.top{background:var(--ink);color:var(--silver);padding:1.5rem 1.15rem 1.7rem}
+.top .in{max-width:44rem;margin:0 auto}
+.top .brand{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--champagne);display:block}
+.top h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.5rem,6vw,2.1rem);
+  line-height:1.15;color:var(--ivory);margin:.7rem 0 .6rem}
+.top p{font-size:.9rem;line-height:1.6;max-width:52ch}
+.top .warn{margin-top:1rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--champagne);border-top:1px solid var(--rule-dark);padding-top:.9rem}
+
+/* ---- the sticky "which am I looking at" tag ---- */
+.tag{position:sticky;top:0;z-index:9;display:flex;flex-wrap:wrap;gap:.5rem .9rem;align-items:baseline;
+  padding:.72rem 1.15rem;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--oxblood);color:var(--ivory);border-bottom:1px solid var(--oxblood)}
+.tag b{font-weight:700;letter-spacing:.24em}
+.tag em{font-style:normal;color:var(--champagne);letter-spacing:.1em;font-size:.62rem}
+.b .tag{background:var(--ink);color:var(--champagne);border-bottom-color:var(--champagne)}
+
+/* ---- the real hero, rebuilt ---- */
+.hero{background:
+  radial-gradient(120% 85% at 74% 12%,rgba(110,30,42,.5),transparent 62%),
+  radial-gradient(95% 75% at 10% 100%,rgba(239,227,192,.07),transparent 60%),
+  linear-gradient(165deg,#1c1817 0%,#14100F 48%,#0c0908 100%);
+  min-height:74svh;padding:3.7rem 1.25rem 3rem;display:grid;grid-template-rows:auto 1fr;text-align:center}
+.hero .eyebrow{font-family:var(--ui);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
+.heroline{display:grid;align-content:center;justify-items:center;padding:1.5rem 0}
+.heroline .inner{text-align:left;width:min(36rem,100%)}
+@media (min-width:52rem){.heroline{justify-items:end;padding-right:min(9vw,7rem)}}
+/* the tag wraps to two lines on a phone — give the eyebrow room to clear it */
+@media (max-width:34rem){.hero{padding-top:5rem}}
+.hero h2{font-family:var(--disp);font-style:italic;font-weight:400;
+  font-size:clamp(2rem,7.2vw,3.4rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
+.hero h2 span{display:block}
+.sub{margin-top:1.4rem;font-family:var(--ui);font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--silver)}
+
+/* ---- the real intro band, rebuilt ---- */
+.band{background:var(--ivory);padding:3.4rem 1.25rem 3.8rem;text-align:center}
+.kick{font-family:var(--ui);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--oxblood);display:block}
+.disp{font-family:var(--disp);font-style:italic;font-weight:400;
+  font-size:clamp(1.6rem,4.5vw,2.7rem);line-height:1.15;letter-spacing:-.005em;
+  margin:1.15rem auto 0;max-width:30ch;color:var(--ink)}
+.copy{font-family:var(--ui);max-width:min(65ch,38rem);margin:1.6rem auto 0;
+  font-size:1.02rem;line-height:1.68;text-align:left;color:var(--body)}
+.copy p{margin:1rem 0}
+.copy p:first-child{margin-top:0}
+.copy b{font-weight:500;color:var(--ink)}
+.btn{display:inline-block;font-family:var(--ui);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:1rem 1.6rem;background:var(--oxblood);color:var(--ivory);text-decoration:none;margin-top:2rem}
+.note{font-family:var(--ui);font-size:.92rem;margin-top:1rem;color:var(--muted)}
+
+/* ---- the size-correction strip ---- */
+.corr{background:var(--champagne);padding:2.4rem 1.25rem 2.6rem;text-align:center;
+  border-top:1px solid var(--rule)}
+.corr .disp{font-size:clamp(1.72rem,4.84vw,2.9rem);color:var(--ink)}   /* +7.5% on the B sizes */
+.corr .lab{font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oxblood)}
+.corr .exp{font-family:var(--sans);font-size:.88rem;max-width:46ch;margin:1.1rem auto 0;color:var(--body);text-align:left}
+
+/* ---- analysis sections ---- */
+.sec{padding:3.4rem 1.15rem 3.6rem;max-width:52rem;margin:0 auto}
+.sec.dark{max-width:none;background:var(--ink);color:var(--silver)}
+.sec.dark .in{max-width:52rem;margin:0 auto}
+.sec h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.35rem,4.6vw,1.9rem);
+  color:var(--ink);line-height:1.2}
+.sec.dark h3{color:var(--ivory)}
+.sec .lead{font-size:.95rem;max-width:58ch;margin-top:.9rem;color:var(--body)}
+.sec.dark .lead{color:var(--silver)}
+.eyeb{font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood);display:block;margin-bottom:.8rem}
+.sec.dark .eyeb{color:var(--champagne)}
+
+table{border-collapse:collapse;width:100%;margin-top:1.6rem;font-size:.88rem}
+th,td{text-align:left;padding:.62rem .5rem;border-bottom:1px solid var(--rule)}
+.sec.dark th,.sec.dark td{border-bottom-color:var(--rule-dark)}
+th{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.sec.dark th{color:var(--silver)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td{border-bottom:2px solid var(--oxblood);font-weight:700;color:var(--ink)}
+.sec.dark tr.tot td{color:var(--ivory);border-bottom-color:var(--champagne)}
+
+.facts{display:grid;gap:.9rem;margin-top:1.8rem}
+@media (min-width:40rem){.facts{grid-template-columns:repeat(3,1fr)}}
+.fact{border-top:1px solid var(--oxblood);padding-top:.8rem}
+.sec.dark .fact{border-top-color:var(--champagne)}
+.fact .big{font-family:var(--serif);font-size:1.9rem;line-height:1.05;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.sec.dark .fact .big{color:var(--ivory)}
+.fact .cap{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.sec.dark .fact .cap{color:var(--silver)}
+.fact p{font-size:.86rem;margin-top:.5rem;color:var(--body)}
+.sec.dark .fact p{color:var(--silver)}
+
+pre{margin-top:1.4rem;padding:1rem 1.05rem;overflow-x:auto;font-size:.78rem;line-height:1.55;
+  background:var(--champagne);color:var(--ink);border-left:2px solid var(--oxblood);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.sec.dark pre{background:#1e1918;color:var(--silver);border-left-color:var(--champagne)}
+
+/* ---- contrast swatches ---- */
+.sw{display:grid;gap:.7rem;margin-top:1.5rem}
+@media (min-width:34rem){.sw{grid-template-columns:1fr 1fr}}
+@media (min-width:56rem){.sw{grid-template-columns:repeat(3,1fr)}}
+.chip{padding:1rem .95rem 1.05rem;border:1px solid var(--rule);position:relative}
+.chip .txt{font-family:var(--serif);font-style:italic;font-size:1.16rem;line-height:1.25}
+.chip .sm{font-size:.74rem;margin-top:.35rem;letter-spacing:.02em}
+.chip .meta{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;
+  margin-top:.85rem;font-family:var(--sans);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;opacity:.82}
+.chip .ratio{font-size:.94rem;letter-spacing:0;font-variant-numeric:tabular-nums;text-transform:none;font-weight:700}
+.verdict{display:inline-block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:.22rem .5rem;margin-top:1.5rem}
+.v-pass{background:var(--ink);color:var(--champagne)}
+.v-fail{background:var(--oxblood);color:var(--ivory)}
+.chip.fail{border:1px solid var(--oxblood);border-width:1px 1px 1px 3px}
+/* the failing pair must not take its own verdict down with it — the label and the
+   ratio are re-cast in a passing colour so the number stays readable. */
+.chip.fail .meta{opacity:1}
+.chip.fail.g-ink .meta{color:var(--champagne)}
+.chip.fail.g-ox .meta{color:var(--ivory)}
+.chip.fail.g-light .meta{color:var(--ink)}
+
+/* ---- ruling ---- */
+.rule2{display:grid;gap:1.4rem;margin-top:1.7rem}
+@media (min-width:44rem){.rule2{grid-template-columns:1fr 1fr}}
+.opt{border-top:1px solid var(--champagne);padding-top:.9rem}
+.opt h4{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.25rem;color:var(--ivory)}
+.opt ul{list-style:none;margin-top:.7rem;font-size:.88rem}
+.opt li{padding:.32rem 0 .32rem 1.1rem;position:relative;color:var(--silver)}
+.opt li::before{content:"";position:absolute;left:0;top:.82em;width:6px;height:1px;background:var(--champagne)}
+
+footer{background:var(--ink);color:var(--silver);border-top:1px solid var(--rule-dark);
+  padding:2.2rem 1.15rem 3rem;font-size:.78rem;text-align:center}
+footer .in{max-width:48rem;margin:0 auto}
+footer code{font-family:ui-monospace,Menlo,monospace;color:var(--champagne)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <span class="brand">Dofrane Acquisitions · Internal · D1</span>
+    <h1>The font decision, made by looking.</h1>
+    <p>Brand playbook §5 is OPEN: the typeface was deferred and has to be settled before external
+    launch. Below is one real section of the live site — the hero and the plain-version band —
+    rendered twice. Same copy, same colour, same sizes. Only the type changes. Scroll A into B.</p>
+    <p class="warn">noindex · not in the sitemap · not linked from the site</p>
+  </div>
+</header>
+
+<!-- ============================= CANDIDATE A ============================= -->
+<div class="a">
+  <div class="tag"><b>A · ships today</b> <em>Iowan Old Style / system-ui · 0 webfonts · 0 requests</em></div>
+
+  <section class="hero">
+    <span class="eyebrow">Montgomery &amp; Prince George's County, Maryland</span>
+    <div class="heroline"><div class="inner">
+      <h2><span>Leave it as it stands.</span><span>Leave what is in it.</span><span>Be done with it.</span></h2>
+      <p class="sub">We buy houses as-is, with our own money</p>
+    </div></div>
+  </section>
+
+  <section class="band">
+    <span class="kick">The plain version</span>
+    <p class="disp">Sell your house fast in Montgomery or Prince George's County, Maryland.</p>
+    <div class="copy">
+      <p>Most people who call us are not selling a house. They are trying to stop paying for one. A parent's place that needs a lot of work. A rental that stopped being worth the grief. A house that has sat empty while the taxes and the insurance kept running.</p>
+      <p>We buy it as it stands, with our own money. <b>You do not fix it, you do not empty it, and you do not pay a commission.</b></p>
+    </div>
+    <a class="btn" href="#cost">Tell us about the house</a>
+    <p class="note">One person reads every submission. Dofrane calls you back within one business day.</p>
+  </section>
+</div>
+
+<!-- ============================= CANDIDATE B ============================= -->
+<div class="b">
+  <div class="tag"><b>B · what the docs name</b> <em>Fraunces / Inter · self-hosted · 3 files · 57.1 KB</em></div>
+
+  <section class="hero">
+    <span class="eyebrow">Montgomery &amp; Prince George's County, Maryland</span>
+    <div class="heroline"><div class="inner">
+      <h2><span>Leave it as it stands.</span><span>Leave what is in it.</span><span>Be done with it.</span></h2>
+      <p class="sub">We buy houses as-is, with our own money</p>
+    </div></div>
+  </section>
+
+  <section class="band">
+    <span class="kick">The plain version</span>
+    <p class="disp">Sell your house fast in Montgomery or Prince George's County, Maryland.</p>
+    <div class="copy">
+      <p>Most people who call us are not selling a house. They are trying to stop paying for one. A parent's place that needs a lot of work. A rental that stopped being worth the grief. A house that has sat empty while the taxes and the insurance kept running.</p>
+      <p>We buy it as it stands, with our own money. <b>You do not fix it, you do not empty it, and you do not pay a commission.</b></p>
+    </div>
+    <a class="btn" href="#cost">Tell us about the house</a>
+    <p class="note">One person reads every submission. Dofrane calls you back within one business day.</p>
+  </section>
+
+  <section class="corr">
+    <span class="lab">B, size-corrected · +7.5%</span>
+    <p class="disp">Sell your house fast in Montgomery or Prince George's County, Maryland.</p>
+    <p class="exp">The two blocks above run at identical CSS sizes, which is what a straight swap
+    would do. Fraunces has a 7&nbsp;% smaller x-height than Iowan, so B reads smaller at the same
+    number. This strip is the same line with the display sizes raised 7.5&nbsp;% — the correction
+    B would ship with. Judge the letterforms here, not up there.</p>
+  </section>
+</div>
+
+<!-- ============================= COST OF B ============================= -->
+<section class="sec dark" id="cost">
+ <div class="in">
+  <span class="eyeb">What B actually costs</span>
+  <h3>Three files, 57.1 KB, and a headline that moves.</h3>
+  <p class="lead">Measured off the files sitting in this folder — Google's Latin subset, then
+  instanced to the one optical size and weight the site uses, then re-compressed to woff2. No CDN,
+  no third-party request, no Google Fonts. These bytes are served from our own origin.</p>
+
+  <table>
+    <thead><tr><th>File</th><th>Role</th><th class="n">Bytes</th><th class="n">KB</th></tr></thead>
+    <tbody>
+      <tr><td>fraunces-display-italic.woff2</td><td>Hero &amp; section display</td><td class="n">19,880</td><td class="n">19.4</td></tr>
+      <tr><td>fraunces-display-roman.woff2</td><td>Card headings, upright &mdash; not used on this page</td><td class="n">16,436</td><td class="n">16.1</td></tr>
+      <tr><td>inter-body.woff2</td><td>Body, kickers, labels, buttons</td><td class="n">22,152</td><td class="n">21.6</td></tr>
+      <tr class="tot"><td>Total shipped</td><td>3 files, preloaded</td><td class="n">58,468</td><td class="n">57.1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="facts">
+    <div class="fact">
+      <div class="big">57.1 KB</div>
+      <div class="cap">Added to first paint</div>
+      <p>Against A's 0 KB. Preloaded, so it competes with the hero image for early bandwidth.</p>
+    </div>
+    <div class="fact">
+      <div class="big">3</div>
+      <div class="cap">New render-blocking-ish requests</div>
+      <p>Same origin, HTTP/2 multiplexed. Not a CDN hop, but not free either.</p>
+    </div>
+    <div class="fact">
+      <div class="big">7.0%</div>
+      <div class="cap">x-height gap vs. A</div>
+      <p>Fraunces italic 0.444&nbsp;em against Iowan italic 0.477&nbsp;em, measured from the files.</p>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:2rem"><b>The CLS problem, stated plainly.</b> With
+  <code>font-display: swap</code> the hero paints in the fallback first, then re-paints in Fraunces.
+  Because the two faces are 7&nbsp;% apart in x-height and further apart in ascent, the three
+  headline lines change height and the page jumps. That is a Cumulative Layout Shift hit on the
+  single most-measured element on the site. The fix is not optional — it is a metric-matched
+  fallback face, and these are the measured numbers for ours:</p>
+
+<pre>@font-face{                          /* stands in for Fraunces until it loads */
+  font-family:"Fraunces fallback";
+  src:local("Iowan Old Style Italic"), local("Georgia Italic");
+  size-adjust:93.1%;                 /* 0.4440 / 0.4771 x-height */
+  ascent-override:97.8%;             /* 1956 / 2000 upm */
+  descent-override:25.5%;
+  line-gap-override:0%;
+}
+@font-face{                          /* stands in for Inter until it loads */
+  font-family:"Inter fallback";
+  src:local("Helvetica Neue"), local("Arial");
+  size-adjust:105.3%;                /* 0.5459 / 0.5186 x-height */
+  ascent-override:96.9%;
+  descent-override:24.1%;
+  line-gap-override:0%;
+}</pre>
+
+  <p class="lead" style="margin-top:1.2rem">Both overrides are live on this page — B is already
+  rendering with them. Ship B without them and the headline shifts on every cold load.</p>
+ </div>
+</section>
+
+<!-- ============================= CONTRAST ============================= -->
+<section class="sec">
+  <span class="eyeb">Winner-agnostic · legibility</span>
+  <h3>Which pairs carry text, and which never will.</h3>
+  <p class="lead">Straight from the verified block in <code>brand-tokens.css</code>. Every swatch
+  below is the real pair at the real ratio. This holds whichever typeface wins — it is a colour
+  law, not a type law.</p>
+
+  <span class="verdict v-pass">Pass · AA at body size</span>
+  <div class="sw">
+    <div class="chip" style="background:var(--ivory);color:var(--ink)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Body copy at 16px holds comfortably.</div>
+      <div class="meta"><span>Ink on Ivory</span><span class="ratio">16.07</span></div>
+    </div>
+    <div class="chip" style="background:var(--champagne);color:var(--ink)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Body copy at 16px holds comfortably.</div>
+      <div class="meta"><span>Ink on Champagne</span><span class="ratio">14.78</span></div>
+    </div>
+    <div class="chip" style="background:var(--ink);color:var(--ivory)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">The hero. Reversed, and safe.</div>
+      <div class="meta"><span>Ivory on Ink</span><span class="ratio">16.07</span></div>
+    </div>
+    <div class="chip" style="background:var(--ink);color:var(--champagne)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Dark-band kickers and rules.</div>
+      <div class="meta"><span>Champagne on Ink</span><span class="ratio">14.78</span></div>
+    </div>
+    <div class="chip" style="background:var(--ink);color:var(--silver)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Dark-band body copy.</div>
+      <div class="meta"><span>Silver on Ink</span><span class="ratio">11.84</span></div>
+    </div>
+    <div class="chip" style="background:var(--ivory);color:var(--oxblood)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Kickers, marks, section anchors.</div>
+      <div class="meta"><span>Oxblood on Ivory</span><span class="ratio">9.49</span></div>
+    </div>
+    <div class="chip" style="background:var(--oxblood);color:var(--ivory)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">The CTA button. Safe as it stands.</div>
+      <div class="meta"><span>Ivory on Oxblood</span><span class="ratio">9.49</span></div>
+    </div>
+    <div class="chip" style="background:var(--champagne);color:var(--oxblood)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Warm-band accents.</div>
+      <div class="meta"><span>Oxblood on Champagne</span><span class="ratio">8.72</span></div>
+    </div>
+    <div class="chip" style="background:var(--oxblood);color:var(--silver)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Lowest passing pair. Fine, but not for 12px.</div>
+      <div class="meta"><span>Silver on Oxblood</span><span class="ratio">6.98</span></div>
+    </div>
+  </div>
+
+  <span class="verdict v-fail">Never · fails at every size</span>
+  <div class="sw">
+    <div class="chip fail g-ink" style="background:var(--ink);color:var(--oxblood)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Oxblood is a fill on Ink, never a type colour. Stroke it in Champagne.</div>
+      <div class="meta"><span>Oxblood on Ink</span><span class="ratio">1.69</span></div>
+    </div>
+    <div class="chip fail g-ox" style="background:var(--oxblood);color:var(--ink)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">The inverse fails identically.</div>
+      <div class="meta"><span>Ink on Oxblood</span><span class="ratio">1.69</span></div>
+    </div>
+    <div class="chip fail g-light" style="background:var(--ivory);color:var(--silver)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Silver is chrome and hairlines. Never body text on light.</div>
+      <div class="meta"><span>Silver on Ivory</span><span class="ratio">1.36</span></div>
+    </div>
+    <div class="chip fail g-light" style="background:var(--champagne);color:var(--silver)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Worse on the warmer ground.</div>
+      <div class="meta"><span>Silver on Champagne</span><span class="ratio">1.25</span></div>
+    </div>
+    <div class="chip fail g-light" style="background:var(--ivory);color:var(--champagne)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Champagne is a ground and a panel, not a type colour on Ivory.</div>
+      <div class="meta"><span>Champagne on Ivory</span><span class="ratio">1.09</span></div>
+    </div>
+    <div class="chip fail g-light" style="background:var(--champagne);color:var(--ivory)">
+      <div class="txt">Leave what is in it.</div>
+      <div class="sm">Effectively invisible.</div>
+      <div class="meta"><span>Ivory on Champagne</span><span class="ratio">1.09</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= THE RULING ============================= -->
+<section class="sec dark">
+ <div class="in">
+  <span class="eyeb">The ruling</span>
+  <h3>What each answer commits us to.</h3>
+  <div class="rule2">
+    <div class="opt">
+      <h4>Choose A</h4>
+      <ul>
+        <li>§5 closes today. Nothing is blocked on a font.</li>
+        <li>0 KB, 0 requests. The 0.8&nbsp;s LCP stays as measured.</li>
+        <li>No CLS risk from a swap, ever.</li>
+        <li>Iowan Old Style is Apple-only. Windows and Android fall to Georgia, so the display face is not the same face for everyone who sees it.</li>
+        <li>The brand documents keep naming a typeface we do not use.</li>
+      </ul>
+    </div>
+    <div class="opt">
+      <h4>Choose B</h4>
+      <ul>
+        <li>One face for every visitor on every platform. That is the real argument.</li>
+        <li>Fraunces' soft, high-contrast italic is closer to the register the hero is reaching for.</li>
+        <li>57.1&nbsp;KB and 3 preloads added to first paint.</li>
+        <li>Requires the two fallback faces above, permanently, or the hero jumps.</li>
+        <li>Requires a +7.5&nbsp;% pass on every display size to hold the current optical scale.</li>
+      </ul>
+    </div>
+  </div>
+ </div>
+</section>
+
+<footer>
+  <div class="in">
+    <p>D1 · type decision surface · <code>/_design/d1</code> · built 2026-09-08</p>
+    <p>Palette read live from <code>../../brand-tokens.css</code>. Font byte counts measured from
+    <code>_design/d1/fonts/</code>. x-height figures measured from the shipped woff2 files and from
+    the system faces they replace. Zero JavaScript on this page.</p>
+  </div>
+</footer>
+
+</body>
+</html>
