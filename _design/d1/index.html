@@ -8,8 +8,8 @@
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#14100F">
 <link rel="stylesheet" href="../../brand-tokens.css">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-display-italic.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-body.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../fonts/fraunces-display-italic.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../fonts/inter-body.woff2">
 <style>
 /* ------------------------------------------------------------------
    D1 · the type decision, made by looking.
@@ -19,11 +19,11 @@
 
 /* Candidate B, self-hosted, latin subset, axes instanced. No CDN. */
 @font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;
-  src:url(fonts/fraunces-display-italic.woff2) format("woff2")}
+  src:url(../../fonts/fraunces-display-italic.woff2) format("woff2")}
 @font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;
-  src:url(fonts/fraunces-display-roman.woff2) format("woff2")}
+  src:url(../../fonts/fraunces-display-roman.woff2) format("woff2")}
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 500;font-display:swap;
-  src:url(fonts/inter-body.woff2) format("woff2")}
+  src:url(../../fonts/inter-body.woff2) format("woff2")}
 
 /* The metric-matched fallbacks that stop the swap from shifting the page.
    size-adjust values are measured, not guessed — see the cost table. */
@@ -170,6 +170,12 @@ pre{margin-top:1.4rem;padding:1rem 1.05rem;overflow-x:auto;font-size:.78rem;line
 .opt li{padding:.32rem 0 .32rem 1.1rem;position:relative;color:var(--silver)}
 .opt li::before{content:"";position:absolute;left:0;top:.82em;width:6px;height:1px;background:var(--champagne)}
 
+/* ---- the ruling, recorded 2026-09-09 ---- */
+.ruled{background:var(--oxblood);color:var(--ivory);padding:.85rem 1.15rem;
+  font-family:var(--sans);font-size:.72rem;line-height:1.5;text-align:center}
+.ruled b{display:block;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--champagne);font-weight:400;margin-bottom:.3rem}
+
 footer{background:var(--ink);color:var(--silver);border-top:1px solid var(--rule-dark);
   padding:2.2rem 1.15rem 3rem;font-size:.78rem;text-align:center}
 footer .in{max-width:48rem;margin:0 auto}
@@ -177,6 +183,13 @@ footer code{font-family:ui-monospace,Menlo,monospace;color:var(--champagne)}
 </style>
 </head>
 <body>
+
+<div class="ruled">
+  <b>Ruled &middot; 2026-09-09</b>
+  Dofrane chose <strong>B &mdash; Fraunces display, Inter body and UI</strong>. It is live on the site,
+  with the metric-matched fallbacks and the +7.5&nbsp;% display correction below. This page is now the
+  record of how the decision was made, not the decision itself.
+</div>
 
 <header class="top">
   <div class="in">
@@ -438,7 +451,7 @@ footer code{font-family:ui-monospace,Menlo,monospace;color:var(--champagne)}
   <div class="in">
     <p>D1 · type decision surface · <code>/_design/d1</code> · built 2026-09-08</p>
     <p>Palette read live from <code>../../brand-tokens.css</code>. Font byte counts measured from
-    <code>_design/d1/fonts/</code>. x-height figures measured from the shipped woff2 files and from
+    <code>/fonts/</code>. x-height figures measured from the shipped woff2 files and from
     the system faces they replace. Zero JavaScript on this page.</p>
   </div>
 </footer>

@@ -8,20 +8,53 @@
 <link rel="canonical" href="https://dofraneacquisitions.com/sell">
 <meta name="robots" content="noindex,follow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#141214">
+<meta name="theme-color" content="#14100F">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fraunces-display-italic.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-body.woff2">
 <style>
+/* ---------- type ----------
+   D1 ruled B on 2026-09-09: Fraunces for display, Inter for body and UI.
+   Self-hosted, same origin, Latin subset, axes instanced. No CDN, no third-party request. */
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;
+src:url(/fonts/fraunces-display-italic.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;
+src:url(/fonts/fraunces-display-roman.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 500;font-display:swap;
+src:url(/fonts/inter-body.woff2) format("woff2")}
+/* Metric-matched fallbacks. Values measured in /_design/d1 against the shipped woff2 files.
+   Without these the hero repaints at a different height on swap and CLS stops being 0. */
+@font-face{font-family:"Fraunces fallback";src:local("Iowan Old Style Italic"),local("Georgia Italic");
+size-adjust:93.1%;ascent-override:97.8%;descent-override:25.5%;line-gap-override:0%}
+@font-face{font-family:"Inter fallback";src:local("Helvetica Neue"),local("Arial");
+size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-override:0%}
+
+/* ---------- colour ----------
+   The locked five from brand-tokens.css, inlined. That file is the source of truth; this page
+   carries a copy because an external stylesheet costs a request against LCP. Every other value
+   below is Ink, Ivory, Champagne or Silver mixed into another, and none is invented. The
+   playbook's forbidden greys (#333/#666/#999) appear nowhere. */
 :root{
---oxblood:#6E1E2A;--ink:#141214;--champagne:#E8D9B8;--ivory:#F6F1E7;--silver:#B9B6AE;
---paper:#F6F1E7;--paper2:#EFE8DA;--body:#4d464b;--line:#dbd2c3;--hair:#3a343a;
---serif:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,"Times New Roman",serif;
---sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--oxblood:#6E1E2A;--ivory:#F3ECDD;--ink:#14100F;--champagne:#EFE3C0;--silver:#C9CDD2;
+--body:color-mix(in srgb,var(--ink) 78%,var(--ivory));
+--muted:color-mix(in srgb,var(--ink) 58%,var(--ivory));
+--rule:color-mix(in srgb,var(--ink) 16%,var(--ivory));
+--rule-dark:color-mix(in srgb,var(--ivory) 18%,var(--ink));
+--panel:color-mix(in srgb,var(--champagne) 45%,var(--ivory));
+--field:color-mix(in srgb,#fff 78%,var(--ivory));
+--field-line:color-mix(in srgb,var(--ink) 26%,var(--ivory));
+--fade:color-mix(in srgb,var(--ink) 40%,var(--ivory));
+--fade-dark:color-mix(in srgb,var(--ivory) 48%,var(--ink));
+--ink-lift:color-mix(in srgb,var(--ink) 97%,var(--ivory));
+--ink-deep:color-mix(in srgb,var(--ink) 62%,#000);
+--serif:"Fraunces","Fraunces fallback","Iowan Old Style",Georgia,"Times New Roman",serif;
+--sans:"Inter","Inter fallback",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 --hdr:56px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--body);font-family:var(--serif);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
+body{background:var(--ivory);color:var(--body);font-family:var(--sans);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
 
 .hdr{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:20;background:var(--ink);
-display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--hair)}
+display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--rule-dark)}
 .mark{grid-column:2;font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory);text-align:center;white-space:nowrap;text-decoration:none}
 .mark b{font-weight:400;color:var(--champagne)}
 .pill{grid-column:3;justify-self:end;font-family:var(--sans);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
@@ -35,9 +68,9 @@ section{padding:clamp(3.6rem,9vw,6.5rem) 1.25rem}
 .dark .kick{color:var(--champagne)}
 .dark{background:var(--ink);color:var(--silver)}
 .dark.tex{background:
-radial-gradient(120% 85% at 74% 12%,rgba(110,30,42,.5),transparent 62%),
-radial-gradient(95% 75% at 10% 100%,rgba(232,217,184,.07),transparent 60%),
-linear-gradient(165deg,#1c181c 0%,#141214 48%,#0c0a0c 100%)}
+radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--oxblood) 50%,transparent),transparent 62%),
+radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--champagne) 7%,transparent),transparent 60%),
+linear-gradient(165deg,var(--ink-lift) 0%,var(--ink) 48%,var(--ink-deep) 100%)}
 .copy{max-width:min(65ch,38rem);margin:1.5rem auto 0}
 .copy p{margin:1rem 0}
 .copy p:first-child{margin-top:0}
@@ -45,7 +78,7 @@ linear-gradient(165deg,#1c181c 0%,#141214 48%,#0c0a0c 100%)}
 .dark .copy{color:var(--silver)}
 .dark .copy b{color:var(--ivory)}
 .disp{font-family:var(--serif);font-style:italic;font-weight:400;
-font-size:clamp(1.8rem,5.2vw,3rem);line-height:1.16;margin:1.1rem auto 0;max-width:24ch;color:var(--ink)}
+font-size:clamp(1.94rem,5.59vw,3.23rem);line-height:1.16;margin:1.1rem auto 0;max-width:24ch;color:var(--ink)}
 .dark .disp{color:var(--ivory)}
 
 .hero{min-height:78vh;min-height:78svh;padding:calc(var(--hdr) + 2.4rem) 1.25rem 3rem;display:grid;grid-template-rows:auto 1fr auto;text-align:center}
@@ -54,7 +87,7 @@ font-size:clamp(1.8rem,5.2vw,3rem);line-height:1.16;margin:1.1rem auto 0;max-wid
 .heroline .inner{text-align:left;width:min(34rem,100%)}
 @media (min-width:52rem){.heroline{justify-items:end;padding-right:min(9vw,7rem)}}
 h1{font-family:var(--serif);font-style:italic;font-weight:400;
-font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
+font-size:clamp(2.15rem,7.53vw,3.44rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
 h1 span{display:block}
 .sub{margin-top:1.3rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
 .cue{font-family:var(--sans);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
@@ -65,33 +98,33 @@ h1 span{display:block}
 @supports (animation-timeline:view()){
 @media (prefers-reduced-motion:no-preference){
 .rev,.disp.rev{color:transparent;
-background-image:linear-gradient(90deg,var(--ink) 0 46%,#988e82 54% 100%);
+background-image:linear-gradient(90deg,var(--ink) 0 46%,var(--fade) 54% 100%);
 background-size:230% 100%;background-position:100% 0;background-repeat:no-repeat;
 -webkit-background-clip:text;background-clip:text;
 animation:sweep linear both;animation-timeline:view();animation-range:entry 20% cover 46%}
-.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--ivory) 0 46%,#847c84 54% 100%)}
+.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--ivory) 0 46%,var(--fade-dark) 54% 100%)}
 }}
 @keyframes sweep{to{background-position:0 0}}
 
 .four{display:grid;gap:1.3rem;max-width:56rem;margin:2.4rem auto 0;text-align:left}
 @media (min-width:44rem){.four{grid-template-columns:1fr 1fr}}
-.f4{border-top:1px solid var(--hair);padding-top:.95rem}
-.f4 .ltr{font-family:var(--serif);font-style:italic;font-size:1.6rem;line-height:1;color:var(--champagne)}
-.f4 h2{font-family:var(--serif);font-weight:400;font-size:1.12rem;color:var(--ivory);margin:.5rem 0 .4rem;line-height:1.35}
+.f4{border-top:1px solid var(--rule-dark);padding-top:.95rem}
+.f4 .ltr{font-family:var(--serif);font-style:italic;font-size:1.72rem;line-height:1;color:var(--champagne)}
+.f4 h2{font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--ivory);margin:.5rem 0 .4rem;line-height:1.35}
 .f4 p{font-size:.97rem;color:var(--silver)}
 
 .form{max-width:34rem;margin:2.2rem auto 0;text-align:left}
 form{display:grid;gap:.9rem}
-label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6f6670;display:grid;gap:.35rem}
-input,select,textarea{font:inherit;font-family:var(--serif);font-size:1rem;padding:.72rem .75rem;background:#fff;border:1px solid #c9c0b4;color:var(--ink);border-radius:2px;width:100%}
+label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:grid;gap:.35rem}
+input,select,textarea{font:inherit;font-family:var(--sans);font-size:1rem;padding:.72rem .75rem;background:var(--field);border:1px solid var(--field-line);color:var(--ink);border-radius:2px;width:100%}
 textarea{min-height:5rem;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:#413c41;font-family:var(--serif)}
+.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:var(--body);font-family:var(--sans)}
 .consent input{width:auto;margin-top:.35rem;flex:0 0 auto}
 .hp{position:absolute;left:-9999px}
 button{font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--oxblood);color:var(--ivory);border:0;cursor:pointer;width:100%}
 #msg{margin-top:.9rem;color:var(--oxblood);font-size:.98rem;min-height:1.5rem}
-.fine{font-size:.9rem;color:#6f6670;margin-top:1.2rem}
+.fine{font-size:.9rem;color:var(--muted);margin-top:1.2rem}
 
 footer{background:var(--ink);color:var(--silver);padding:2.8rem 1.25rem 3.4rem;font-size:.86rem;line-height:1.65;text-align:center}
 footer .in{max-width:min(70ch,42rem);margin:0 auto}
@@ -147,7 +180,7 @@ footer a{color:var(--champagne);text-decoration:none;border-bottom:1px solid var
   </div>
 </section>
 
-<section class="band" id="the-form" style="background:var(--paper2);border-top:1px solid var(--line)">
+<section class="band" id="the-form" style="background:var(--panel);border-top:1px solid var(--rule)">
   <span class="kick">The form</span>
   <h2 class="disp">The house.</h2>
   <div class="copy">

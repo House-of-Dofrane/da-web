@@ -7,26 +7,59 @@
 <meta name="description" content="Dofrane Acquisitions buys houses as-is in Montgomery County and Prince George's County, Maryland. No repairs, no cleanout, no commission. Leave what is in it.">
 <link rel="canonical" href="https://dofraneacquisitions.com/">
 <meta name="robots" content="index,follow">
-<meta name="theme-color" content="#141214">
+<meta name="theme-color" content="#14100F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sell your house fast in Montgomery or Prince George's County. Leave what is in it.">
 <meta property="og:description" content="We buy houses as they stand in two Maryland counties, with our own money. You do not fix it, you do not empty it, and you do not pay a commission.">
 <meta property="og:url" content="https://dofraneacquisitions.com/">
 <meta property="og:site_name" content="Dofrane Acquisitions">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fraunces-display-italic.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-body.woff2">
 <style>
+/* ---------- type ----------
+   D1 ruled B on 2026-09-09: Fraunces for display, Inter for body and UI.
+   Self-hosted, same origin, Latin subset, axes instanced. No CDN, no third-party request. */
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;
+src:url(/fonts/fraunces-display-italic.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;
+src:url(/fonts/fraunces-display-roman.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 500;font-display:swap;
+src:url(/fonts/inter-body.woff2) format("woff2")}
+/* Metric-matched fallbacks. Values measured in /_design/d1 against the shipped woff2 files.
+   Without these the hero repaints at a different height on swap and CLS stops being 0. */
+@font-face{font-family:"Fraunces fallback";src:local("Iowan Old Style Italic"),local("Georgia Italic");
+size-adjust:93.1%;ascent-override:97.8%;descent-override:25.5%;line-gap-override:0%}
+@font-face{font-family:"Inter fallback";src:local("Helvetica Neue"),local("Arial");
+size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-override:0%}
+
+/* ---------- colour ----------
+   The locked five from brand-tokens.css, inlined. That file is the source of truth; this page
+   carries a copy because an external stylesheet costs a request against LCP. Every other value
+   below is Ink, Ivory, Champagne or Silver mixed into another, and none is invented. The
+   playbook's forbidden greys (#333/#666/#999) appear nowhere. */
 :root{
---oxblood:#6E1E2A;--ink:#141214;--champagne:#E8D9B8;--ivory:#F6F1E7;--silver:#B9B6AE;
---paper:#F6F1E7;--paper2:#EFE8DA;--body:#4d464b;--line:#dbd2c3;--hair:#3a343a;
---serif:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,"Times New Roman",serif;
---sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--oxblood:#6E1E2A;--ivory:#F3ECDD;--ink:#14100F;--champagne:#EFE3C0;--silver:#C9CDD2;
+--body:color-mix(in srgb,var(--ink) 78%,var(--ivory));
+--muted:color-mix(in srgb,var(--ink) 58%,var(--ivory));
+--rule:color-mix(in srgb,var(--ink) 16%,var(--ivory));
+--rule-dark:color-mix(in srgb,var(--ivory) 18%,var(--ink));
+--panel:color-mix(in srgb,var(--champagne) 45%,var(--ivory));
+--field:color-mix(in srgb,#fff 78%,var(--ivory));
+--field-line:color-mix(in srgb,var(--ink) 26%,var(--ivory));
+--fade:color-mix(in srgb,var(--ink) 40%,var(--ivory));
+--fade-dark:color-mix(in srgb,var(--ivory) 48%,var(--ink));
+--ink-lift:color-mix(in srgb,var(--ink) 97%,var(--ivory));
+--ink-deep:color-mix(in srgb,var(--ink) 62%,#000);
+--serif:"Fraunces","Fraunces fallback","Iowan Old Style",Georgia,"Times New Roman",serif;
+--sans:"Inter","Inter fallback",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 --hdr:56px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--body);font-family:var(--serif);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
+body{background:var(--ivory);color:var(--body);font-family:var(--sans);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
 
 /* ---------- fixed slim header ---------- */
 .hdr{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:20;background:var(--ink);
-display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--hair)}
+display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--rule-dark)}
 .mark{font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory);text-align:center;white-space:nowrap;text-decoration:none}
 .mark b{font-weight:400;color:var(--champagne)}
 .pill{justify-self:end;font-family:var(--sans);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
@@ -38,7 +71,7 @@ color:var(--ivory);text-decoration:none;border:1px solid var(--champagne);border
 .nav summary i{display:block;height:1px;background:var(--ivory)}
 .nav summary i:nth-child(2){width:70%}
 .nav[open] summary i{background:var(--champagne)}
-.nav ul{position:absolute;top:44px;left:-.4rem;min-width:15rem;background:var(--ink);border:1px solid var(--hair);list-style:none;padding:.6rem 0}
+.nav ul{position:absolute;top:44px;left:-.4rem;min-width:15rem;background:var(--ink);border:1px solid var(--rule-dark);list-style:none;padding:.6rem 0}
 .nav a{display:block;font-family:var(--sans);font-size:.78rem;letter-spacing:.06em;color:var(--ivory);text-decoration:none;padding:.6rem 1.1rem}
 .nav a:hover,.nav a:focus{background:var(--oxblood)}
 @media (max-width:26rem){.short{display:none}.mark{letter-spacing:.18em;font-size:.6rem}}
@@ -49,10 +82,10 @@ section{padding:clamp(4.2rem,10vw,8rem) 1.25rem}
 .kick{font-family:var(--sans);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood);display:block}
 .dark .kick{color:var(--champagne)}
 .disp{font-family:var(--serif);font-style:italic;font-weight:400;
-font-size:clamp(1.85rem,5.4vw,3.3rem);line-height:1.15;letter-spacing:-.005em;
+font-size:clamp(1.99rem,5.81vw,3.55rem);line-height:1.15;letter-spacing:-.005em;
 margin:1.15rem auto 0;max-width:22ch;color:var(--ink)}
 .dark .disp{color:var(--ivory)}
-.disp.wide{max-width:30ch;font-size:clamp(1.6rem,4.5vw,2.7rem)}
+.disp.wide{max-width:30ch;font-size:clamp(1.72rem,4.84vw,2.9rem)}
 .copy{max-width:min(65ch,38rem);margin:1.6rem auto 0}
 .copy p{margin:1rem 0}
 .copy p:first-child{margin-top:0}
@@ -63,9 +96,9 @@ margin:1.15rem auto 0;max-width:22ch;color:var(--ink)}
 .dark .hr{background:var(--champagne)}
 .dark{background:var(--ink);color:var(--silver)}
 .dark.tex{background:
-radial-gradient(120% 85% at 74% 12%,rgba(110,30,42,.5),transparent 62%),
-radial-gradient(95% 75% at 10% 100%,rgba(232,217,184,.07),transparent 60%),
-linear-gradient(165deg,#1c181c 0%,#141214 48%,#0c0a0c 100%)}
+radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--oxblood) 50%,transparent),transparent 62%),
+radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--champagne) 7%,transparent),transparent 60%),
+linear-gradient(165deg,var(--ink-lift) 0%,var(--ink) 48%,var(--ink-deep) 100%)}
 
 /* ---------- hero ---------- */
 .hero{min-height:100vh;min-height:100svh;padding:calc(var(--hdr) + 2.2rem) 1.25rem 3.5rem;
@@ -75,7 +108,7 @@ display:grid;grid-template-rows:auto 1fr auto;text-align:center}
 .heroline .inner{text-align:left;width:min(36rem,100%)}
 @media (min-width:52rem){.heroline{justify-items:end;padding-right:min(9vw,7rem)}}
 h1{font-family:var(--serif);font-style:italic;font-weight:400;
-font-size:clamp(2rem,7.2vw,3.4rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
+font-size:clamp(2.15rem,7.74vw,3.66rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
 h1 span{display:block}
 .sub{margin-top:1.4rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
 .cue{font-family:var(--sans);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
@@ -87,22 +120,22 @@ h1 span{display:block}
 @supports (animation-timeline:view()){
 @media (prefers-reduced-motion:no-preference){
 .rev,.disp.rev{color:transparent;
-background-image:linear-gradient(90deg,var(--ink) 0 46%,#988e82 54% 100%);
+background-image:linear-gradient(90deg,var(--ink) 0 46%,var(--fade) 54% 100%);
 background-size:230% 100%;background-position:100% 0;background-repeat:no-repeat;
 -webkit-background-clip:text;background-clip:text;
 animation:sweep linear both;animation-timeline:view();animation-range:entry 20% cover 46%}
-.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--ivory) 0 46%,#847c84 54% 100%)}
+.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--ivory) 0 46%,var(--fade-dark) 54% 100%)}
 }}
 @keyframes sweep{to{background-position:0 0}}
 
 /* ---------- steps ---------- */
 .steps{display:grid;gap:1.9rem;max-width:58rem;margin:2.6rem auto 0;text-align:left}
 @media (min-width:46rem){.steps{grid-template-columns:repeat(3,1fr);gap:2.2rem}}
-.step{border-top:1px solid var(--line);padding-top:1rem}
-.dark .step{border-top-color:var(--hair)}
+.step{border-top:1px solid var(--rule);padding-top:1rem}
+.dark .step{border-top-color:var(--rule-dark)}
 .step .n{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;color:var(--oxblood)}
 .dark .step .n{color:var(--champagne)}
-.step h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.28rem;color:var(--ink);margin:.5rem 0 .5rem}
+.step h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.38rem;color:var(--ink);margin:.5rem 0 .5rem}
 .dark .step h3{color:var(--ivory)}
 .step p{font-size:.98rem}
 
@@ -110,36 +143,41 @@ animation:sweep linear both;animation-timeline:view();animation-range:entry 20% 
 .cards{display:grid;gap:1.4rem;max-width:64rem;margin:2.8rem auto 0;text-align:left}
 @media (min-width:40rem){.cards{grid-template-columns:1fr 1fr}}
 @media (min-width:62rem){.cards{grid-template-columns:repeat(3,1fr)}}
-.c{background:var(--paper2);border:1px solid var(--line);padding:1.5rem 1.35rem 1.6rem}
-.c .ltr{font-family:var(--serif);font-style:italic;font-size:1.9rem;line-height:1;color:var(--oxblood);display:block}
-.c h3{font-family:var(--serif);font-weight:400;font-size:1.14rem;color:var(--ink);margin:.75rem 0 .5rem;line-height:1.35}
+.c{background:var(--panel);border:1px solid var(--rule);padding:1.5rem 1.35rem 1.6rem}
+.c .ltr{font-family:var(--serif);font-style:italic;font-size:2.04rem;line-height:1;color:var(--oxblood);display:block}
+.c h3{font-family:var(--serif);font-weight:400;font-size:1.23rem;color:var(--ink);margin:.75rem 0 .5rem;line-height:1.35}
 .c p{font-size:.97rem;line-height:1.62}
 
 /* ---------- map ---------- */
 .map{max-width:34rem;margin:2.6rem auto 0}
 .map svg{display:block;width:100%;height:auto}
+.map .cnty{fill:var(--oxblood);fill-opacity:.82;stroke:var(--champagne);stroke-width:2}
+.map .dcline{stroke:color-mix(in srgb,var(--silver) 52%,var(--ink));stroke-width:1.5;stroke-dasharray:5 5}
+.map .lbl{font-family:var(--sans);fill:var(--ivory)}
+.map .lbl .sm{fill:var(--champagne)}
+.map .lbl .dc{fill:color-mix(in srgb,var(--silver) 60%,var(--ink))}
 .legend{display:grid;gap:.7rem;max-width:min(65ch,38rem);margin:2rem auto 0;text-align:left;font-size:.97rem;color:var(--silver)}
 .legend b{font-weight:400;color:var(--ivory)}
 
 /* ---------- faq ---------- */
 .faq{max-width:min(70ch,42rem);margin:2.6rem auto 0;text-align:left}
-.faq h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.2rem;color:var(--ink);margin:2rem 0 .5rem;line-height:1.35}
+.faq h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.29rem;color:var(--ink);margin:2rem 0 .5rem;line-height:1.35}
 .faq h3:first-of-type{margin-top:0}
 .faq p{margin:.7rem 0;font-size:1rem}
 
 /* ---------- form ---------- */
 .form{max-width:34rem;margin:2.4rem auto 0;text-align:left}
 form{display:grid;gap:.9rem}
-label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6f6670;display:grid;gap:.35rem}
-input,select,textarea{font:inherit;font-family:var(--serif);font-size:1rem;padding:.72rem .75rem;background:#fff;border:1px solid #c9c0b4;color:var(--ink);border-radius:2px;width:100%}
+label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:grid;gap:.35rem}
+input,select,textarea{font:inherit;font-family:var(--sans);font-size:1rem;padding:.72rem .75rem;background:var(--field);border:1px solid var(--field-line);color:var(--ink);border-radius:2px;width:100%}
 textarea{min-height:5rem;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:#413c41;font-family:var(--serif)}
+.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:var(--body);font-family:var(--sans)}
 .consent input{width:auto;margin-top:.35rem;flex:0 0 auto}
 .hp{position:absolute;left:-9999px}
 button{font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--oxblood);color:var(--ivory);border:0;cursor:pointer;width:100%}
 #msg{margin-top:.9rem;color:var(--oxblood);font-size:.98rem;min-height:1.5rem}
-.fine{font-size:.9rem;color:#6f6670;margin-top:1.2rem}
+.fine{font-size:.9rem;color:var(--muted);margin-top:1.2rem}
 .btn{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:1rem 1.6rem;background:var(--oxblood);color:var(--ivory);text-decoration:none;margin-top:2rem}
 .dark .btn{background:var(--champagne);color:var(--ink)}
 .note{font-size:.95rem;margin-top:1rem}
@@ -199,16 +237,16 @@ footer p{margin:.8rem 0}
   <div class="map">
     <svg viewBox="0 0 540 560" role="img" aria-label="Simplified map of Maryland showing Montgomery County and Prince George's County, with the District of Columbia between them, marked as outside the buying area.">
       <g fill="none" stroke-linejoin="round">
-        <path d="M38 175 218 35 326 56 337 182 304 283 261 326 190 294 76 231Z" fill="#6E1E2A" fill-opacity=".82" stroke="#E8D9B8" stroke-width="2"/>
-        <path d="M305 266 408 245 419 287 500 350 500 406 490 476 381 518 316 483 305 426 376 355 304 283Z" fill="#6E1E2A" fill-opacity=".82" stroke="#E8D9B8" stroke-width="2"/>
-        <path d="M304 283 376 355 305 426 261 326Z" stroke="#8b8489" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <path class="cnty" d="M38 175 218 35 326 56 337 182 304 283 261 326 190 294 76 231Z"/>
+        <path class="cnty" d="M305 266 408 245 419 287 500 350 500 406 490 476 381 518 316 483 305 426 376 355 304 283Z"/>
+        <path class="dcline" d="M304 283 376 355 305 426 261 326Z"/>
       </g>
-      <g font-family="system-ui,sans-serif" text-anchor="middle" fill="#F6F1E7">
+      <g class="lbl" text-anchor="middle">
         <text x="200" y="176" font-size="21" letter-spacing="1.5">MONTGOMERY</text>
-        <text x="200" y="200" font-size="14" letter-spacing="3" fill="#E8D9B8">COUNTY</text>
+        <text class="sm" x="200" y="200" font-size="14" letter-spacing="3">COUNTY</text>
         <text x="414" y="396" font-size="15" letter-spacing="1">PRINCE GEORGE&#39;S</text>
-        <text x="414" y="418" font-size="13" letter-spacing="3" fill="#E8D9B8">COUNTY</text>
-        <text x="309" y="342" font-size="13" letter-spacing="1.5" fill="#918a90">DC</text>
+        <text class="sm" x="414" y="418" font-size="13" letter-spacing="3">COUNTY</text>
+        <text class="dc" x="309" y="342" font-size="13" letter-spacing="1.5">DC</text>
       </g>
     </svg>
   </div>
@@ -327,7 +365,7 @@ footer p{margin:.8rem 0}
   </div>
 </section>
 
-<section class="band" id="tell-us" style="background:var(--paper2);border-top:1px solid var(--line)">
+<section class="band" id="tell-us" style="background:var(--panel);border-top:1px solid var(--rule)">
   <span class="kick">The form</span>
   <h2 class="disp">Tell us about the house.</h2>
   <div class="copy">
