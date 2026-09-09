@@ -44,3 +44,16 @@ separate and optional. Text consent is not yet stored — see the open item belo
 
 - Text consent is collected and not stored. Texting stays off until `inbound_submit` accepts it.
 - No MX record on the domain, so the form is the only contact path and has no email fallback.
+
+## Why this repo is public
+
+It serves a public marketing page and nothing else. Every byte here is already delivered to
+anyone who loads `dofraneacquisitions.com`. The only credential present is a Supabase
+**publishable** key, which is designed for client-side use and appears in the page source by
+design; no service-role or secret key exists in this repo or its history.
+
+Internal strategy stays out. The swipe file, the copy rationale and the gate card live in
+`HOD_CMO/outbox/seo/2026-09-08-da-site-rebuild/` and are not published here.
+
+Public is also what makes the deploy free: importing a **private** repo into a Vercel team
+requires a Pro plan at $20/month. A public marketing site does not.
