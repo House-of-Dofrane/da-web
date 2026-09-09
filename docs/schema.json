@@ -1,0 +1,143 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dofraneacquisitions.com/#org",
+      "name": "Dofrane Acquisitions",
+      "url": "https://dofraneacquisitions.com/",
+      "description": "A Maryland real estate investor that buys houses directly from owners in Montgomery County and Prince George's County.",
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Montgomery County, Maryland"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Prince George's County, Maryland"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "RealEstateAgent",
+        "LocalBusiness"
+      ],
+      "@id": "https://dofraneacquisitions.com/#business",
+      "name": "Dofrane Acquisitions",
+      "url": "https://dofraneacquisitions.com/",
+      "parentOrganization": {
+        "@id": "https://dofraneacquisitions.com/#org"
+      },
+      "description": "Dofrane Acquisitions buys houses as-is, for its own account, in Montgomery County and Prince George's County, Maryland. It is not a licensed real estate broker and does not represent sellers.",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Montgomery County, Maryland"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Prince George's County, Maryland"
+        }
+      ],
+      "knowsLanguage": "en-US",
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "target": "https://dofraneacquisitions.com/sell",
+        "name": "Tell us about the house"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dofraneacquisitions.com/#website",
+      "url": "https://dofraneacquisitions.com/",
+      "name": "Dofrane Acquisitions",
+      "publisher": {
+        "@id": "https://dofraneacquisitions.com/#org"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://dofraneacquisitions.com/#webpage",
+      "url": "https://dofraneacquisitions.com/",
+      "name": "Sell your house fast in Montgomery or Prince George's County, Maryland",
+      "isPartOf": {
+        "@id": "https://dofraneacquisitions.com/#website"
+      },
+      "about": {
+        "@id": "https://dofraneacquisitions.com/#business"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://dofraneacquisitions.com/#faq",
+      "isPartOf": {
+        "@id": "https://dofraneacquisitions.com/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need to fix anything before you look at it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. As-is means the house is priced in the condition it is in on the day it is walked, with no repair credit demanded afterward. Sellers are not expected to paint, patch, haul anything away, or empty the basement. Anything broken should be noted on the form so it is priced from the start."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does as-is actually mean on the contract?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As-is means the buyer accepts the physical condition of the property. It does not remove Maryland disclosure duties: on most single family residential sales of four units or fewer, the seller still delivers the Real Property section 10-702 disclosure or disclaimer statement. As-is governs repairs, not disclosure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the seller pay a commission?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No commission, because no one acts as an agent in the sale. No listing fee, no marketing budget, no cleanout invoice. Ordinary settlement costs still apply, and Maryland's default under Real Property section 14-104 is that recordation and transfer taxes are shared equally between the parties unless the contract says otherwise."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the call be recorded?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only with consent. Maryland requires every party to a call to agree before it may be recorded, under Courts and Judicial Proceedings section 10-402. Consent is requested at the start of the first call. If the answer is no, the call continues and nothing is recorded."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I send this if the house is listed with an agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and the form should say so. If a listing agreement is in force, that agreement governs and Dofrane Acquisitions will not work around it. In most cases the right first step is a conversation with the listing agent."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://dofraneacquisitions.com/sell#webpage",
+      "url": "https://dofraneacquisitions.com/sell",
+      "name": "Tell us about the house",
+      "description": "Seller intake for Dofrane Acquisitions, covering Montgomery County and Prince George's County, Maryland.",
+      "isPartOf": {
+        "@id": "https://dofraneacquisitions.com/#website"
+      },
+      "about": {
+        "@id": "https://dofraneacquisitions.com/#business"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+}
