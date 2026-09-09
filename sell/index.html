@@ -8,58 +8,152 @@
 <link rel="canonical" href="https://dofraneacquisitions.com/sell">
 <meta name="robots" content="noindex,follow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#141214">
 <style>
-  :root{--oxblood:#6E1E2A;--ink:#141214;--champagne:#E8D9B8;--ivory:#F6F1E7;--silver:#B9B6AE}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--ink);color:var(--ivory);font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.65}
-  .wrap{max-width:36rem;margin:0 auto;padding:2.5rem 1.15rem 0}
-  .eyebrow{font-family:system-ui,-apple-system,sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne)}
-  h1{font-weight:400;font-size:clamp(1.6rem,5.5vw,2.2rem);line-height:1.2;margin:1rem 0 0}
-  h2{font-weight:400;font-size:1.2rem;margin:0 0 .3rem;color:var(--ink)}
-  p{margin:.85rem 0;color:var(--silver)}
-  .lede{color:var(--ivory);font-size:1.1rem}
-  .rule{width:48px;height:1px;background:var(--oxblood);margin:1.5rem 0}
-  ul{margin:1rem 0 0 1.1rem;color:var(--silver)}
-  li{margin:.6rem 0}
-  li b{color:var(--ivory);font-weight:400}
-  .card{background:var(--ivory);color:var(--ink);margin:2.4rem 0 0;padding:1.9rem 1.15rem 2.3rem}
-  .card p{color:#413c41}
-  form{display:grid;gap:.9rem;margin-top:1.4rem}
-  label{font-family:system-ui,-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#6b6169;display:grid;gap:.35rem}
-  input,select,textarea{font:inherit;font-size:1rem;padding:.7rem .75rem;background:#fff;border:1px solid #c9c0b4;color:var(--ink);border-radius:2px;width:100%}
-  textarea{min-height:5rem;resize:vertical}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-  .consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.9rem;color:#413c41;font-family:Georgia,serif}
-  .consent input{width:auto;margin-top:.3rem;flex:0 0 auto}
-  .hp{position:absolute;left:-9999px}
-  button{font-family:system-ui,-apple-system,sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;padding:1rem 1.2rem;background:var(--oxblood);color:var(--ivory);border:0;cursor:pointer;width:100%}
-  #msg{margin-top:1rem;color:var(--oxblood);font-size:.98rem;min-height:1.4rem}
-  .fine{font-size:.88rem;color:#6b6169;margin-top:1.2rem}
-  footer{max-width:36rem;margin:0 auto;padding:2.2rem 1.15rem 3.5rem;font-size:.84rem;color:var(--silver);line-height:1.6}
-  a{color:var(--champagne);text-decoration:none;border-bottom:1px solid var(--oxblood)}
-  @media (max-width:26rem){.row{grid-template-columns:1fr}}
+:root{
+--oxblood:#6E1E2A;--ink:#141214;--champagne:#E8D9B8;--ivory:#F6F1E7;--silver:#B9B6AE;
+--paper:#F6F1E7;--paper2:#EFE8DA;--body:#4d464b;--line:#dbd2c3;--hair:#3a343a;
+--serif:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,"Times New Roman",serif;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--hdr:56px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--body);font-family:var(--serif);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
+
+.hdr{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:20;background:var(--ink);
+display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--hair)}
+.mark{grid-column:2;font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory);text-align:center;white-space:nowrap;text-decoration:none}
+.mark b{font-weight:400;color:var(--champagne)}
+.pill{grid-column:3;justify-self:end;font-family:var(--sans);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
+color:var(--ivory);text-decoration:none;border:1px solid var(--champagne);border-radius:999px;padding:.5rem .85rem;white-space:nowrap}
+.pill:hover,.pill:focus{background:var(--oxblood);border-color:var(--oxblood)}
+@media (max-width:26rem){.short{display:none}.mark{letter-spacing:.18em;font-size:.6rem}}
+
+section{padding:clamp(3.6rem,9vw,6.5rem) 1.25rem}
+.band{text-align:center}
+.kick{font-family:var(--sans);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood);display:block}
+.dark .kick{color:var(--champagne)}
+.dark{background:var(--ink);color:var(--silver)}
+.dark.tex{background:
+radial-gradient(120% 85% at 74% 12%,rgba(110,30,42,.5),transparent 62%),
+radial-gradient(95% 75% at 10% 100%,rgba(232,217,184,.07),transparent 60%),
+linear-gradient(165deg,#1c181c 0%,#141214 48%,#0c0a0c 100%)}
+.copy{max-width:min(65ch,38rem);margin:1.5rem auto 0}
+.copy p{margin:1rem 0}
+.copy p:first-child{margin-top:0}
+.copy b{font-weight:400;color:var(--ink)}
+.dark .copy{color:var(--silver)}
+.dark .copy b{color:var(--ivory)}
+.disp{font-family:var(--serif);font-style:italic;font-weight:400;
+font-size:clamp(1.8rem,5.2vw,3rem);line-height:1.16;margin:1.1rem auto 0;max-width:24ch;color:var(--ink)}
+.dark .disp{color:var(--ivory)}
+
+.hero{min-height:78vh;min-height:78svh;padding:calc(var(--hdr) + 2.4rem) 1.25rem 3rem;display:grid;grid-template-rows:auto 1fr auto;text-align:center}
+.hero .eyebrow{font-family:var(--sans);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
+.heroline{display:grid;align-content:center;justify-items:center;padding:1.4rem 0}
+.heroline .inner{text-align:left;width:min(34rem,100%)}
+@media (min-width:52rem){.heroline{justify-items:end;padding-right:min(9vw,7rem)}}
+h1{font-family:var(--serif);font-style:italic;font-weight:400;
+font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
+h1 span{display:block}
+.sub{margin-top:1.3rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
+.cue{font-family:var(--sans);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
+.cue i{display:block;width:11px;height:11px;border-right:1px solid var(--champagne);border-bottom:1px solid var(--champagne);transform:rotate(45deg)}
+@media (prefers-reduced-motion:no-preference){.cue i{animation:dip 2.4s ease-in-out infinite}}
+@keyframes dip{0%,100%{transform:translateY(-2px) rotate(45deg)}50%{transform:translateY(3px) rotate(45deg)}}
+
+@supports (animation-timeline:view()){
+@media (prefers-reduced-motion:no-preference){
+.rev,.disp.rev{color:transparent;
+background-image:linear-gradient(90deg,var(--ink) 0 46%,#988e82 54% 100%);
+background-size:230% 100%;background-position:100% 0;background-repeat:no-repeat;
+-webkit-background-clip:text;background-clip:text;
+animation:sweep linear both;animation-timeline:view();animation-range:entry 20% cover 46%}
+.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--ivory) 0 46%,#847c84 54% 100%)}
+}}
+@keyframes sweep{to{background-position:0 0}}
+
+.four{display:grid;gap:1.3rem;max-width:56rem;margin:2.4rem auto 0;text-align:left}
+@media (min-width:44rem){.four{grid-template-columns:1fr 1fr}}
+.f4{border-top:1px solid var(--hair);padding-top:.95rem}
+.f4 .ltr{font-family:var(--serif);font-style:italic;font-size:1.6rem;line-height:1;color:var(--champagne)}
+.f4 h2{font-family:var(--serif);font-weight:400;font-size:1.12rem;color:var(--ivory);margin:.5rem 0 .4rem;line-height:1.35}
+.f4 p{font-size:.97rem;color:var(--silver)}
+
+.form{max-width:34rem;margin:2.2rem auto 0;text-align:left}
+form{display:grid;gap:.9rem}
+label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6f6670;display:grid;gap:.35rem}
+input,select,textarea{font:inherit;font-family:var(--serif);font-size:1rem;padding:.72rem .75rem;background:#fff;border:1px solid #c9c0b4;color:var(--ink);border-radius:2px;width:100%}
+textarea{min-height:5rem;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:#413c41;font-family:var(--serif)}
+.consent input{width:auto;margin-top:.35rem;flex:0 0 auto}
+.hp{position:absolute;left:-9999px}
+button{font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--oxblood);color:var(--ivory);border:0;cursor:pointer;width:100%}
+#msg{margin-top:.9rem;color:var(--oxblood);font-size:.98rem;min-height:1.5rem}
+.fine{font-size:.9rem;color:#6f6670;margin-top:1.2rem}
+
+footer{background:var(--ink);color:var(--silver);padding:2.8rem 1.25rem 3.4rem;font-size:.86rem;line-height:1.65;text-align:center}
+footer .in{max-width:min(70ch,42rem);margin:0 auto}
+footer p{margin:.8rem 0}
+footer a{color:var(--champagne);text-decoration:none;border-bottom:1px solid var(--oxblood)}
+@media (max-width:26rem){.row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<main class="wrap">
 
-  <span class="eyebrow">Dofrane Acquisitions &middot; Maryland</span>
-  <h1>Tell us about the house.</h1>
-  <p class="lede">Montgomery County and Prince George's County only. We buy it as it stands, with our own money. You do not fix it, you do not empty it, and you do not pay a commission.</p>
+<header class="hdr">
+  <a class="mark" href="/"><b>Dofrane</b> Acquisitions</a>
+  <a class="pill" href="#the-form">Go to <span class="short">the form</span></a>
+</header>
 
-  <div class="rule"></div>
+<main>
 
-  <ul>
-    <li><b>Two minutes now.</b> Address, condition, timing. No account, no credit check.</li>
-    <li><b>Leave what is in the house.</b> Furniture, basement, garage. Take what you want and leave the rest.</li>
-    <li><b>A call back within one business day.</b> From Dofrane, not a call center.</li>
-    <li><b>A number in writing, and a real no.</b> If it does not work, say so and we stop.</li>
-  </ul>
+<section class="hero dark tex">
+  <span class="eyebrow">Montgomery &amp; Prince George's County, Maryland</span>
+  <div class="heroline">
+    <div class="inner">
+      <h1><span>Tell us about</span><span>the house.</span><span>That is all.</span></h1>
+      <p class="sub">Two minutes. No account, no credit check</p>
+    </div>
+  </div>
+  <a class="cue" href="#the-form">Scroll down to the form<i></i></a>
+</section>
 
-  <div class="card">
-    <h2>The house</h2>
+<section class="band dark">
+  <span class="kick">What you are agreeing to</span>
+  <h2 class="disp rev">Four promises, and nothing else.</h2>
+  <div class="four">
+    <div class="f4">
+      <span class="ltr">A</span>
+      <h2>Two minutes now</h2>
+      <p>Address, condition, timing. No account, no credit check, no automated valuation emailed at you.</p>
+    </div>
+    <div class="f4">
+      <span class="ltr">B</span>
+      <h2>Leave what is in the house</h2>
+      <p>Furniture, closets, basement, garage, shed. Take what you want to keep and leave the rest where it sits.</p>
+    </div>
+    <div class="f4">
+      <span class="ltr">C</span>
+      <h2>A call back within one business day</h2>
+      <p>From Dofrane, not a call center. One person reads every submission.</p>
+    </div>
+    <div class="f4">
+      <span class="ltr">D</span>
+      <h2>A number in writing, and a real no</h2>
+      <p>If it does not work, say so and we stop. We will not call you again unless you ask us to.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="the-form" style="background:var(--paper2);border-top:1px solid var(--line)">
+  <span class="kick">The form</span>
+  <h2 class="disp">The house.</h2>
+  <div class="copy">
     <p>Four things matter: where it is, how to reach you, what shape it is in, and when you want to be done.</p>
-
+  </div>
+  <div class="form">
     <form id="f" novalidate>
       <label>Property address <input name="address" required autocomplete="street-address" placeholder="123 Main St"></label>
       <div class="row">
@@ -90,16 +184,18 @@
       <button type="submit">Tell us about the house</button>
       <div id="msg" role="status"></div>
     </form>
-
     <p class="fine">We call Maryland numbers between 8am and 8pm. If we record a call, we say so first and wait for your yes, because Maryland requires it. We do not sell, rent, or trade what you put in this form.</p>
   </div>
+</section>
 
 </main>
 
 <footer>
-  <p>If the house is outside Montgomery or Prince George's County, this form will not do you any good. We would rather say so than take your information and go quiet.</p>
-  <p>Dofrane Acquisitions buys property for its own account. It is not a real estate broker or agent, it does not represent sellers, and it does not give legal, tax, or financial advice. It may assign its purchase contract to another buyer, with the written notice Maryland requires under Real Property &sect; 10-715. Nothing on this page is an offer to buy any particular property. An offer comes in writing after we have seen the house.</p>
-  <p><a href="/">How this works, in full</a></p>
+  <div class="in">
+    <p>If the house is outside Montgomery or Prince George's County, this form will not do you any good. We would rather say so than take your information and go quiet.</p>
+    <p>Dofrane Acquisitions buys property for its own account. It is not a real estate broker or agent, it does not represent sellers, and it does not give legal, tax, or financial advice. It may assign its purchase contract to another buyer, with the written notice Maryland requires under Real Property &sect; 10-715. Nothing on this page is an offer to buy any particular property. An offer comes in writing after we have seen the house.</p>
+    <p><a href="/">How this works, in full</a></p>
+  </div>
 </footer>
 
 <script type="application/ld+json">
