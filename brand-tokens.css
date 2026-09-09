@@ -28,7 +28,7 @@
   /* ---- Derived, not invented ----
    * Each is Ink at an alpha over the ground, so it stays inside the palette. */
   --body:      color-mix(in srgb, var(--ink) 78%, var(--ivory));  /* long-form body copy */
-  --muted:     color-mix(in srgb, var(--ink) 58%, var(--ivory));  /* captions, labels */
+  --muted: color-mix(in srgb, var(--ink) 66%, var(--ivory));  /* captions, labels */
   --rule:      color-mix(in srgb, var(--ink) 16%, var(--ivory));  /* hairlines on light */
   --rule-dark: color-mix(in srgb, var(--ivory) 18%, var(--ink));  /* hairlines on dark */
 
