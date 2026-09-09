@@ -1,0 +1,27 @@
+# Static site. No build step, no bundler, no framework — see AGENTS.md.
+# The preview serves the repo root exactly as Vercel serves it in production.
+run = "python3 -m http.server 5000 --bind 0.0.0.0"
+entrypoint = "index.html"
+modules = ["python-3.12"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+# Deployment is NOT Replit's job. main -> GitHub -> Vercel.
+# Do not publish from here; it would fork the source of truth.
+run = ["echo", "Deploy is Vercel's. Push to main and Vercel builds it."]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[workflows]
+runButton = "Preview"
+
+[[workflows.workflow]]
+name = "Preview"
+mode = "sequential"
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000 --bind 0.0.0.0"
