@@ -36,16 +36,32 @@ size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-overrid
    The locked five from brand-tokens.css, inlined. That file is the source of truth; this page
    carries a copy because an external stylesheet costs a request against LCP. Every other value
    below is Ink, Ivory, Champagne or Silver mixed into another, and none is invented. The
-   playbook's forbidden greys (#333/#666/#999) appear nowhere. */
+   playbook's forbidden greys (#333/#666/#999) appear nowhere.
+
+   Every pair below was computed, not guessed, on 2026-09-09:
+     body #45403C on champagne 8.00 · on panel 8.38 · on field 9.89
+     muted #605B55 on champagne 5.25 · on panel 5.50 · on field 6.49  (never on ink: 2.81, banned)
+     ink on champagne 14.78 · oxblood on champagne 8.72 · on panel 9.14
+     ivory on oxblood 9.49 · champagne on oxblood 8.72
+     silver on card-dark 10.92 · on panel-dark 9.59 · ivory on card-dark 14.83
+   Non-text UI (WCAG 1.4.11, needs 3:1):
+     field-line #88827A vs field 3.68 · vs panel 3.11 · vs ivory 3.23  (was 26% ink = 2.02, under)
+     oxblood corner mark vs panel 9.14 · champagne corner mark vs card-dark 13.64
+   --edge #A7A197 vs panel 2.10 · vs ivory 2.18. Card and panel hairlines are decorative: the card is identified by its
+   content and its corner marks, not by its border, so 1.4.11 does not apply to them. */
 :root{
 --oxblood:#6E1E2A;--ivory:#F3ECDD;--ink:#14100F;--champagne:#EFE3C0;--silver:#C9CDD2;
 --body:color-mix(in srgb,var(--ink) 78%,var(--ivory));
 --muted: color-mix(in srgb, var(--ink) 66%, var(--ivory));
 --rule:color-mix(in srgb,var(--ink) 16%,var(--ivory));
 --rule-dark:color-mix(in srgb,var(--ivory) 18%,var(--ink));
+--edge:color-mix(in srgb,var(--ink) 34%,var(--ivory));
+--edge-dark:color-mix(in srgb,var(--ivory) 26%,var(--ink));
 --panel:color-mix(in srgb,var(--champagne) 45%,var(--ivory));
+--card-dark:color-mix(in srgb,var(--ivory) 4%,var(--ink));
+--panel-dark:color-mix(in srgb,var(--ivory) 8%,var(--ink));
 --field:color-mix(in srgb,#fff 78%,var(--ivory));
---field-line:color-mix(in srgb,var(--ink) 26%,var(--ivory));
+--field-line:color-mix(in srgb,var(--ink) 48%,var(--ivory));
 --fade:color-mix(in srgb,var(--ink) 40%,var(--ivory));
 --fade-dark:color-mix(in srgb,var(--ivory) 48%,var(--ink));
 --ink-lift:color-mix(in srgb,var(--ink) 97%,var(--ivory));
@@ -81,6 +97,8 @@ section{padding:clamp(4.2rem,10vw,8rem) 1.25rem}
 .band{text-align:center}
 .kick{font-family:var(--sans);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood);display:block}
 .dark .kick{color:var(--champagne)}
+/* .disp is already the 3xl-to-5xl responsive step with the +7.5% Fraunces correction applied:
+   1.99rem = 1.85 x 1.075, 3.55rem = 3.30 x 1.075. Do not restate the scale without redoing it. */
 .disp{font-family:var(--serif);font-style:italic;font-weight:400;
 font-size:clamp(1.99rem,5.81vw,3.55rem);line-height:1.15;letter-spacing:-.005em;
 margin:1.15rem auto 0;max-width:22ch;color:var(--ink)}
@@ -99,6 +117,65 @@ margin:1.15rem auto 0;max-width:22ch;color:var(--ink)}
 radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--oxblood) 50%,transparent),transparent 62%),
 radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--champagne) 7%,transparent),transparent 60%),
 linear-gradient(165deg,var(--ink-lift) 0%,var(--ink) 48%,var(--ink-deep) 100%)}
+
+/* ---------- the card system ----------
+   Ported from the bordered-card component Dofrane chose: a hairline card carrying a plus mark
+   at each of the four corners, the marks sitting OUTSIDE the border rather than inside it.
+   The marks are inline SVG drawn here, referenced from one <symbol>. No icon font, no CDN,
+   no script. They are absolutely positioned, so they add no layout box and cannot shift it. */
+.card{position:relative;background:var(--panel);border:1px solid var(--edge);
+padding:clamp(1.4rem,3.4vw,2rem) clamp(1.25rem,3vw,1.8rem);text-align:left}
+.dark .card{background:var(--card-dark);border-color:var(--edge-dark)}
+.pm{position:absolute;width:11px;height:11px;fill:none;stroke:var(--oxblood);stroke-width:1.4;stroke-linecap:round}
+.dark .pm{stroke:var(--champagne)}
+.pm.tl{top:-5.5px;left:-5.5px}
+.pm.tr{top:-5.5px;right:-5.5px}
+.pm.bl{bottom:-5.5px;left:-5.5px}
+.pm.br{bottom:-5.5px;right:-5.5px}
+.card h3{font-family:var(--serif);font-weight:400;font-size:1.23rem;color:var(--ink);margin:.75rem 0 .5rem;line-height:1.35}
+.dark .card h3{color:var(--ivory)}
+.card p{font-size:.98rem;line-height:1.62}
+.card p+p{margin-top:1rem}
+.card b{font-weight:400;color:var(--ink)}
+.dark .card b{color:var(--ivory)}
+.dark .card p{color:var(--silver)}
+.card .ltr{font-family:var(--serif);font-style:italic;font-size:2.04rem;line-height:1;color:var(--oxblood);display:block}
+.dark .card .ltr{color:var(--champagne)}
+.card .n{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;color:var(--oxblood);display:block}
+.dark .card .n{color:var(--champagne)}
+
+/* Content two thirds, a distinct panel one third. Stacked on mobile with the dividing border
+   moved from the left edge to the top edge, which is the whole point of the component. */
+.split{padding:0;display:grid}
+.split>.main{padding:clamp(1.5rem,3.6vw,2.4rem)}
+.split>.side{padding:clamp(1.4rem,3.2vw,2rem);background:var(--champagne);border-top:1px solid var(--edge)}
+.dark .split>.side{background:var(--panel-dark);border-top-color:var(--edge-dark)}
+@media (min-width:52rem){
+.split{grid-template-columns:2fr 1fr}
+.split>.side{border-top:0;border-left:1px solid var(--edge)}
+.dark .split>.side{border-left-color:var(--edge-dark)}
+}
+
+/* Info row: icon in a small filled box, a label in medium weight, a smaller muted value under it. */
+.ir{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;margin-top:1.5rem}
+.ir:first-child{margin-top:0}
+.ico{width:34px;height:34px;border-radius:9px;background:var(--oxblood);display:grid;place-items:center}
+.ico svg{width:17px;height:17px;fill:none;stroke:var(--ivory);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.dark .ico{border:1px solid var(--champagne)}
+.dark .ico svg{stroke:var(--champagne)}
+.ir b{display:block;font-family:var(--sans);font-weight:500;font-size:.95rem;line-height:1.4;color:var(--ink)}
+.ir span{display:block;font-size:.88rem;line-height:1.55;color:var(--muted);margin-top:.25rem}
+.dark .ir b{color:var(--ivory)}
+.dark .ir span{color:var(--silver)}
+
+/* ---------- tabs: the underline pattern, used for the two parallel things this page offers ---------- */
+.tabs{display:flex;gap:1.5rem;justify-content:center;align-items:stretch;
+padding:0 1.25rem;background:var(--ivory);border-bottom:1px solid var(--edge);overflow-x:auto}
+.tab{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+color:var(--muted);text-decoration:none;white-space:nowrap;
+padding:1.05rem .15rem;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.on{color:var(--ink);border-bottom-color:var(--oxblood)}
+a.tab:hover,a.tab:focus{color:var(--ink);border-bottom-color:var(--edge)}
 
 /* ---------- hero ---------- */
 .hero{min-height:100vh;min-height:100svh;padding:calc(var(--hdr) + 2.2rem) 1.25rem 3.5rem;
@@ -128,45 +205,30 @@ animation:sweep linear both;animation-timeline:view();animation-range:entry 20% 
 }}
 @keyframes sweep{to{background-position:0 0}}
 
-/* ---------- steps ---------- */
-.steps{display:grid;gap:1.9rem;max-width:58rem;margin:2.6rem auto 0;text-align:left}
-@media (min-width:46rem){.steps{grid-template-columns:repeat(3,1fr);gap:2.2rem}}
-.step{border-top:1px solid var(--rule);padding-top:1rem}
-.dark .step{border-top-color:var(--rule-dark)}
-.step .n{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;color:var(--oxblood)}
-.dark .step .n{color:var(--champagne)}
-.step h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.38rem;color:var(--ink);margin:.5rem 0 .5rem}
-.dark .step h3{color:var(--ivory)}
-.step p{font-size:.98rem}
-
-/* ---------- lettered cards ---------- */
-.cards{display:grid;gap:1.4rem;max-width:64rem;margin:2.8rem auto 0;text-align:left}
+/* ---------- grids ----------
+   Gap is 2rem so the corner marks of two neighbouring cards keep 10px of clear air. */
+.one{max-width:64rem;margin:2.8rem auto 0}
+.duo{display:grid;gap:2rem;max-width:62rem;margin:2.8rem auto 0}
+@media (min-width:46rem){.duo{grid-template-columns:1fr 1fr}}
+.trio{display:grid;gap:2rem;max-width:60rem;margin:2.8rem auto 0}
+@media (min-width:46rem){.trio{grid-template-columns:repeat(3,1fr)}}
+.cards{display:grid;gap:2rem;max-width:66rem;margin:3rem auto 0}
 @media (min-width:40rem){.cards{grid-template-columns:1fr 1fr}}
 @media (min-width:62rem){.cards{grid-template-columns:repeat(3,1fr)}}
-.c{background:var(--panel);border:1px solid var(--rule);padding:1.5rem 1.35rem 1.6rem}
-.c .ltr{font-family:var(--serif);font-style:italic;font-size:2.04rem;line-height:1;color:var(--oxblood);display:block}
-.c h3{font-family:var(--serif);font-weight:400;font-size:1.23rem;color:var(--ink);margin:.75rem 0 .5rem;line-height:1.35}
-.c p{font-size:.97rem;line-height:1.62}
+.stack{display:grid;gap:2rem;max-width:min(72ch,44rem);margin:3rem auto 0}
+.stack h3{font-style:italic;font-size:1.29rem;margin-top:0}
+.stack p{margin-top:.7rem;font-size:1rem}
 
 /* ---------- map ---------- */
-.map{max-width:34rem;margin:2.6rem auto 0}
-.map svg{display:block;width:100%;height:auto}
+.split>.main.map{display:grid;align-content:center}
+.map svg{display:block;width:100%;max-width:32rem;height:auto;margin:0 auto}
 .map .cnty{fill:var(--oxblood);fill-opacity:.82;stroke:var(--champagne);stroke-width:2}
 .map .dcline{stroke:color-mix(in srgb,var(--silver) 52%,var(--ink));stroke-width:1.5;stroke-dasharray:5 5}
 .map .lbl{font-family:var(--sans);fill:var(--ivory)}
 .map .lbl .sm{fill:var(--champagne)}
 .map .lbl .dc{fill:color-mix(in srgb,var(--silver) 60%,var(--ink))}
-.legend{display:grid;gap:.7rem;max-width:min(65ch,38rem);margin:2rem auto 0;text-align:left;font-size:.97rem;color:var(--silver)}
-.legend b{font-weight:400;color:var(--ivory)}
-
-/* ---------- faq ---------- */
-.faq{max-width:min(70ch,42rem);margin:2.6rem auto 0;text-align:left}
-.faq h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.29rem;color:var(--ink);margin:2rem 0 .5rem;line-height:1.35}
-.faq h3:first-of-type{margin-top:0}
-.faq p{margin:.7rem 0;font-size:1rem}
 
 /* ---------- form ---------- */
-.form{max-width:34rem;margin:2.4rem auto 0;text-align:left}
 form{display:grid;gap:.9rem}
 label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:grid;gap:.35rem}
 input,select,textarea{font:inherit;font-family:var(--sans);font-size:1rem;padding:.72rem .75rem;background:var(--field);border:1px solid var(--field-line);color:var(--ink);border-radius:2px;width:100%}
@@ -177,19 +239,28 @@ textarea{min-height:5rem;resize:vertical}
 .hp{position:absolute;left:-9999px}
 button{font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--oxblood);color:var(--ivory);border:0;cursor:pointer;width:100%}
 #msg{margin-top:.9rem;color:var(--oxblood);font-size:.98rem;min-height:1.5rem}
-.fine{font-size:.9rem;color:var(--muted);margin-top:1.2rem}
-.btn{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:1rem 1.6rem;background:var(--oxblood);color:var(--ivory);text-decoration:none;margin-top:2rem}
+.btn{display:block;text-align:center;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:1rem 1.2rem;background:var(--oxblood);color:var(--ivory);text-decoration:none;margin-top:1.8rem}
 .dark .btn{background:var(--champagne);color:var(--ink)}
-.note{font-size:.95rem;margin-top:1rem}
 
 footer{background:var(--ink);color:var(--silver);padding:3rem 1.25rem 3.6rem;font-size:.86rem;line-height:1.65;text-align:center}
 footer .in{max-width:min(70ch,42rem);margin:0 auto}
 footer .brand{font-family:var(--sans);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--champagne);display:block;margin-bottom:1rem}
 footer p{margin:.8rem 0}
-@media (max-width:26rem){.row{grid-template-columns:1fr}}
+@media (max-width:26rem){.row{grid-template-columns:1fr}.tabs{gap:1.1rem}.tab{font-size:.64rem;letter-spacing:.12em}}
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="pm" viewBox="0 0 12 12"><path d="M6 .9v10.2M.9 6h10.2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 20 20"><path d="M10 17.6c3.7-3.9 5.6-6.8 5.6-8.9a5.6 5.6 0 1 0-11.2 0c0 2.1 1.9 5 5.6 8.9Z"/><circle cx="10" cy="8.5" r="2.1"/></symbol>
+<symbol id="i-clock" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.4"/><path d="M10 5.7V10l2.9 1.8"/></symbol>
+<symbol id="i-phone" viewBox="0 0 20 20"><path d="M6.3 3.2 8 6.4 6.4 8.1a11 11 0 0 0 5.5 5.5l1.7-1.6 3.2 1.7v2.5c0 .6-.5 1.1-1.1 1a14.3 14.3 0 0 1-13-13c0-.6.4-1.1 1-1.1h2.6Z"/></symbol>
+<symbol id="i-lock" viewBox="0 0 20 20"><rect x="4.3" y="8.7" width="11.4" height="8" rx="1.6"/><path d="M7 8.7V6.4a3 3 0 0 1 6 0v2.3"/></symbol>
+<symbol id="i-doc" viewBox="0 0 20 20"><path d="M11.4 2.8H6.2c-.8 0-1.4.6-1.4 1.4v11.6c0 .8.6 1.4 1.4 1.4h7.6c.8 0 1.4-.6 1.4-1.4V6.6Z"/><path d="M11.4 2.8v3.8h3.8M7.7 11h4.6M7.7 13.7h3"/></symbol>
+<symbol id="i-scale" viewBox="0 0 20 20"><path d="M10 3.4v13.2M5.7 5.2h8.6M6.9 16.6h6.2"/><path d="M5.7 5.2 3.2 10.4a2.6 2.6 0 0 0 5 0ZM14.3 5.2l-2.5 5.2a2.6 2.6 0 0 0 5 0Z"/></symbol>
+<symbol id="i-ban" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.2"/><path d="M4.9 4.9l10.2 10.2"/></symbol>
+</defs></svg>
 
 <header class="hdr">
   <details class="nav">
@@ -220,40 +291,69 @@ footer p{margin:.8rem 0}
   <a class="cue" href="#counties">Scroll down to see how this works<i></i></a>
 </section>
 
+<nav class="tabs" aria-label="This page">
+  <span class="tab on" aria-current="page">How it works</span>
+  <a class="tab" href="#tell-us">Tell us <span class="short">about the house</span></a>
+</nav>
+
 <section class="band" id="intro">
   <span class="kick">The plain version</span>
   <h2 class="disp wide rev">Sell your house fast in Montgomery or Prince George's County, Maryland.</h2>
-  <div class="copy">
-    <p>Most people who call us are not selling a house. They are trying to stop paying for one. A parent's place that needs a lot of work. A rental that stopped being worth the grief. A house that has sat empty while the taxes and the insurance kept running.</p>
-    <p>We buy it as it stands, with our own money. <b>You do not fix it, you do not empty it, and you do not pay a commission.</b></p>
+  <div class="card split one">
+    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+    <div class="main">
+      <p>Most people who call us are not selling a house. They are trying to stop paying for one. A parent's place that needs a lot of work. A rental that stopped being worth the grief. A house that has sat empty while the taxes and the insurance kept running.</p>
+      <p>We buy it as it stands, with our own money. <b>You do not fix it, you do not empty it, and you do not pay a commission.</b></p>
+    </div>
+    <div class="side">
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <div><b>Where we buy</b><span>Montgomery &amp; Prince George's County, Maryland</span></div>
+      </div>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
+        <div><b>One person reads every submission</b><span>Dofrane calls you back within one business day.</span></div>
+      </div>
+      <a class="btn" href="#tell-us">Tell us about the house</a>
+    </div>
   </div>
-  <a class="btn" href="#tell-us">Tell us about the house</a>
-  <p class="note">One person reads every submission. Dofrane calls you back within one business day.</p>
 </section>
 
 <section class="band dark tex" id="counties">
   <span class="kick">Where we buy</span>
   <h2 class="disp rev">Two counties. That is the whole list.</h2>
-  <div class="map">
-    <svg viewBox="0 0 540 560" role="img" aria-label="Simplified map of Maryland showing Montgomery County and Prince George's County, with the District of Columbia between them, marked as outside the buying area.">
-      <g fill="none" stroke-linejoin="round">
-        <path class="cnty" d="M38 175 218 35 326 56 337 182 304 283 261 326 190 294 76 231Z"/>
-        <path class="cnty" d="M305 266 408 245 419 287 500 350 500 406 490 476 381 518 316 483 305 426 376 355 304 283Z"/>
-        <path class="dcline" d="M304 283 376 355 305 426 261 326Z"/>
-      </g>
-      <g class="lbl" text-anchor="middle">
-        <text x="200" y="176" font-size="21" letter-spacing="1.5">MONTGOMERY</text>
-        <text class="sm" x="200" y="200" font-size="14" letter-spacing="3">COUNTY</text>
-        <text x="414" y="396" font-size="15" letter-spacing="1">PRINCE GEORGE&#39;S</text>
-        <text class="sm" x="414" y="418" font-size="13" letter-spacing="3">COUNTY</text>
-        <text class="dc" x="309" y="342" font-size="13" letter-spacing="1.5">DC</text>
-      </g>
-    </svg>
-  </div>
-  <div class="legend">
-    <div><b>Montgomery:</b> Silver Spring, Rockville, Gaithersburg, Wheaton, Germantown, Takoma Park, Olney, and the rest of the county.</div>
-    <div><b>Prince George's:</b> Bowie, Hyattsville, Upper Marlboro, Laurel, Suitland, Clinton, District Heights, Bladensburg, and the rest of the county.</div>
-    <div><b>Not Washington, DC. Not Virginia.</b> If the house sits outside those two counties, this form will not do you any good, and we would rather say so now than take your information and go quiet on you.</div>
+  <div class="card split one">
+    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+    <div class="main map">
+      <svg viewBox="0 0 540 560" role="img" aria-label="Simplified map of Maryland showing Montgomery County and Prince George's County, with the District of Columbia between them, marked as outside the buying area.">
+        <g fill="none" stroke-linejoin="round">
+          <path class="cnty" d="M38 175 218 35 326 56 337 182 304 283 261 326 190 294 76 231Z"/>
+          <path class="cnty" d="M305 266 408 245 419 287 500 350 500 406 490 476 381 518 316 483 305 426 376 355 304 283Z"/>
+          <path class="dcline" d="M304 283 376 355 305 426 261 326Z"/>
+        </g>
+        <g class="lbl" text-anchor="middle">
+          <text x="200" y="176" font-size="21" letter-spacing="1.5">MONTGOMERY</text>
+          <text class="sm" x="200" y="200" font-size="14" letter-spacing="3">COUNTY</text>
+          <text x="414" y="396" font-size="15" letter-spacing="1">PRINCE GEORGE&#39;S</text>
+          <text class="sm" x="414" y="418" font-size="13" letter-spacing="3">COUNTY</text>
+          <text class="dc" x="309" y="342" font-size="13" letter-spacing="1.5">DC</text>
+        </g>
+      </svg>
+    </div>
+    <div class="side">
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <div><b>Montgomery</b><span>Silver Spring, Rockville, Gaithersburg, Wheaton, Germantown, Takoma Park, Olney, and the rest of the county.</span></div>
+      </div>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <div><b>Prince George's</b><span>Bowie, Hyattsville, Upper Marlboro, Laurel, Suitland, Clinton, District Heights, Bladensburg, and the rest of the county.</span></div>
+      </div>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-ban"/></svg></span>
+        <div><b>Not Washington, DC. Not Virginia.</b><span>If the house sits outside those two counties, this form will not do you any good, and we would rather say so now than take your information and go quiet on you.</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -263,26 +363,41 @@ footer p{margin:.8rem 0}
   <div class="copy">
     <p>Dofrane Acquisitions is the buyer. Not a lead broker, not a referral service, not an agent hunting a listing. We are a Maryland investor. We sign the contract in our own name, we put up the deposit, and we take the house the way it stands today.</p>
     <p>Two things you should know before you talk to anyone in this business, including us.</p>
-    <p><b>We are not a real estate broker or agent.</b> We do not represent you, we do not list your house, and we do not charge you a commission. We are on the other side of the table. Read anything we hand you as if that is true, because it is.</p>
-    <p><b>We may assign the contract to another buyer instead of closing on it ourselves.</b> On an owner occupied house of four units or fewer, Maryland law requires that you be told this in writing before you sign, and if you were not told, you can cancel any time before closing with no penalty and get your deposit position back. That is Md. Code, Real Property &sect; 10-715. We say it in the first conversation, not on page nine.</p>
+  </div>
+  <div class="duo">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <span class="ico"><svg aria-hidden="true"><use href="#i-scale"/></svg></span>
+      <h3>We are not a real estate broker or agent.</h3>
+      <p>We do not represent you, we do not list your house, and we do not charge you a commission. We are on the other side of the table. Read anything we hand you as if that is true, because it is.</p>
+    </div>
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <span class="ico"><svg aria-hidden="true"><use href="#i-doc"/></svg></span>
+      <h3>We may assign the contract to another buyer instead of closing on it ourselves.</h3>
+      <p>On an owner occupied house of four units or fewer, Maryland law requires that you be told this in writing before you sign, and if you were not told, you can cancel any time before closing with no penalty and get your deposit position back. That is Md. Code, Real Property &sect; 10-715. We say it in the first conversation, not on page nine.</p>
+    </div>
   </div>
 </section>
 
 <section class="band dark" id="how">
   <span class="kick">How it works</span>
   <h2 class="disp rev">Three steps. Nothing automated at you.</h2>
-  <div class="steps">
-    <div class="step">
+  <div class="trio">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="n">01</span>
       <h3>You tell us about the house</h3>
       <p>Address, rough condition, and your timing. Two minutes. No account, no credit check, no automated valuation emailed at you.</p>
     </div>
-    <div class="step">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="n">02</span>
       <h3>We look at it</h3>
       <p>Public record first, then a walkthrough with you or whoever has the key. It does not need to be cleaned, cleared, or staged. Leave what you are leaving.</p>
     </div>
-    <div class="step">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="n">03</span>
       <h3>You get a number in writing</h3>
       <p>The number and the terms, on paper. If it does not work, say no. We will not call you again unless you ask us to.</p>
@@ -294,37 +409,44 @@ footer p{margin:.8rem 0}
   <span class="kick">When this is the right call</span>
   <h2 class="disp rev">Seven houses we say yes to.</h2>
   <div class="cards">
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">A</span>
       <h3>It needs a lot of work and you are not putting more money into it</h3>
       <p>Roof, systems, foundation, a kitchen from a different decade. On a listing, that money leaves your pocket first and you hope it comes back at settlement. Here it comes out of the price, and you never front it.</p>
     </div>
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">B</span>
       <h3>You cannot face emptying it</h3>
       <p>Fifty years of things, and you are the one who has to decide what happens to every one of them. You do not have to. Take what you want to keep and leave the rest where it sits: the furniture, the closets, the basement, the garage, the shed. We are not going to ask you to clear it, and we are not going to charge you for it either.</p>
     </div>
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">C</span>
       <h3>It has been sitting empty and the bills have not stopped</h3>
       <p>Taxes, insurance, the grass, and a policy that gets complicated the moment nobody lives there. An empty house also collects the kind of attention nobody wants. If the estate is still open, say so on the form, so the timeline gets built around the court's calendar instead of ours.</p>
     </div>
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">D</span>
       <h3>You do not live near it</h3>
       <p>Every decision is a phone call, a favour asked of a neighbour, or a drive you do not have a free weekend for.</p>
     </div>
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">E</span>
       <h3>You are done being a landlord</h3>
       <p>Turnover, deferred repairs, a lease you did not write. Tell us the occupancy and the lease on the form. It changes the number. It does not change whether we look.</p>
     </div>
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">F</span>
       <h3>It has been listed for months and nothing is happening</h3>
       <p>The price came down once already and the showings go nowhere. If you are still inside a listing agreement, say so; we will not step around it.</p>
     </div>
-    <div class="c">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
       <span class="ltr">G</span>
       <h3>The property has code or permit problems</h3>
       <p>Open violations, unpermitted work, a citation taped to the door. Say it plainly. It goes into the number and it does not scare us off.</p>
@@ -335,74 +457,116 @@ footer p{margin:.8rem 0}
 <section class="band dark tex" id="honest">
   <span class="kick">When you should not sell to us</span>
   <h2 class="disp rev">A clean house with time on the clock belongs with an agent.</h2>
-  <div class="copy">
-    <p>The most common thing sellers say about buyers like us is that we pay less than the house is worth. That is correct. We are not going to argue with it.</p>
-    <p>If the house is in decent shape, on a street where things sell, and you have two or three months to wait, list it with an agent. After the commission you will almost always walk away with more money than we can pay.</p>
-    <p>That is not modesty, it is arithmetic. We have to buy at a price that leaves room for the repairs and for the next buyer's margin. An agent does not carry either of those, so on a clean house with time on the clock, an agent wins.</p>
-    <p>Call us when the condition, the timing, or the situation makes that trade a bad one. That is the entire business.</p>
-    <p>We also do not assume you are stuck. Plenty of people who fill in this form are tired rather than desperate, and a tired person with a sound house should list it. And before you sign anything with anyone in this business, us included, ask them to show you they can actually pay. If they will not show you, do not sign.</p>
+  <div class="card split one">
+    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+    <div class="main">
+      <p>The most common thing sellers say about buyers like us is that we pay less than the house is worth. That is correct. We are not going to argue with it.</p>
+      <p>If the house is in decent shape, on a street where things sell, and you have two or three months to wait, list it with an agent. After the commission you will almost always walk away with more money than we can pay.</p>
+      <p>That is not modesty, it is arithmetic. We have to buy at a price that leaves room for the repairs and for the next buyer's margin. An agent does not carry either of those, so on a clean house with time on the clock, an agent wins.</p>
+    </div>
+    <div class="side">
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
+        <div><b>Call us when the condition, the timing, or the situation makes that trade a bad one.</b><span>That is the entire business.</span></div>
+      </div>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-scale"/></svg></span>
+        <div><b>We also do not assume you are stuck.</b><span>Plenty of people who fill in this form are tired rather than desperate, and a tired person with a sound house should list it. And before you sign anything with anyone in this business, us included, ask them to show you they can actually pay. If they will not show you, do not sign.</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="band" id="faq">
   <span class="kick">Questions people actually ask</span>
   <h2 class="disp rev">The five that come up every time.</h2>
-  <div class="faq">
-    <h3>Do I need to fix anything before you look at it?</h3>
-    <p>No. As-is means we price the house in the condition it is in on the day we walk it, and we do not come back with a repair credit after an inspection. You are not expected to paint, patch, haul anything away, or empty the basement. If something is broken, tell us on the form so it is in the number from the start instead of showing up as a surprise later.</p>
-
-    <h3>What does as-is actually mean on your contract?</h3>
-    <p>It means we accept the physical condition. It does not erase what Maryland requires you to disclose: on most single family residential sales of four units or fewer, the seller still delivers the Real Property &sect; 10-702 disclosure or disclaimer statement. As-is is about repairs, not about hiding what you know. We would rather hear the bad news early, because a number that moves after a walkthrough is how people end up feeling worked over.</p>
-
-    <h3>Do I pay anything?</h3>
-    <p>No commission, because nobody is acting as an agent in the sale. No listing fee, no marketing budget, no cleanout invoice. Ordinary settlement costs still exist, and Maryland's default is that recordation and transfer taxes are shared equally between the two sides unless the contract says otherwise, Md. Code, Real Property &sect; 14-104. Whatever the split ends up being, it will be in writing before you sign.</p>
-
-    <h3>Will you record our call?</h3>
-    <p>Only if you say yes. Maryland requires every person on a call to agree before it can be recorded, Md. Code, Courts and Judicial Proceedings &sect; 10-402. We ask at the start of the first call. If you say no, the call carries on exactly the same and nothing is recorded.</p>
-
-    <h3>The house is listed with an agent right now. Can I still send this?</h3>
-    <p>Send it, and say so on the form. If you are inside a listing agreement, your agreement governs and we will not step around it or ask you to. In most cases the right move is to talk to your agent first. We will tell you that instead of pretending the agreement is not there.</p>
+  <div class="stack">
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <h3>Do I need to fix anything before you look at it?</h3>
+      <p>No. As-is means we price the house in the condition it is in on the day we walk it, and we do not come back with a repair credit after an inspection. You are not expected to paint, patch, haul anything away, or empty the basement. If something is broken, tell us on the form so it is in the number from the start instead of showing up as a surprise later.</p>
+    </div>
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <h3>What does as-is actually mean on your contract?</h3>
+      <p>It means we accept the physical condition. It does not erase what Maryland requires you to disclose: on most single family residential sales of four units or fewer, the seller still delivers the Real Property &sect; 10-702 disclosure or disclaimer statement. As-is is about repairs, not about hiding what you know. We would rather hear the bad news early, because a number that moves after a walkthrough is how people end up feeling worked over.</p>
+    </div>
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <h3>Do I pay anything?</h3>
+      <p>No commission, because nobody is acting as an agent in the sale. No listing fee, no marketing budget, no cleanout invoice. Ordinary settlement costs still exist, and Maryland's default is that recordation and transfer taxes are shared equally between the two sides unless the contract says otherwise, Md. Code, Real Property &sect; 14-104. Whatever the split ends up being, it will be in writing before you sign.</p>
+    </div>
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <h3>Will you record our call?</h3>
+      <p>Only if you say yes. Maryland requires every person on a call to agree before it can be recorded, Md. Code, Courts and Judicial Proceedings &sect; 10-402. We ask at the start of the first call. If you say no, the call carries on exactly the same and nothing is recorded.</p>
+    </div>
+    <div class="card">
+      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+      <h3>The house is listed with an agent right now. Can I still send this?</h3>
+      <p>Send it, and say so on the form. If you are inside a listing agreement, your agreement governs and we will not step around it or ask you to. In most cases the right move is to talk to your agent first. We will tell you that instead of pretending the agreement is not there.</p>
+    </div>
   </div>
 </section>
 
-<section class="band" id="tell-us" style="background:var(--panel);border-top:1px solid var(--rule)">
+<section class="band" id="tell-us">
   <span class="kick">The form</span>
   <h2 class="disp">Tell us about the house.</h2>
   <div class="copy">
     <p>Four things matter: where it is, how to reach you, what shape it is in, and when you want to be done. Everything else just makes the number faster.</p>
   </div>
-  <div class="form">
-    <form id="f" novalidate>
-      <label>Property address <input name="address" required autocomplete="street-address" placeholder="123 Main St"></label>
-      <div class="row">
-        <label>City <input name="city" required autocomplete="address-level2"></label>
-        <label>State <select name="state" required><option value="MD" selected>MD</option></select></label>
+  <div class="card split one">
+    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
+    <div class="main">
+      <form id="f" novalidate>
+        <label>Property address <input name="address" required autocomplete="street-address" placeholder="123 Main St"></label>
+        <div class="row">
+          <label>City <input name="city" required autocomplete="address-level2"></label>
+          <label>State <select name="state" required><option value="MD" selected>MD</option></select></label>
+        </div>
+        <div class="row">
+          <label>ZIP <input name="zip" inputmode="numeric" autocomplete="postal-code"></label>
+          <label>Your name <input name="name" required autocomplete="name"></label>
+        </div>
+        <div class="row">
+          <label>Phone <input name="phone" type="tel" autocomplete="tel"></label>
+          <label>Email <input name="email" type="email" autocomplete="email"></label>
+        </div>
+        <label>Condition. What would a buyer want fixed, and is anyone living there? <textarea name="condition" placeholder="Roof is 25 years old. Tenant on a lease through May. Basement took water last spring."></textarea></label>
+        <label>Timeline. If the number worked, when would you want to be out?
+          <select name="timeline">
+            <option>As soon as possible</option>
+            <option>Within 30 days</option>
+            <option>1–3 months</option>
+            <option>Just exploring</option>
+          </select>
+        </label>
+        <label>What do you need to walk away with? <input name="need" placeholder="A number, or 'tell me what it's worth'"></label>
+        <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="consent"><input type="checkbox" name="consent_call" required> I am asking Dofrane Acquisitions to call or email me about this property.</label>
+        <label class="consent"><input type="checkbox" name="consent_text"> Separately, you may text me at this number. Optional, and leaving it unchecked will not slow anything down. Reply STOP to any text to opt out.</label>
+        <button type="submit">Tell us about the house</button>
+        <div id="msg" role="status"></div>
+      </form>
+    </div>
+    <div class="side">
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <div><b>Where we buy</b><span>Montgomery &amp; Prince George's County, Maryland</span></div>
       </div>
-      <div class="row">
-        <label>ZIP <input name="zip" inputmode="numeric" autocomplete="postal-code"></label>
-        <label>Your name <input name="name" required autocomplete="name"></label>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
+        <div><b>One person reads every submission</b><span>Dofrane calls you back within one business day.</span></div>
       </div>
-      <div class="row">
-        <label>Phone <input name="phone" type="tel" autocomplete="tel"></label>
-        <label>Email <input name="email" type="email" autocomplete="email"></label>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <div><b>We call Maryland numbers between 8am and 8pm.</b><span>If we record a call, we say so first and wait for your yes, because Maryland requires it.</span></div>
       </div>
-      <label>Condition. What would a buyer want fixed, and is anyone living there? <textarea name="condition" placeholder="Roof is 25 years old. Tenant on a lease through May. Basement took water last spring."></textarea></label>
-      <label>Timeline. If the number worked, when would you want to be out?
-        <select name="timeline">
-          <option>As soon as possible</option>
-          <option>Within 30 days</option>
-          <option>1–3 months</option>
-          <option>Just exploring</option>
-        </select>
-      </label>
-      <label>What do you need to walk away with? <input name="need" placeholder="A number, or 'tell me what it's worth'"></label>
-      <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
-      <label class="consent"><input type="checkbox" name="consent_call" required> I am asking Dofrane Acquisitions to call or email me about this property.</label>
-      <label class="consent"><input type="checkbox" name="consent_text"> Separately, you may text me at this number. Optional, and leaving it unchecked will not slow anything down. Reply STOP to any text to opt out.</label>
-      <button type="submit">Tell us about the house</button>
-      <div id="msg" role="status"></div>
-    </form>
-    <p class="fine">We call Maryland numbers between 8am and 8pm. If we record a call, we say so first and wait for your yes, because Maryland requires it. We do not sell, rent, or trade what you put in this form.</p>
+      <div class="ir">
+        <span class="ico"><svg aria-hidden="true"><use href="#i-lock"/></svg></span>
+        <div><b>We do not sell, rent, or trade what you put in this form.</b></div>
+      </div>
+    </div>
   </div>
 </section>
 
