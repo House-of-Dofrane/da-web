@@ -44,6 +44,8 @@ size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-overrid
      ink on champagne 14.78 · oxblood on champagne 8.72 · on panel 9.14
      ivory on oxblood 9.49 · champagne on oxblood 8.72
      silver on card-dark 10.92 · on panel-dark 9.59 · ivory on card-dark 14.83
+     hero-mute #ACA69B on ink 7.82 (AAA), carrying headline lines two and three. Line one is
+     ivory on ink 16.07, so the drop is visible and both tones clear AA. Ivory over Ink, not a grey.
    Non-text UI (WCAG 1.4.11, needs 3:1):
      field-line #88827A vs field 3.68 · vs panel 3.11 · vs ivory 3.23  (was 26% ink = 2.02, under)
      oxblood corner mark vs panel 9.14 · champagne corner mark vs card-dark 13.64
@@ -66,6 +68,7 @@ size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-overrid
 --fade-dark:color-mix(in srgb,var(--ivory) 48%,var(--ink));
 --ink-lift:color-mix(in srgb,var(--ink) 97%,var(--ivory));
 --ink-deep:color-mix(in srgb,var(--ink) 62%,#000);
+--hero-mute:color-mix(in srgb,var(--ivory) 68%,var(--ink));
 --serif:"Fraunces","Fraunces fallback","Iowan Old Style",Georgia,"Times New Roman",serif;
 --sans:"Inter","Inter fallback",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 --hdr:56px}
@@ -180,14 +183,34 @@ a.tab:hover,a.tab:focus{color:var(--ink);border-bottom-color:var(--edge)}
 /* ---------- hero ---------- */
 .hero{min-height:100vh;min-height:100svh;padding:calc(var(--hdr) + 2.2rem) 1.25rem 3.5rem;
 display:grid;grid-template-rows:auto 1fr auto;text-align:center}
-.hero .eyebrow{font-family:var(--sans);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
-.heroline{display:grid;align-content:center;justify-items:center;padding:1.5rem 0}
+.hero .eyebrow{font-family:var(--sans);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne);justify-self:start;text-align:left}
+.heroline{display:grid;align-content:center;justify-items:start;padding:1.5rem 0}
 .heroline .inner{text-align:left;width:min(36rem,100%)}
-@media (min-width:52rem){.heroline{justify-items:end;padding-right:min(9vw,7rem)}}
+/* Left-weighted, not centred and not right of centre. At 1440 the column runs 92px to 668px,
+   the left 46% of the field. The 36rem width is unchanged, so no line breaks move. */
+@media (min-width:52rem){.heroline{padding-left:min(6vw,4.5rem)}.hero .eyebrow{margin-left:min(6vw,4.5rem)}}
 h1{font-family:var(--serif);font-style:italic;font-weight:400;
 font-size:clamp(2.15rem,7.74vw,3.66rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
 h1 span{display:block}
+/* Two tone: the offer at full brightness, the two lines under it dropped. Both clear AA on Ink
+   (16.07 and 7.82, computed above). --hero-mute is Ivory over Ink, so it stays in the palette. */
+h1 span+span{color:var(--hero-mute)}
 .sub{margin-top:1.4rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
+
+/* ---------- hero capture ----------
+   One address input, one button, no second CTA. A real <form action="#tell-us">, so with
+   scripting off the button and the Enter key still land the seller on the form section. The
+   input carries no name attribute, so nothing typed here reaches the URL, history or referrer.
+   With scripting on the value is copied into the real form's address field. Nothing animates
+   it: usable on first paint. It reuses the page's own input and button rules. */
+.grab{display:grid;gap:.7rem;margin-top:1.9rem;width:100%}
+.grab input{padding:.95rem .85rem}
+/* --muted on --field is 6.49, computed above. The UA default placeholder grey is off palette. */
+.grab input::placeholder{color:var(--muted);opacity:1}
+.grab button{border:1px solid var(--champagne);padding:1.05rem 1.3rem}
+.grab input:focus-visible,.grab button:focus-visible{outline:2px solid var(--champagne);outline-offset:2px}
+@media (min-width:40rem){.grab{grid-template-columns:1fr auto;gap:.6rem}.grab button{width:auto}}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .cue{font-family:var(--sans);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
 .cue i{display:block;width:11px;height:11px;border-right:1px solid var(--champagne);border-bottom:1px solid var(--champagne);transform:rotate(45deg)}
 @media (prefers-reduced-motion:no-preference){.cue i{animation:dip 2.4s ease-in-out infinite}}
@@ -286,6 +309,11 @@ footer p{margin:.8rem 0}
     <div class="inner">
       <h1><span>Sell the house as it stands.</span><span>Leave what is in it.</span><span>Be done with it.</span></h1>
       <p class="sub">A cash offer in writing. We close it, or we bring the buyer who does.</p>
+      <form class="grab" id="hf" action="#tell-us" method="get" novalidate>
+        <label class="vh" for="ha">Property address</label>
+        <input id="ha" type="text" placeholder="Property address" autocomplete="street-address" enterkeyhint="go">
+        <button type="submit">Tell us about the house</button>
+      </form>
     </div>
   </div>
   <a class="cue" href="#counties">Scroll down to see how this works<i></i></a>
@@ -601,6 +629,14 @@ footer p{margin:.8rem 0}
   const ENDPOINT='https://fdjnkqrqkmsdibehcbuq.supabase.co/rest/v1/rpc/inbound_submit';
   const KEY='sb_publishable_Zj82PEz_UMffxfAgJqOY4w_ITvxWxRU';
   const f=document.getElementById('f'), msg=document.getElementById('msg');
+  // Hero capture. It never posts: it hands the address to the form below and moves focus on.
+  const hf=document.getElementById('hf'), ha=document.getElementById('ha');
+  hf.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    f.address.value=ha.value.trim();
+    ([...f.elements].find(x=>!x.value&&x.name!='website')||f.address).focus({preventScroll:true});
+    document.getElementById('tell-us').scrollIntoView();
+  });
   f.addEventListener('submit', async (e)=>{
     e.preventDefault();
     if(f.reportValidity()){
