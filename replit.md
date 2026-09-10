@@ -18,7 +18,10 @@ those numbers, not from a blank page.**
 
 ## The method — one section per cycle, never two
 
-`INTENT.md` defines eight sections. Each has a **stated job** and a **test**. The rebuild goes
+`INTENT.md` defines **seven** sections. Each has a **stated job** and a **test**, and `SECTIONS.md`
+carries the same seven with their components and copy owner. (The file that used to sit at
+`INTENT.md` was the Boardroom charter, committed in error at `82fa3a7`. The eight-section version
+this line once pointed at never existed. Rewritten 2026-09-09 as ruling R10.) The rebuild goes
 section by section, and each cycle is:
 
 ```
@@ -64,21 +67,26 @@ than 1.4 s is a regression however good it looks.**
    the browser** — every submission lost. It has already happened once. Prove any form change with
    a real POST before calling it done, then delete the test row.
 
-2. **No build step, no framework, no bundler.** Hand-written static HTML with inlined CSS. If a
+2. **No build step, no framework, no bundler.** Reaffirmed as ruling R1, 2026-09-09, against a
+   directive that ordered Next + Tailwind + shadcn + GSAP + Lenis. GSAP, ScrollTrigger and Lenis
+   measure 51,727 B gzipped together; the page ships 3,328 B of JS in total and the parallax is
+   hand-written. Same motion, same look. Hand-written static HTML with inlined CSS. If a
    tool offers to add React, Vite, Next, Tailwind or a bundler, **decline**. `.replit` runs a plain
    static file server on purpose.
 
 3. **Zero third-party requests.** No font CDN, no analytics, no chat widget, no tag manager. Fonts
    are self-hosted in `/fonts/`. **Never link Google Fonts.**
 
-4. **The palette and type are locked.** Oxblood `#6E1E2A` · Ivory `#F3ECDD` · Ink `#14100F` ·
+4. **The palette and type are locked, and the values below are superseded.** DA is Ivory `#FAF4E4`
+   60 / Oxblood `#4A0404` 30 / Midnight `#0C1A4D` 10, one family, Helvetica on the system stack.
+   See `BRAND.md`. **The hard rule: oxblood and midnight measure 1.03 and never touch.** Historic: Oxblood `#6E1E2A` · Ivory `#F3ECDD` · Ink `#14100F` ·
    Champagne `#EFE3C0` · Silver `#C9CDD2`, in `brand-tokens.css`. Fraunces display, Inter body,
    with metric-matched fallbacks and a **+7.5% display correction** — remove that correction and
    every heading silently shrinks 7%. Two contrast rules are absolute: oxblood never carries text
    on ink (1.69), silver and champagne never carry text on a light ground (1.09–1.36).
 
 5. **The content fences — a violation here is a legal problem, not a design one.**
-   Maryland only, Montgomery and Prince George's · **D1 is ruled "both, deal-dependent," so all
+   DMV: District of Columbia, Maryland, Virginia, ruled 2026-09-09 (R2) · **D1 is ruled "both, deal-dependent," so all
    copy is written to the assignment standard: never state or imply Dofrane Acquisitions is the
    purchaser** · fair housing on every line · no social links, ever · no testimonials, deal counts
    or volume claims until there is a closed deal and written permission · no pre-foreclosure or
