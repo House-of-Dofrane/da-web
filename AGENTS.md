@@ -40,10 +40,12 @@ Do not add React, Vite, Next, Tailwind, a bundler, or a CSS framework. If a tool
 | Third-party requests | **zero** — no font CDN, no analytics, no chat widget, no tag manager |
 | Hero image, when one exists | < 150 KB, AVIF + WebP, explicit dimensions, never a CSS background |
 
-Fonts are self-hosted in `/fonts/`. **Never link Google Fonts.** They were fetched once at build
-time, subset, and committed.
+**Never link Google Fonts, and never add a font file.** Helvetica is a system stack: 0 bytes, 0
+requests, nothing to preload. There is no `/fonts/` directory.
 
 ### 4. The brand palette is locked and lives in `brand-tokens.css`
+> **Superseded 2026-09-09.** The palette and type below were replaced the same day. DA's brand is Ivory `#FAF4E4` 60 / Oxblood `#4A0404` 30 / Midnight `#0C1A4D` 10, and one family, Helvetica, on the system stack. **`brand-tokens.css` is the source of truth and `BRAND.md` explains it.** The five hexes and the Fraunces + Inter pairing described here belong to House of Dofrane's own surfaces, not to this page. There is no `/fonts/` directory and no display correction to carry.
+
 | | | |
 |---|---|---|
 | Oxblood | `#6E1E2A` | anchor: marks, rules, CTA |
@@ -64,7 +66,10 @@ Fraunces' x-height is 0.444 em against the previous face's 0.477 em. If you chan
 correction — a straight swap silently shrinks the hero.
 
 ### 5. The content fences — a violation here is a legal problem, not a design one
-- **Maryland only: Montgomery County and Prince George's County.** Not DC. Not Virginia.
+- **Service area is the DMV: District of Columbia, Maryland, Virginia.** Ruled by Dofrane 2026-09-09
+  (R2), superseding the Maryland-only fence that stood here. The Maryland specialization is real and
+  internal: it lives in outreach, systems, processes and protocol, and is never explained on the page.
+  **Open consequence, with counsel:** the desk's jurisdiction gate still rejects DC and VA rows.
 - **No investment-solicitation language.** No returns, yields, IRR, cap rate, "invest with us",
   LP/GP, distributions. This page speaks **to a seller**; House of Dofrane is the buyer.
 - **Fair housing** applies to every published word. Nothing that targets or excludes a protected
