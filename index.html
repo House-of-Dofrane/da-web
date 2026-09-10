@@ -3,107 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sell Your House Fast in Montgomery or Prince George's County, MD | Dofrane Acquisitions</title>
-<meta name="description" content="Dofrane Acquisitions buys houses as-is in Montgomery County and Prince George's County, Maryland. No repairs, no cleanout, no commission. Leave what is in it.">
+<title>Sell Your House As It Stands | DC, Maryland, Virginia | Dofrane Acquisitions</title>
+<meta name="description" content="A cash offer in writing on your house in DC, Maryland or Virginia. Leave what is in it. No repairs, no cleanout, no commission, no showings. You pick the closing date.">
 <link rel="canonical" href="https://dofraneacquisitions.com/">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#4A0404">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sell your house fast in Montgomery or Prince George's County. Leave what is in it.">
-<meta property="og:description" content="A cash offer in writing on houses as they stand, in two Maryland counties. We close it, or we bring the buyer who does. You do not fix it, you do not empty it, and you do not pay a commission.">
+<meta property="og:title" content="Leave it as it stands. Leave what is in it. Be done with it.">
+<meta property="og:description" content="A cash offer in writing on your house in DC, Maryland or Virginia. We close it, or we bring the buyer who does. No commission, no repairs, no showings.">
 <meta property="og:url" content="https://dofraneacquisitions.com/">
 <meta property="og:site_name" content="Dofrane Acquisitions">
 <style>
-/* ---------- type ----------
-   Helvetica, one family, system stack. Ruled 2026-09-09, superseding D1's
-   Fraunces + Inter. Helvetica is licensed and not on Google Fonts, so it cannot be
-   self-hosted; the system stack costs nothing and loads nothing. macOS/iOS render
-   Helvetica Neue, Windows substitutes Arial, Android Roboto. No file, no CDN, no
-   request, nothing to preload and nothing to size-adjust. */
+/* ============================================================================
+   DOFRANE ACQUISITIONS - landing page v2
+   Seven sections, each addressable by data-section. See SECTIONS.md.
+   BRAND.md explains every value below; brand-tokens.css is the source of truth
+   and this block is a hand-synced copy, because an external stylesheet costs a
+   request against LCP. If the two disagree, brand-tokens.css wins.
+   ========================================================================= */
 
-/* ---------- colour ----------
-   Ivory 60 / Oxblood 30 / Midnight 10, ruled 2026-09-09. brand-tokens.css is the source of
-   truth; this page carries a copy because an external stylesheet costs a request against LCP,
-   and the two must be kept in sync by hand. Every derived value below is one of the three
-   mixed into another, and none is invented. The playbook's forbidden greys appear nowhere.
-   HARD RULE: midnight never sits on oxblood - 1.03, failing at every size. Where the dark
-   band needs an accent it uses --da-ivory-alt, which measures 13.57 there. */
 :root{
-/* Dofrane Acquisitions, ruled 2026-09-09. Three colours, 60/30/10.
-   Canonical source: knowledge/brand/DA_BRAND_PLAYBOOK.md Part 3 + brand-tokens.css.
-   HARD RULE: --da-midnight and --da-oxblood never touch. They measure 1.03 against each
-   other and fail at every size. Ivory separates them, at ~14. */
---da-ivory:#FAF4E4;        /* 60 - ground */
---da-ivory-alt:#F2ECD9;    /* 60 - the second band value, a step not a fourth colour */
---da-oxblood:#4A0404;      /* 30 - ink, structure, every dark ground, the mark */
---da-midnight:#0C1A4D;     /* 10 - kickers, rules, corner marks, step numbers, CTA */
-
-/* Derived from the ink, never invented. Ratios verified 2026-09-09. */
---body:color-mix(in srgb,var(--da-oxblood) 78%,var(--da-ivory));      /* 8.18 on ivory */
---muted:color-mix(in srgb,var(--da-oxblood) 66%,var(--da-ivory));     /* 5.53 on ivory */
---da-dim:color-mix(in srgb,var(--da-ivory) 70%,var(--da-oxblood));    /* 7.47 on oxblood */
+--da-ivory:#FAF4E4;--da-ivory-alt:#F2ECD9;--da-oxblood:#4A0404;--da-midnight:#0C1A4D;
+--body:color-mix(in srgb,var(--da-oxblood) 78%,var(--da-ivory));
+--muted:color-mix(in srgb,var(--da-oxblood) 66%,var(--da-ivory));
+--da-dim:color-mix(in srgb,var(--da-ivory) 70%,var(--da-oxblood));
 --rule:color-mix(in srgb,var(--da-oxblood) 16%,var(--da-ivory));
 --rule-dark:color-mix(in srgb,var(--da-ivory) 18%,var(--da-oxblood));
 --edge:color-mix(in srgb,var(--da-oxblood) 34%,var(--da-ivory));
 --edge-dark:color-mix(in srgb,var(--da-ivory) 26%,var(--da-oxblood));
 --panel:color-mix(in srgb,var(--da-ivory-alt) 45%,var(--da-ivory));
 --card-dark:color-mix(in srgb,var(--da-ivory) 4%,var(--da-oxblood));
---panel-dark:color-mix(in srgb,var(--da-ivory) 8%,var(--da-oxblood));
 --field:color-mix(in srgb,#fff 78%,var(--da-ivory));
 --field-line:color-mix(in srgb,var(--da-oxblood) 48%,var(--da-ivory));
 --fade:color-mix(in srgb,var(--da-oxblood) 40%,var(--da-ivory));
 --fade-dark:color-mix(in srgb,var(--da-ivory) 48%,var(--da-oxblood));
+/* --fade-dark is the faded half of the reveal gradient and measures 4.08 on oxblood.
+   It is NOT a text colour. The disclosure block needs its own value: ivory 60% over
+   oxblood, measured 5.75, which clears the 4.5 body floor and still steps down from
+   --da-dim at 7.47. Computed 2026-09-09, not estimated. */
+--disc-ink:color-mix(in srgb,var(--da-ivory) 60%,var(--da-oxblood));
 --da-ox-lift:color-mix(in srgb,var(--da-oxblood) 97%,var(--da-ivory));
 --da-ox-deep:color-mix(in srgb,var(--da-oxblood) 62%,#000);
---hero-mute:color-mix(in srgb,var(--da-ivory) 68%,var(--da-oxblood));
 
-/* One family. Helvetica is licensed and not on Google Fonts, so it cannot be self-hosted;
-   the system stack costs nothing and loads nothing. macOS/iOS render Helvetica Neue,
-   Windows substitutes Arial, Android Roboto. Accepted trade, ruled 2026-09-09. */
+/* One family. Helvetica, system stack, ruled 2026-09-09. Licensed by Monotype and not on
+   Google Fonts, so it cannot be self-hosted. 0 bytes, 0 requests, nothing to preload and
+   nothing to size-adjust. macOS/iOS render Helvetica Neue, Windows Arial, Android Roboto. */
 --da-font:"Helvetica Neue",Helvetica,Arial,sans-serif;
 --hdr:56px}
+
+/* THE HARD RULE: --da-midnight and --da-oxblood measure 1.03 and never touch. Ivory carries
+   both at ~14. On the oxblood band the accent is --da-ivory-alt, which measures 13.57. */
+
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{background:var(--da-ivory);color:var(--body);font-family:var(--da-font);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
-/* ---------- fixed slim header ---------- */
-.hdr{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:20;background:var(--da-oxblood);
-display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--rule-dark)}
-.mark{font-family:var(--da-font);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--da-ivory);text-align:center;white-space:nowrap;text-decoration:none}
+/* ---------- the button primitive ----------
+   ONE primitive, TWO weights. Ruling R6, which also answers D3: two visual languages for one
+   action costs recognition and doubles the state surface. Ported from the two reference
+   components: the fill expands from the left, the arrow slides. The pill shape is NOT ported,
+   because the primary button is locked border:0 with no radius. The only radius on this site
+   is 2px, on form inputs. */
+.act{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+overflow:hidden;isolation:isolate;cursor:pointer;text-decoration:none;border-radius:0;
+font-family:var(--da-font);font-size:.74rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+padding:1.05rem 1.3rem;border:0;background:var(--da-midnight);color:var(--da-ivory);width:100%}
+.act .lbl,.act .arw{position:relative;z-index:2;transition:transform .55s cubic-bezier(.19,1,.22,1),color .35s ease}
+.act .arw{width:.85rem;height:.85rem;flex:none;stroke:currentColor;fill:none;stroke-width:1.6}
+.act::before{content:"";position:absolute;inset:0;z-index:1;background:var(--da-ivory-alt);
+transform:scaleX(0);transform-origin:left center;transition:transform .55s cubic-bezier(.19,1,.22,1)}
+.act:hover::before,.act:focus-visible::before{transform:scaleX(1)}
+.act:hover .arw,.act:focus-visible .arw{transform:translateX(.32rem)}
+.act:hover .lbl,.act:hover .arw,.act:focus-visible .lbl,.act:focus-visible .arw{color:var(--da-oxblood)}
+.act:active{transform:translateY(1px)}
+.act:focus-visible{outline:2px solid var(--da-midnight);outline-offset:2px}
+/* nav weight: outline, not fill. Same shape, same arrow, same easing. */
+.act.ghost{width:auto;background:transparent;border:1px solid var(--da-ivory-alt);color:var(--da-ivory);
+font-size:.63rem;letter-spacing:.16em;padding:.62rem .95rem}
+.act.ghost:focus-visible{outline-color:var(--da-ivory-alt)}
+/* On oxblood the fill inverts. A midnight button on oxblood measures 1.03: the fill is
+   invisible against the ground and only the border reads. */
+.dark .act{background:var(--da-ivory-alt);color:var(--da-oxblood)}
+.dark .act::before{background:var(--da-ivory)}
+.dark .act:hover .lbl,.dark .act:hover .arw,.dark .act:focus-visible .lbl,.dark .act:focus-visible .arw{color:var(--da-oxblood)}
+.dark .act:focus-visible{outline-color:var(--da-ivory-alt)}
+@media (prefers-reduced-motion:reduce){.act::before,.act .lbl,.act .arw{transition:none}}
+
+/* ---------- nav ---------- */
+[data-section="nav"]{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:30;background:var(--da-oxblood);
+display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:0 .9rem;border-bottom:1px solid var(--rule-dark)}
+.mark{font-family:var(--da-font);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
+color:var(--da-ivory);white-space:nowrap;text-decoration:none}
 .mark b{font-weight:400;color:var(--da-ivory-alt)}
-.pill{justify-self:end;font-family:var(--da-font);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
-color:var(--da-ivory);text-decoration:none;border:1px solid var(--da-ivory-alt);border-radius:999px;padding:.5rem .85rem;white-space:nowrap}
-.pill:hover,.pill:focus{background:var(--da-midnight);border-color:var(--da-midnight)}
-.nav{justify-self:start;position:relative}
-.nav summary{list-style:none;cursor:pointer;width:34px;height:34px;display:grid;align-content:center;gap:5px;padding:0 4px}
-.nav summary::-webkit-details-marker{display:none}
-.nav summary i{display:block;height:1px;background:var(--da-ivory)}
-.nav summary i:nth-child(2){width:70%}
-.nav[open] summary i{background:var(--da-ivory-alt)}
-.nav ul{position:absolute;top:44px;left:-.4rem;min-width:15rem;background:var(--da-oxblood);border:1px solid var(--rule-dark);list-style:none;padding:.6rem 0}
-.nav a{display:block;font-family:var(--da-font);font-size:.78rem;letter-spacing:.06em;color:var(--da-ivory);text-decoration:none;padding:.6rem 1.1rem}
-.nav a:hover,.nav a:focus{background:var(--da-midnight)}
-/* Recalibrated 2026-09-09 for Helvetica/Arial, which set this string wider than Inter
-   did and collided the mark with the pill between 416px and ~470px. */
-@media (max-width:30rem){.short{display:none}.mark{letter-spacing:.18em;font-size:.6rem}}
-@media (max-width:24rem){.mark{letter-spacing:.12em;font-size:.56rem}.pill{font-size:.58rem;padding:.45rem .7rem}}
+@media (max-width:30rem){.mark{letter-spacing:.16em;font-size:.6rem}}
+@media (max-width:24rem){.mark{letter-spacing:.1em;font-size:.55rem}.act.ghost{font-size:.57rem;padding:.5rem .7rem;letter-spacing:.1em}}
 
-/* ---------- shared band grammar ---------- */
+/* ---------- band grammar ---------- */
 section{padding:clamp(4.2rem,10vw,8rem) 1.25rem}
 .band{text-align:center}
+.alt{background:var(--da-ivory-alt)}
 .kick{font-family:var(--da-font);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--da-midnight);display:block}
 .dark .kick{color:var(--da-ivory-alt)}
-.disp{font-family:var(--da-font);font-weight:700;
-font-size:clamp(1.85rem,5.40vw,3.30rem);line-height:1.12;letter-spacing:-.022em;
-margin:1.15rem auto 0;max-width:22ch;color:var(--da-oxblood)}
-.dark .disp{color:var(--da-ivory)}
+.disp{font-family:var(--da-font);font-weight:700;font-size:clamp(1.85rem,5.40vw,3.30rem);
+line-height:1.12;letter-spacing:-.022em;margin:1.15rem auto 0;max-width:22ch;color:var(--da-oxblood);text-wrap:balance}
 .disp.wide{max-width:30ch;font-size:clamp(1.60rem,4.50vw,2.70rem)}
+.dark .disp{color:var(--da-ivory)}
 .copy{max-width:min(65ch,38rem);margin:1.6rem auto 0}
-.copy p{margin:1rem 0}
-.copy p:first-child{margin-top:0}
+.copy p{margin:1rem 0}.copy p:first-child{margin-top:0}
 .copy b{font-weight:400;color:var(--da-oxblood)}
-.dark .copy{color:var(--da-dim)}
-.dark .copy b{color:var(--da-ivory)}
+.dark .copy{color:var(--da-dim)}.dark .copy b{color:var(--da-ivory)}
 .hr{width:44px;height:1px;background:var(--da-midnight);margin:1.7rem auto}
 .dark .hr{background:var(--da-ivory-alt)}
 .dark{background:var(--da-oxblood);color:var(--da-dim)}
@@ -112,542 +122,470 @@ radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--da-ox-lift) 78%,tran
 radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--da-ivory-alt) 7%,transparent),transparent 60%),
 linear-gradient(165deg,var(--da-ox-lift) 0%,var(--da-oxblood) 48%,var(--da-ox-deep) 100%)}
 
-/* ---------- the card system ----------
-   Ported from the bordered-card component Dofrane chose: a hairline card carrying a plus mark
-   at each of the four corners, the marks sitting OUTSIDE the border rather than inside it.
-   The marks are inline SVG drawn here, referenced from one <symbol>. No icon font, no CDN,
-   no script. They are absolutely positioned, so they add no layout box and cannot shift it. */
-.card{position:relative;background:var(--panel);border:1px solid var(--edge);
-padding:clamp(1.4rem,3.4vw,2rem) clamp(1.25rem,3vw,1.8rem);text-align:left}
-.dark .card{background:var(--card-dark);border-color:var(--edge-dark)}
-.pm{position:absolute;width:11px;height:11px;fill:none;stroke:var(--da-midnight);stroke-width:1.4;stroke-linecap:round}
-.dark .pm{stroke:var(--da-ivory-alt)}
-.pm.tl{top:-5.5px;left:-5.5px}
-.pm.tr{top:-5.5px;right:-5.5px}
-.pm.bl{bottom:-5.5px;left:-5.5px}
-.pm.br{bottom:-5.5px;right:-5.5px}
-.card h3{font-family:var(--da-font);font-weight:700;letter-spacing:-.012em;font-size:1.23rem;color:var(--da-oxblood);margin:.75rem 0 .5rem;line-height:1.35}
-.dark .card h3{color:var(--da-ivory)}
-.card p{font-size:.98rem;line-height:1.62}
-.card p+p{margin-top:1rem}
-.card b{font-weight:400;color:var(--da-oxblood)}
-.dark .card b{color:var(--da-ivory)}
-.dark .card p{color:var(--da-dim)}
-.card .ltr{font-family:var(--da-font);font-weight:700;font-size:1.90rem;line-height:1;color:var(--da-midnight);display:block}
-.dark .card .ltr{color:var(--da-ivory-alt)}
-.card .n{font-family:var(--da-font);font-size:.66rem;letter-spacing:.24em;color:var(--da-midnight);display:block}
-.dark .card .n{color:var(--da-ivory-alt)}
-
-/* Content two thirds, a distinct panel one third. Stacked on mobile with the dividing border
-   moved from the left edge to the top edge, which is the whole point of the component. */
-.split{padding:0;display:grid}
-.split>.main{padding:clamp(1.5rem,3.6vw,2.4rem)}
-.split>.side{padding:clamp(1.4rem,3.2vw,2rem);background:var(--da-ivory-alt);border-top:1px solid var(--edge)}
-.dark .split>.side{background:var(--panel-dark);border-top-color:var(--edge-dark)}
-@media (min-width:52rem){
-.split{grid-template-columns:2fr 1fr}
-.split>.side{border-top:0;border-left:1px solid var(--edge)}
-.dark .split>.side{border-left-color:var(--edge-dark)}
-}
-
-/* Info row: icon in a small filled box, a label in medium weight, a smaller muted value under it. */
-.ir{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;margin-top:1.5rem}
-.ir:first-child{margin-top:0}
-.ico{width:34px;height:34px;border-radius:9px;background:var(--da-midnight);display:grid;place-items:center}
-.ico svg{width:17px;height:17px;fill:none;stroke:var(--da-ivory);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.dark .ico{border:1px solid var(--da-ivory-alt)}
-.dark .ico svg{stroke:var(--da-ivory-alt)}
-.ir b{display:block;font-family:var(--da-font);font-weight:500;font-size:.95rem;line-height:1.4;color:var(--da-oxblood)}
-.ir span{display:block;font-size:.88rem;line-height:1.55;color:var(--muted);margin-top:.25rem}
-.dark .ir b{color:var(--da-ivory)}
-.dark .ir span{color:var(--da-dim)}
-
-/* ---------- tabs: the underline pattern, used for the two parallel things this page offers ---------- */
-.tabs{display:flex;gap:1.5rem;justify-content:center;align-items:stretch;
-padding:0 1.25rem;background:var(--da-ivory);border-bottom:1px solid var(--edge);overflow-x:auto}
-.tab{font-family:var(--da-font);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-color:var(--muted);text-decoration:none;white-space:nowrap;
-padding:1.05rem .15rem;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tab.on{color:var(--da-oxblood);border-bottom-color:var(--da-midnight)}
-a.tab:hover,a.tab:focus{color:var(--da-oxblood);border-bottom-color:var(--edge)}
-
-/* ---------- hero ---------- */
-.hero{min-height:100vh;min-height:100svh;padding:calc(var(--hdr) + 2.2rem) 1.25rem 3.5rem;
-display:grid;grid-template-rows:auto 1fr auto;text-align:center}
-.hero .eyebrow{font-family:var(--da-font);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--da-ivory-alt);justify-self:start;text-align:left}
-.heroline{display:grid;align-content:center;justify-items:start;padding:1.5rem 0}
-.heroline .inner{text-align:left;width:min(36rem,100%)}
-/* Left-weighted, not centred and not right of centre. At 1440 the column runs 92px to 668px,
-   the left 46% of the field. The 36rem width is unchanged, so no line breaks move. */
-@media (min-width:52rem){.heroline{padding-left:min(6vw,4.5rem)}.hero .eyebrow{margin-left:min(6vw,4.5rem)}}
-h1{font-family:var(--da-font);font-weight:700;
-font-size:clamp(2.00rem,7.20vw,3.40rem);line-height:1.06;letter-spacing:-.03em;color:var(--da-ivory)}
+/* ---------- hero + parallax ----------
+   Choreography preserved verbatim from the component Dofrane specified: four layers on the
+   data-parallax-layer contract, yPercent targets 70 / 55 / 40 / 10, linear, scrubbed to scroll
+   with no smoothing. GSAP + ScrollTrigger + Lenis measured 51,727 B gzipped; the rAF listener
+   in this page is about 1.5 KB and produces the same motion. transform only: no layout, no
+   paint. Off below 768px and under prefers-reduced-motion. If the script never runs the hero
+   renders static and the form still works. */
+[data-section="hero"]{position:relative;min-height:auto;scroll-margin-top:var(--hdr);padding:calc(var(--hdr) + clamp(3rem,9vw,5.5rem)) 1.25rem clamp(3.4rem,8vw,5rem);
+overflow:hidden;isolation:isolate}
+.px{position:absolute;inset:-12% 0 -12%;z-index:0;pointer-events:none}
+.px-l{position:absolute;left:0;right:0;will-change:transform}
+/* The strata are deliberate, not a stand-in photograph. IMAGE_BRIEF.md forbids stock houses
+   and AI property imagery; when the real photograph exists it drops into layer 2 as an <img>
+   with explicit width/height and fetchpriority="high". */
+.px-l[data-parallax-layer="1"]{top:-6%;height:62%;background:linear-gradient(180deg,var(--da-ox-lift),transparent)}
+.px-l[data-parallax-layer="2"]{top:26%;height:58%;background:radial-gradient(120% 70% at 68% 30%,color-mix(in srgb,var(--da-ivory-alt) 9%,transparent),transparent 70%)}
+.px-l[data-parallax-layer="3"]{top:48%;height:46%;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--da-ox-deep) 55%,transparent))}
+.px-l[data-parallax-layer="4"]{bottom:-4%;height:34%;background:linear-gradient(0deg,var(--da-ox-deep),transparent)}
+.px-fade{position:absolute;inset:auto 0 0;height:26%;z-index:1;pointer-events:none;
+background:linear-gradient(0deg,var(--da-oxblood),transparent)}
+.hero-in{position:relative;z-index:2;max-width:64rem;margin:0 auto;display:grid;gap:clamp(2.2rem,6vw,3.4rem)}
+@media (min-width:60rem){.hero-in{grid-template-columns:1.05fr .95fr;align-items:start;gap:4rem}}
+.eyebrow{font-family:var(--da-font);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--da-ivory-alt)}
+h1{font-family:var(--da-font);font-weight:700;font-size:clamp(2.00rem,7.20vw,3.40rem);
+line-height:1.06;letter-spacing:-.03em;color:var(--da-ivory);margin:1.15rem 0 0;text-wrap:balance}
 h1 span{display:block}
-/* Two tone: the offer at full brightness, the two lines under it dropped. Both clear AA on Ink
-   (16.07 and 7.82, computed above). --hero-mute is Ivory over Ink, so it stays in the palette. */
-h1 span+span{color:var(--hero-mute)}
-.sub{margin-top:1.4rem;font-family:var(--da-font);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--da-dim)}
+h1 span:last-child{color:var(--da-ivory-alt)}
+.lede{margin-top:1.5rem;max-width:44ch;color:var(--da-dim);font-size:1.06rem}
+.lede b{color:var(--da-ivory);font-weight:400}
+.terms{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem .9rem;list-style:none;
+font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--da-ivory-alt)}
+.terms li{display:flex;align-items:center;gap:.45rem}
+.terms li::before{content:"";width:4px;height:4px;background:var(--da-ivory-alt);flex:none}
 
-/* ---------- hero capture ----------
-   One address input, one button, no second CTA. A real <form action="#tell-us">, so with
-   scripting off the button and the Enter key still land the seller on the form section. The
-   input carries no name attribute, so nothing typed here reaches the URL, history or referrer.
-   With scripting on the value is copied into the real form's address field. Nothing animates
-   it: usable on first paint. It reuses the page's own input and button rules. */
-.grab{display:grid;gap:.7rem;margin-top:1.9rem;width:100%}
-.grab input{padding:.95rem .85rem}
-/* --muted on --field is 6.49, computed above. The UA default placeholder grey is off palette. */
-.grab input::placeholder{color:var(--muted);opacity:1}
-.grab button{border:1px solid var(--da-ivory-alt);padding:1.05rem 1.3rem}
-.grab input:focus-visible,.grab button:focus-visible{outline:2px solid var(--da-ivory-alt);outline-offset:2px}
-@media (min-width:40rem){.grab{grid-template-columns:1fr auto;gap:.6rem}.grab button{width:auto}}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.cue{font-family:var(--da-font);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--da-dim);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
-.cue i{display:block;width:11px;height:11px;border-right:1px solid var(--da-ivory-alt);border-bottom:1px solid var(--da-ivory-alt);transform:rotate(45deg)}
-@media (prefers-reduced-motion:no-preference){.cue i{animation:dip 2.4s ease-in-out infinite}}
-@keyframes dip{0%,100%{transform:translateY(-2px) rotate(45deg)}50%{transform:translateY(3px) rotate(45deg)}}
+/* ---------- the card system ----------
+   A hairline card carrying a plus mark at each corner, the marks sitting OUTSIDE the border.
+   Inline SVG from one <symbol>: no icon font, no CDN, no script. Absolutely positioned, so
+   they add no layout box and cannot shift it. */
+.card{position:relative;background:var(--panel);border:1px solid var(--edge);text-align:left;
+padding:clamp(1.4rem,3.4vw,2rem) clamp(1.25rem,3vw,1.8rem)}
+.dark .card{background:var(--card-dark);border-color:var(--edge-dark)}
+.pm{position:absolute;width:11px;height:11px;stroke:var(--da-midnight);stroke-width:1.4;fill:none;stroke-linecap:round}
+.dark .pm{stroke:var(--da-ivory-alt)}
+.pm.tl{top:-5.5px;left:-5.5px}.pm.tr{top:-5.5px;right:-5.5px}
+.pm.bl{bottom:-5.5px;left:-5.5px}.pm.br{bottom:-5.5px;right:-5.5px}
+.card h3{font-size:1.23rem;font-weight:700;letter-spacing:-.012em;line-height:1.35;color:var(--da-oxblood);text-wrap:balance}
+.dark .card h3{color:var(--da-ivory)}
+.card p{font-size:.98rem;line-height:1.62;margin-top:.7rem}
+.card .ltr{font-family:var(--da-font);font-size:1.90rem;font-weight:700;line-height:1;color:var(--da-midnight);display:block;margin-bottom:.75rem}
 
-/* ---------- scroll reveal (progressive enhancement only) ---------- */
+/* Gap is 2rem so the corner marks of two neighbouring cards keep 10px of clear air. */
+.trio{display:grid;gap:2rem;max-width:60rem;margin:2.8rem auto 0}
+@media (min-width:46rem){.trio{grid-template-columns:repeat(3,1fr)}}
+.cards{display:grid;gap:2rem;max-width:76rem;margin:3rem auto 0}
+.cards .card h3{font-size:1.08rem;line-height:1.3}
+@media (min-width:40rem){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:62rem){.cards{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- comparison ---------- */
+.cmp{max-width:64rem;margin:2.8rem auto 0;overflow-x:auto;border:1px solid var(--edge)}
+table{border-collapse:collapse;width:100%;min-width:38rem;background:var(--panel);text-align:left}
+th,td{padding:.85rem .95rem;border-bottom:1px solid var(--rule);font-size:.94rem;line-height:1.5;vertical-align:top}
+thead th{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted);
+background:var(--da-ivory);border-bottom:1px solid var(--edge)}
+thead th.us{color:var(--da-midnight)}
+tbody th{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;color:var(--muted);white-space:nowrap}
+td.us{color:var(--da-oxblood);font-weight:700;border-left:1px solid var(--edge);background:var(--da-ivory)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+
+/* ---------- form ---------- */
+.formwrap{background:color-mix(in srgb,var(--da-ivory) 6%,transparent);border:1px solid var(--edge-dark);
+padding:clamp(1.35rem,4vw,1.9rem)}
+form{display:grid;gap:.9rem}
+.flabel{font-family:var(--da-font);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+color:var(--da-ivory-alt);display:grid;gap:.35rem}
+.addr{display:grid;grid-template-columns:1fr 5.6rem;gap:.6rem;align-items:stretch}
+.addr select{align-self:stretch}
+input,select{font:inherit;font-family:var(--da-font);font-size:1rem;padding:.78rem .75rem;
+background:var(--field);border:1px solid var(--field-line);color:var(--da-oxblood);border-radius:2px;width:100%}
+input::placeholder{color:var(--muted);opacity:1}
+input:focus-visible,select:focus-visible{outline:2px solid var(--da-ivory-alt);outline-offset:1px}
+.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;
+font-size:.9rem;line-height:1.5;color:var(--da-dim);font-family:var(--da-font);font-weight:400}
+.consent input{width:auto;margin-top:.3rem;flex:0 0 auto}
+.hp{position:absolute;left:-9999px}
+#msg{margin-top:.2rem;color:var(--da-ivory-alt);font-size:.95rem;min-height:1.4rem}
+.undernote{margin-top:.9rem;font-size:.83rem;color:var(--da-dim);line-height:1.55}
+
+/* ---------- cta ---------- */
+[data-section="cta"] .act{display:flex;max-width:22rem;margin:2.2rem auto 0}
+
+/* ---------- footer ---------- */
+[data-section="footer"]{background:var(--da-oxblood);color:var(--da-dim);padding:3.4rem 1.25rem 3.8rem;
+font-size:.86rem;line-height:1.65;text-align:center}
+[data-section="footer"] .in{max-width:min(70ch,44rem);margin:0 auto}
+.fbrand{font-family:var(--da-font);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;
+color:var(--da-ivory-alt);display:block;margin-bottom:1rem}
+.area{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--da-ivory-alt);margin:1.1rem 0}
+.disc{margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid var(--rule-dark);font-size:.76rem;line-height:1.6;color:var(--disc-ink)}
+.disc p{margin:.65rem 0}
+
+/* ---------- scroll reveal, progressive enhancement only ---------- */
 @supports (animation-timeline:view()){
 @media (prefers-reduced-motion:no-preference){
-.rev,.disp.rev{color:transparent;
+.rev{color:transparent;
 background-image:linear-gradient(90deg,var(--da-oxblood) 0 46%,var(--fade) 54% 100%);
 background-size:230% 100%;background-position:100% 0;background-repeat:no-repeat;
 -webkit-background-clip:text;background-clip:text;
 animation:sweep linear both;animation-timeline:view();animation-range:entry 20% cover 46%}
-.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--da-ivory) 0 46%,var(--fade-dark) 54% 100%)}
+.dark .rev{background-image:linear-gradient(90deg,var(--da-ivory) 0 46%,var(--fade-dark) 54% 100%)}
 }}
 @keyframes sweep{to{background-position:0 0}}
 
-/* ---------- grids ----------
-   Gap is 2rem so the corner marks of two neighbouring cards keep 10px of clear air. */
-.one{max-width:64rem;margin:2.8rem auto 0}
-.duo{display:grid;gap:2rem;max-width:62rem;margin:2.8rem auto 0}
-@media (min-width:46rem){.duo{grid-template-columns:1fr 1fr}}
-.trio{display:grid;gap:2rem;max-width:60rem;margin:2.8rem auto 0}
-@media (min-width:46rem){.trio{grid-template-columns:repeat(3,1fr)}}
-.cards{display:grid;gap:2rem;max-width:66rem;margin:3rem auto 0}
-@media (min-width:40rem){.cards{grid-template-columns:1fr 1fr}}
-@media (min-width:62rem){.cards{grid-template-columns:repeat(3,1fr)}}
-.stack{display:grid;gap:2rem;max-width:min(72ch,44rem);margin:3rem auto 0}
-.stack h3{font-style:italic;font-size:1.29rem;margin-top:0}
-.stack p{margin-top:.7rem;font-size:1rem}
-
-/* ---------- map ---------- */
-.split>.main.map{display:grid;align-content:center}
-.map svg{display:block;width:100%;max-width:32rem;height:auto;margin:0 auto}
-.map .cnty{fill:var(--da-midnight);fill-opacity:.82;stroke:var(--da-ivory-alt);stroke-width:2}
-.map .dcline{stroke:color-mix(in srgb,var(--da-dim) 52%,var(--da-oxblood));stroke-width:1.5;stroke-dasharray:5 5}
-.map .lbl{font-family:var(--da-font);fill:var(--da-ivory)}
-.map .lbl .sm{fill:var(--da-ivory-alt)}
-.map .lbl .dc{fill:color-mix(in srgb,var(--da-dim) 60%,var(--da-oxblood))}
-
-/* ---------- form ---------- */
-form{display:grid;gap:.9rem}
-label{font-family:var(--da-font);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:grid;gap:.35rem}
-input,select,textarea{font:inherit;font-family:var(--da-font);font-size:1rem;padding:.72rem .75rem;background:var(--field);border:1px solid var(--field-line);color:var(--da-oxblood);border-radius:2px;width:100%}
-textarea{min-height:5rem;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:var(--body);font-family:var(--da-font)}
-.consent input{width:auto;margin-top:.35rem;flex:0 0 auto}
-.hp{position:absolute;left:-9999px}
-button{font-family:var(--da-font);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--da-midnight);color:var(--da-ivory);border:0;cursor:pointer;width:100%}
-#msg{margin-top:.9rem;color:var(--da-midnight);font-size:.98rem;min-height:1.5rem}
-.btn{display:block;text-align:center;font-family:var(--da-font);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:1rem 1.2rem;background:var(--da-midnight);color:var(--da-ivory);text-decoration:none;margin-top:1.8rem}
-.dark .btn{background:var(--da-ivory-alt);color:var(--da-oxblood)}
-/* THE HARD RULE, enforced here. A midnight button on the oxblood band measures 1.03 —
-   its fill is invisible against the ground and only the border reads. On dark, the
-   primary action is ivory-alt on oxblood, 13.57. Caught on the first render after the
-   2026-09-09 repalette; .btn already did this, the bare <button> did not. */
-.dark button{background:var(--da-ivory-alt);color:var(--da-oxblood)}
-.dark .grab button{border-color:var(--da-ivory-alt)}
-
-footer{background:var(--da-oxblood);color:var(--da-dim);padding:3rem 1.25rem 3.6rem;font-size:.86rem;line-height:1.65;text-align:center}
-footer .in{max-width:min(70ch,42rem);margin:0 auto}
-footer .brand{font-family:var(--da-font);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--da-ivory-alt);display:block;margin-bottom:1rem}
-footer p{margin:.8rem 0}
-@media (max-width:26rem){.row{grid-template-columns:1fr}.tabs{gap:1.1rem}.tab{font-size:.64rem;letter-spacing:.12em}}
+/* ---------- section isolation, preview hosts only ---------- */
+body.isolate [data-section]{display:none}
+body.isolate [data-section].solo{display:block}
+body.isolate [data-section="nav"].solo{display:flex}
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <symbol id="pm" viewBox="0 0 12 12"><path d="M6 .9v10.2M.9 6h10.2"/></symbol>
-<symbol id="i-pin" viewBox="0 0 20 20"><path d="M10 17.6c3.7-3.9 5.6-6.8 5.6-8.9a5.6 5.6 0 1 0-11.2 0c0 2.1 1.9 5 5.6 8.9Z"/><circle cx="10" cy="8.5" r="2.1"/></symbol>
-<symbol id="i-clock" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.4"/><path d="M10 5.7V10l2.9 1.8"/></symbol>
-<symbol id="i-phone" viewBox="0 0 20 20"><path d="M6.3 3.2 8 6.4 6.4 8.1a11 11 0 0 0 5.5 5.5l1.7-1.6 3.2 1.7v2.5c0 .6-.5 1.1-1.1 1a14.3 14.3 0 0 1-13-13c0-.6.4-1.1 1-1.1h2.6Z"/></symbol>
-<symbol id="i-lock" viewBox="0 0 20 20"><rect x="4.3" y="8.7" width="11.4" height="8" rx="1.6"/><path d="M7 8.7V6.4a3 3 0 0 1 6 0v2.3"/></symbol>
-<symbol id="i-doc" viewBox="0 0 20 20"><path d="M11.4 2.8H6.2c-.8 0-1.4.6-1.4 1.4v11.6c0 .8.6 1.4 1.4 1.4h7.6c.8 0 1.4-.6 1.4-1.4V6.6Z"/><path d="M11.4 2.8v3.8h3.8M7.7 11h4.6M7.7 13.7h3"/></symbol>
-<symbol id="i-scale" viewBox="0 0 20 20"><path d="M10 3.4v13.2M5.7 5.2h8.6M6.9 16.6h6.2"/><path d="M5.7 5.2 3.2 10.4a2.6 2.6 0 0 0 5 0ZM14.3 5.2l-2.5 5.2a2.6 2.6 0 0 0 5 0Z"/></symbol>
-<symbol id="i-ban" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.2"/><path d="M4.9 4.9l10.2 10.2"/></symbol>
+<symbol id="arw" viewBox="0 0 16 16"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5"/></symbol>
 </defs></svg>
 
-<header class="hdr">
-  <details class="nav">
-    <summary aria-label="Menu"><i></i><i></i><i></i></summary>
-    <ul>
-      <li><a href="#counties">Where we buy</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#situations">When this is the right call</a></li>
-      <li><a href="#honest">When you should not sell to us</a></li>
-      <li><a href="#faq">Questions people ask</a></li>
-      <li><a href="#tell-us">Tell us about the house</a></li>
-    </ul>
-  </details>
-  <a class="mark" href="#top"><b>Dofrane</b> Acquisitions</a>
-  <a class="pill" href="#tell-us">Tell us <span class="short">about the house</span></a>
+<header data-section="nav">
+  <a class="mark" href="/">Dofrane <b>Acquisitions</b></a>
+  <a class="act ghost" href="#offer"><span class="lbl">Get Offer</span><svg class="arw" aria-hidden="true"><use href="#arw"/></svg></a>
 </header>
 
-<main id="top">
+<main>
 
-<section class="hero dark tex">
-  <span class="eyebrow">Montgomery &amp; Prince George's County, Maryland</span>
-  <div class="heroline">
-    <div class="inner">
-      <h1><span>Sell the house as it stands.</span><span>Leave what is in it.</span><span>Be done with it.</span></h1>
-      <p class="sub">A cash offer in writing. We close it, or we bring the buyer who does.</p>
-      <form class="grab" id="hf" action="#tell-us" method="get" novalidate>
-        <label class="vh" for="ha">Property address</label>
-        <input id="ha" type="text" placeholder="Property address" autocomplete="street-address" enterkeyhint="go">
-        <button type="submit">Tell us about the house</button>
-      </form>
-    </div>
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section data-section="hero" class="dark tex" id="offer">
+  <div class="px" data-parallax-layers aria-hidden="true">
+    <div class="px-l" data-parallax-layer="1"></div>
+    <div class="px-l" data-parallax-layer="2"></div>
+    <div class="px-l" data-parallax-layer="3"></div>
+    <div class="px-l" data-parallax-layer="4"></div>
   </div>
-  <a class="cue" href="#counties">Scroll down to see how this works<i></i></a>
-</section>
+  <div class="px-fade" aria-hidden="true"></div>
 
-<nav class="tabs" aria-label="This page">
-  <span class="tab on" aria-current="page">How it works</span>
-  <a class="tab" href="#tell-us">Tell us <span class="short">about the house</span></a>
-</nav>
+  <div class="hero-in">
+    <div>
+      <span class="eyebrow">District of Columbia &middot; Maryland &middot; Virginia</span>
+      <h1><span>Leave it as it stands.</span><span>Leave what is in it.</span><span>Be done with it.</span></h1>
+      <p class="lede"><b>A cash offer in writing on your house.</b> We close it, or we bring the buyer who does.</p>
+      <ul class="terms">
+        <li>No commission</li><li>No repairs</li><li>No showings</li><li>You pick the closing date</li>
+      </ul>
+    </div>
 
-<section class="band" id="intro">
-  <span class="kick">The plain version</span>
-  <h2 class="disp wide rev">Sell your house fast in Montgomery or Prince George's County, Maryland.</h2>
-  <div class="card split one">
-    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-    <div class="main">
-      <p>Most people who call us are not selling a house. They are trying to stop paying for one. A parent's place that needs a lot of work. A rental that stopped being worth the grief. A house that has sat empty while the taxes and the insurance kept running.</p>
-      <p>We buy it as it stands, with our own money. <b>You do not fix it, you do not empty it, and you do not pay a commission.</b></p>
-    </div>
-    <div class="side">
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
-        <div><b>Where we buy</b><span>Montgomery &amp; Prince George's County, Maryland</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
-        <div><b>One person reads every submission</b><span>Dofrane calls you back within one business day.</span></div>
-      </div>
-      <a class="btn" href="#tell-us">Tell us about the house</a>
-    </div>
-  </div>
-</section>
-
-<section class="band dark tex" id="counties">
-  <span class="kick">Where we buy</span>
-  <h2 class="disp rev">Two counties. That is the whole list.</h2>
-  <div class="card split one">
-    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-    <div class="main map">
-      <svg viewBox="0 0 540 560" role="img" aria-label="Simplified map of Maryland showing Montgomery County and Prince George's County, with the District of Columbia between them, marked as outside the buying area.">
-        <g fill="none" stroke-linejoin="round">
-          <path class="cnty" d="M38 175 218 35 326 56 337 182 304 283 261 326 190 294 76 231Z"/>
-          <path class="cnty" d="M305 266 408 245 419 287 500 350 500 406 490 476 381 518 316 483 305 426 376 355 304 283Z"/>
-          <path class="dcline" d="M304 283 376 355 305 426 261 326Z"/>
-        </g>
-        <g class="lbl" text-anchor="middle">
-          <text x="200" y="176" font-size="21" letter-spacing="1.5">MONTGOMERY</text>
-          <text class="sm" x="200" y="200" font-size="14" letter-spacing="3">COUNTY</text>
-          <text x="414" y="396" font-size="15" letter-spacing="1">PRINCE GEORGE&#39;S</text>
-          <text class="sm" x="414" y="418" font-size="13" letter-spacing="3">COUNTY</text>
-          <text class="dc" x="309" y="342" font-size="13" letter-spacing="1.5">DC</text>
-        </g>
-      </svg>
-    </div>
-    <div class="side">
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
-        <div><b>Montgomery</b><span>Silver Spring, Rockville, Gaithersburg, Wheaton, Germantown, Takoma Park, Olney, and the rest of the county.</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
-        <div><b>Prince George's</b><span>Bowie, Hyattsville, Upper Marlboro, Laurel, Suitland, Clinton, District Heights, Bladensburg, and the rest of the county.</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-ban"/></svg></span>
-        <div><b>Not Washington, DC. Not Virginia.</b><span>If the house sits outside those two counties, this form will not do you any good, and we would rather say so now than take your information and go quiet on you.</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="who">
-  <span class="kick">Who you are dealing with</span>
-  <h2 class="disp rev">We are the buyer, not the broker.</h2>
-  <div class="copy">
-    <p>Dofrane Acquisitions is the buyer. Not a lead broker, not a referral service, not an agent hunting a listing. We are a Maryland investor. We sign the contract in our own name, we put up the deposit, and we take the house the way it stands today.</p>
-    <p>Two things you should know before you talk to anyone in this business, including us.</p>
-  </div>
-  <div class="duo">
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ico"><svg aria-hidden="true"><use href="#i-scale"/></svg></span>
-      <h3>We are not a real estate broker or agent.</h3>
-      <p>We do not represent you, we do not list your house, and we do not charge you a commission. We are on the other side of the table. Read anything we hand you as if that is true, because it is.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ico"><svg aria-hidden="true"><use href="#i-doc"/></svg></span>
-      <h3>We may assign the contract to another buyer instead of closing on it ourselves.</h3>
-      <p>On an owner occupied house of four units or fewer, Maryland law requires that you be told this in writing before you sign, and if you were not told, you can cancel any time before closing with no penalty and get your deposit position back. That is Md. Code, Real Property &sect; 10-715. We say it in the first conversation, not on page nine.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band dark" id="how">
-  <span class="kick">How it works</span>
-  <h2 class="disp rev">Three steps. Nothing automated at you.</h2>
-  <div class="trio">
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="n">01</span>
-      <h3>You tell us about the house</h3>
-      <p>Address, rough condition, and your timing. Two minutes. No account, no credit check, no automated valuation emailed at you.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="n">02</span>
-      <h3>We look at it</h3>
-      <p>Public record first, then a walkthrough with you or whoever has the key. It does not need to be cleaned, cleared, or staged. Leave what you are leaving.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="n">03</span>
-      <h3>You get a number in writing</h3>
-      <p>The number and the terms, on paper. If it does not work, say no. We will not call you again unless you ask us to.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="situations">
-  <span class="kick">When this is the right call</span>
-  <h2 class="disp rev">Seven houses we say yes to.</h2>
-  <div class="cards">
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">A</span>
-      <h3>It needs a lot of work and you are not putting more money into it</h3>
-      <p>Roof, systems, foundation, a kitchen from a different decade. On a listing, that money leaves your pocket first and you hope it comes back at settlement. Here it comes out of the price, and you never front it.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">B</span>
-      <h3>You cannot face emptying it</h3>
-      <p>Fifty years of things, and you are the one who has to decide what happens to every one of them. You do not have to. Take what you want to keep and leave the rest where it sits: the furniture, the closets, the basement, the garage, the shed. We are not going to ask you to clear it, and we are not going to charge you for it either.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">C</span>
-      <h3>It has been sitting empty and the bills have not stopped</h3>
-      <p>Taxes, insurance, the grass, and a policy that gets complicated the moment nobody lives there. An empty house also collects the kind of attention nobody wants. If the estate is still open, say so on the form, so the timeline gets built around the court's calendar instead of ours.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">D</span>
-      <h3>You do not live near it</h3>
-      <p>Every decision is a phone call, a favour asked of a neighbour, or a drive you do not have a free weekend for.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">E</span>
-      <h3>You are done being a landlord</h3>
-      <p>Turnover, deferred repairs, a lease you did not write. Tell us the occupancy and the lease on the form. It changes the number. It does not change whether we look.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">F</span>
-      <h3>It has been listed for months and nothing is happening</h3>
-      <p>The price came down once already and the showings go nowhere. If you are still inside a listing agreement, say so; we will not step around it.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <span class="ltr">G</span>
-      <h3>The property has code or permit problems</h3>
-      <p>Open violations, unpermitted work, a citation taped to the door. Say it plainly. It goes into the number and it does not scare us off.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band dark tex" id="honest">
-  <span class="kick">When you should not sell to us</span>
-  <h2 class="disp rev">A clean house with time on the clock belongs with an agent.</h2>
-  <div class="card split one">
-    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-    <div class="main">
-      <p>The most common thing sellers say about buyers like us is that we pay less than the house is worth. That is correct. We are not going to argue with it.</p>
-      <p>If the house is in decent shape, on a street where things sell, and you have two or three months to wait, list it with an agent. After the commission you will almost always walk away with more money than we can pay.</p>
-      <p>That is not modesty, it is arithmetic. We have to buy at a price that leaves room for the repairs and for the next buyer's margin. An agent does not carry either of those, so on a clean house with time on the clock, an agent wins.</p>
-    </div>
-    <div class="side">
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
-        <div><b>Call us when the condition, the timing, or the situation makes that trade a bad one.</b><span>That is the entire business.</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-scale"/></svg></span>
-        <div><b>We also do not assume you are stuck.</b><span>Plenty of people who fill in this form are tired rather than desperate, and a tired person with a sound house should list it. And before you sign anything with anyone in this business, us included, ask them to show you they can actually pay. If they will not show you, do not sign.</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="faq">
-  <span class="kick">Questions people actually ask</span>
-  <h2 class="disp rev">The five that come up every time.</h2>
-  <div class="stack">
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <h3>Do I need to fix anything before you look at it?</h3>
-      <p>No. As-is means we price the house in the condition it is in on the day we walk it, and we do not come back with a repair credit after an inspection. You are not expected to paint, patch, haul anything away, or empty the basement. If something is broken, tell us on the form so it is in the number from the start instead of showing up as a surprise later.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <h3>What does as-is actually mean on your contract?</h3>
-      <p>It means we accept the physical condition. It does not erase what Maryland requires you to disclose: on most single family residential sales of four units or fewer, the seller still delivers the Real Property &sect; 10-702 disclosure or disclaimer statement. As-is is about repairs, not about hiding what you know. We would rather hear the bad news early, because a number that moves after a walkthrough is how people end up feeling worked over.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <h3>Do I pay anything?</h3>
-      <p>No commission, because nobody is acting as an agent in the sale. No listing fee, no marketing budget, no cleanout invoice. Ordinary settlement costs still exist, and Maryland's default is that recordation and transfer taxes are shared equally between the two sides unless the contract says otherwise, Md. Code, Real Property &sect; 14-104. Whatever the split ends up being, it will be in writing before you sign.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <h3>Will you record our call?</h3>
-      <p>Only if you say yes. Maryland requires every person on a call to agree before it can be recorded, Md. Code, Courts and Judicial Proceedings &sect; 10-402. We ask at the start of the first call. If you say no, the call carries on exactly the same and nothing is recorded.</p>
-    </div>
-    <div class="card">
-      <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-      <h3>The house is listed with an agent right now. Can I still send this?</h3>
-      <p>Send it, and say so on the form. If you are inside a listing agreement, your agreement governs and we will not step around it or ask you to. In most cases the right move is to talk to your agent first. We will tell you that instead of pretending the agreement is not there.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="tell-us">
-  <span class="kick">The form</span>
-  <h2 class="disp">Tell us about the house.</h2>
-  <div class="copy">
-    <p>Four things matter: where it is, how to reach you, what shape it is in, and when you want to be done. Everything else just makes the number faster.</p>
-  </div>
-  <div class="card split one">
-    <svg class="pm tl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm tr" aria-hidden="true"><use href="#pm"/></svg><svg class="pm bl" aria-hidden="true"><use href="#pm"/></svg><svg class="pm br" aria-hidden="true"><use href="#pm"/></svg>
-    <div class="main">
+    <div class="formwrap">
       <form id="f" novalidate>
-        <label>Property address <input name="address" required autocomplete="street-address" placeholder="123 Main St"></label>
-        <div class="row">
-          <label>City <input name="city" required autocomplete="address-level2"></label>
-          <label>State <select name="state" required><option value="MD" selected>MD</option></select></label>
-        </div>
-        <div class="row">
-          <label>ZIP <input name="zip" inputmode="numeric" autocomplete="postal-code"></label>
-          <label>Your name <input name="name" required autocomplete="name"></label>
-        </div>
-        <div class="row">
-          <label>Phone <input name="phone" type="tel" autocomplete="tel"></label>
-          <label>Email <input name="email" type="email" autocomplete="email"></label>
-        </div>
-        <label>Condition. What would a buyer want fixed, and is anyone living there? <textarea name="condition" placeholder="Roof is 25 years old. Tenant on a lease through May. Basement took water last spring."></textarea></label>
-        <label>Timeline. If the number worked, when would you want to be out?
-          <select name="timeline">
-            <option>As soon as possible</option>
-            <option>Within 30 days</option>
-            <option>1–3 months</option>
-            <option>Just exploring</option>
-          </select>
+        <label class="flabel" for="address">Property address
+          <span class="addr">
+            <input id="address" name="address" type="text" autocomplete="street-address"
+                   placeholder="123 Main St, Rockville 20850" enterkeyhint="next" required>
+            <select id="state" name="state" aria-label="State" required>
+              <option value="MD" selected>MD</option>
+              <option value="DC">DC</option>
+              <option value="VA">VA</option>
+            </select>
+          </span>
         </label>
-        <label>What do you need to walk away with? <input name="need" placeholder="A number, or 'tell me what it's worth'"></label>
-        <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
-        <label class="consent"><input type="checkbox" name="consent_call" required> I am asking Dofrane Acquisitions to call or email me about this property.</label>
-        <label class="consent"><input type="checkbox" name="consent_text"> Separately, you may text me at this number. Optional, and leaving it unchecked will not slow anything down. Reply STOP to any text to opt out.</label>
-        <button type="submit">Tell us about the house</button>
-        <div id="msg" role="status"></div>
+
+        <label class="flabel" for="phone">Phone
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"
+                 placeholder="301 555 0142" enterkeyhint="go" required>
+        </label>
+
+        <label class="consent" for="consent_call">
+          <input id="consent_call" name="consent_call" type="checkbox" required>
+          <span id="consent_text">I am asking Dofrane Acquisitions to call or email me about this property.</span>
+        </label>
+
+        <!-- Honeypot. Non-empty p_website makes the RPC return ok and write nothing. -->
+        <label class="hp" aria-hidden="true"><span>Website</span>
+          <input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+
+        <button class="act" id="submit" type="submit">
+          <span class="lbl">Get Offer</span><svg class="arw" aria-hidden="true"><use href="#arw"/></svg>
+        </button>
+        <div id="msg" role="status" aria-live="polite"></div>
       </form>
-    </div>
-    <div class="side">
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
-        <div><b>Where we buy</b><span>Montgomery &amp; Prince George's County, Maryland</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
-        <div><b>One person reads every submission</b><span>Dofrane calls you back within one business day.</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
-        <div><b>We call Maryland numbers between 8am and 8pm.</b><span>If we record a call, we say so first and wait for your yes, because Maryland requires it.</span></div>
-      </div>
-      <div class="ir">
-        <span class="ico"><svg aria-hidden="true"><use href="#i-lock"/></svg></span>
-        <div><b>We do not sell, rent, or trade what you put in this form.</b></div>
-      </div>
+      <p class="undernote">One person reads every submission. One person calls you back.</p>
     </div>
   </div>
+</section>
+
+<!-- ══════════════════════════ PROMISE ══════════════════════════ -->
+<section data-section="promise" class="band">
+  <span class="kick">What you do not have to do</span>
+  <h2 class="disp rev">Three things you can stop thinking about.</h2>
+  <div class="hr"></div>
+  <div class="trio">
+    <article class="card">
+      <svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg>
+      <svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <h3>You do not empty it.</h3>
+      <p>Furniture, boxes, a basement that has been filling for forty years. Take what you want. Leave
+         the rest exactly where it is. Clearing it out is our problem, not yours.</p>
+    </article>
+    <article class="card">
+      <svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg>
+      <svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <h3>You do not fix it.</h3>
+      <p>The roof, the systems, the water that came in last spring. We price the house as it stands
+         today. No inspection list, no repair credits, no work before closing.</p>
+    </article>
+    <article class="card">
+      <svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg>
+      <svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <h3>You get a number, not a maybe.</h3>
+      <p>The offer comes in writing, with the figure on it and how we arrived at it. If it does not
+         work for you, say no and you will not hear from us again.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SITUATIONS ══════════════════════════ -->
+<section data-section="situations" class="band alt">
+  <span class="kick">When this is the right call</span>
+  <h2 class="disp rev">Eight houses we say yes to.</h2>
+  <div class="copy"><p>If one of these is yours, the form takes about thirty seconds.</p></div>
+  <div class="cards">
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">A</span><h3>You cannot face emptying it.</h3>
+      <p>Decades of someone's life is in there and nobody has the time or the heart to sort it.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">B</span><h3>It needs more work than you will put into it.</h3>
+      <p>You have already decided you are not spending another dollar on this house.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">C</span><h3>It has been sitting empty and the bills have not stopped.</h3>
+      <p>Taxes, insurance, the lawn, and a house that attracts attention when nobody is in it.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">D</span><h3>You do not live near it.</h3>
+      <p>It is four hours away, and every trip costs you a weekend.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">E</span><h3>It has been listed for months and nothing is happening.</h3>
+      <p>You cut the price once already and the showings stopped. You want a decision, not another open house.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">F</span><h3>You inherited it with other people.</h3>
+      <p>Three names on the deed and three opinions. A clean number is easier to split than a house.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">G</span><h3>You are done being a landlord.</h3>
+      <p>The turnover, the repairs, the call at eleven at night. You want the last one to be the last one.</p></article>
+    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
+      <span class="ltr">H</span><h3>The date has to work around something else.</h3>
+      <p>A move, a school year, a job. Tell us the date you need and we work to it.</p></article>
+  </div>
+</section>
+
+<!-- ══════════════════════════ DIFFERENCE ══════════════════════════ -->
+<section data-section="difference" class="band">
+  <span class="kick">How this compares</span>
+  <h2 class="disp wide rev">Three ways to sell it. Here is the honest version.</h2>
+  <div class="cmp">
+    <table>
+      <thead><tr><th scope="col"><span class="vh">Comparison</span></th>
+        <th scope="col">Traditional listing</th><th scope="col">iBuyer or online offer</th>
+        <th scope="col" class="us">Dofrane Acquisitions</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Price</th><td>Highest, if it shows well and you can wait</td><td>Near retail, before the fees come off</td><td class="us">Below retail. That is the trade.</td></tr>
+        <tr><th scope="row">Repairs</th><td>You do them first, or you credit for them</td><td>Deducted after their inspection</td><td class="us">None. Priced as it stands.</td></tr>
+        <tr><th scope="row">What you leave behind</th><td>Broom clean</td><td>Broom clean</td><td class="us">Anything you want</td></tr>
+        <tr><th scope="row">Showings</th><td>Weeks of them</td><td>Photos, then an inspection</td><td class="us">One walkthrough</td></tr>
+        <tr><th scope="row">Commission</th><td>About 5 to 6 percent</td><td>A service fee</td><td class="us">None</td></tr>
+        <tr><th scope="row">Closing date</th><td>When the buyer's lender says</td><td>Their window</td><td class="us">Yours</td></tr>
+        <tr><th scope="row">Certainty</th><td>Contingent on financing and appraisal</td><td>The offer can be revised after inspection</td><td class="us">A written offer. We close it, or we bring the buyer who does.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="copy">
+    <p>A clean house with time on the clock belongs with an agent. If you can wait ninety days, show it
+       on a Saturday, and pay a commission out of the proceeds, <b>a listing will beat us on price
+       nearly every time.</b> We are worth talking to when one of those three is not available to you.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CTA ══════════════════════════ -->
+<section data-section="cta" class="band dark tex">
+  <h2 class="disp rev">Tell us the address. We will do the rest.</h2>
+  <div class="copy"><p>No commission, no repairs, nothing to clear out. If the number does not work, say no.</p></div>
+  <a class="act" href="#offer"><span class="lbl">Get Cash Offer</span><svg class="arw" aria-hidden="true"><use href="#arw"/></svg></a>
 </section>
 
 </main>
 
-<footer>
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer data-section="footer">
   <div class="in">
-    <span class="brand">Dofrane Acquisitions &middot; Montgomery &amp; Prince George's County, Maryland</span>
-    <p>Dofrane Acquisitions buys property for its own account. It is not a real estate broker or agent, it does not represent sellers, and it does not give legal, tax, or financial advice. It may assign its purchase contract to another buyer, with the written notice Maryland requires. Nothing on this page is an offer to buy any particular property. An offer comes in writing after we have seen the house.</p>
+    <span class="fbrand">Dofrane Acquisitions</span>
+    <p class="area">District of Columbia &middot; Maryland &middot; Virginia</p>
+    <div class="disc">
+      <p data-disc="L1">An offer made through this page may involve the assignment of a contract for the
+         purchase of the property. Any such assignment is disclosed in writing before settlement.</p>
+      <p data-disc="L2">Dofrane Acquisitions is not a real estate broker and does not provide brokerage
+         services. We do not represent you in the sale of your property.</p>
+      <p data-disc="L3">An offer made here is not an appraisal and is not a valuation of your property.</p>
+      <p data-disc="L4">Calls are recorded only with the consent of all parties to the call.</p>
+      <p data-disc="L5">An offer made here does not affect a seller's disclosure obligations.</p>
+      <p data-disc="L6">We do business in accordance with federal fair housing law.</p>
+    </div>
   </div>
 </footer>
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"Organization","@id":"https://dofraneacquisitions.com/#org","name":"Dofrane Acquisitions","url":"https://dofraneacquisitions.com/","description":"A Maryland real estate investor that buys houses directly from owners in Montgomery County and Prince George's County.","areaServed":[{"@type":"AdministrativeArea","name":"Montgomery County, Maryland"},{"@type":"AdministrativeArea","name":"Prince George's County, Maryland"}]},
-{"@type":["RealEstateAgent","LocalBusiness"],"@id":"https://dofraneacquisitions.com/#business","name":"Dofrane Acquisitions","url":"https://dofraneacquisitions.com/","parentOrganization":{"@id":"https://dofraneacquisitions.com/#org"},"description":"Dofrane Acquisitions buys houses as-is, for its own account, in Montgomery County and Prince George's County, Maryland. It is not a licensed real estate broker and does not represent sellers.","priceRange":"$$","address":{"@type":"PostalAddress","addressRegion":"MD","addressCountry":"US"},"areaServed":[{"@type":"AdministrativeArea","name":"Montgomery County, Maryland"},{"@type":"AdministrativeArea","name":"Prince George's County, Maryland"}],"knowsLanguage":"en-US","potentialAction":{"@type":"CommunicateAction","target":"https://dofraneacquisitions.com/sell","name":"Tell us about the house"}},
-{"@type":"WebSite","@id":"https://dofraneacquisitions.com/#website","url":"https://dofraneacquisitions.com/","name":"Dofrane Acquisitions","publisher":{"@id":"https://dofraneacquisitions.com/#org"},"inLanguage":"en-US"},
-{"@type":"WebPage","@id":"https://dofraneacquisitions.com/#webpage","url":"https://dofraneacquisitions.com/","name":"Sell your house fast in Montgomery or Prince George's County, Maryland","isPartOf":{"@id":"https://dofraneacquisitions.com/#website"},"about":{"@id":"https://dofraneacquisitions.com/#business"},"inLanguage":"en-US"},
-{"@type":"FAQPage","@id":"https://dofraneacquisitions.com/#faq","isPartOf":{"@id":"https://dofraneacquisitions.com/#webpage"},"mainEntity":[
-{"@type":"Question","name":"Do I need to fix anything before you look at it?","acceptedAnswer":{"@type":"Answer","text":"No. As-is means the house is priced in the condition it is in on the day it is walked, with no repair credit demanded afterward. Sellers are not expected to paint, patch, haul anything away, or empty the basement. Anything broken should be noted on the form so it is priced from the start."}},
-{"@type":"Question","name":"What does as-is actually mean on the contract?","acceptedAnswer":{"@type":"Answer","text":"As-is means the buyer accepts the physical condition of the property. It does not remove Maryland disclosure duties: on most single family residential sales of four units or fewer, the seller still delivers the Real Property section 10-702 disclosure or disclaimer statement. As-is governs repairs, not disclosure."}},
-{"@type":"Question","name":"Does the seller pay a commission?","acceptedAnswer":{"@type":"Answer","text":"No commission, because no one acts as an agent in the sale. No listing fee, no marketing budget, no cleanout invoice. Ordinary settlement costs still apply, and Maryland's default under Real Property section 14-104 is that recordation and transfer taxes are shared equally between the parties unless the contract says otherwise."}},
-{"@type":"Question","name":"Will the call be recorded?","acceptedAnswer":{"@type":"Answer","text":"Only with consent. Maryland requires every party to a call to agree before it may be recorded, under Courts and Judicial Proceedings section 10-402. Consent is requested at the start of the first call. If the answer is no, the call continues and nothing is recorded."}},
-{"@type":"Question","name":"Can I send this if the house is listed with an agent?","acceptedAnswer":{"@type":"Answer","text":"Yes, and the form should say so. If a listing agreement is in force, that agreement governs and Dofrane Acquisitions will not work around it. In most cases the right first step is a conversation with the listing agent."}}
-]}
-]}
-</script>
-
 <script>
-  // Inbound lands in the wholesale desk's tracker (Supabase RPC, publishable key, public by design).
-  // Nothing leaves this page except the form itself.
-  const ENDPOINT='https://fdjnkqrqkmsdibehcbuq.supabase.co/rest/v1/rpc/inbound_submit';
-  const KEY='sb_publishable_Zj82PEz_UMffxfAgJqOY4w_ITvxWxRU';
-  const f=document.getElementById('f'), msg=document.getElementById('msg');
-  // Hero capture. It never posts: it hands the address to the form below and moves focus on.
-  const hf=document.getElementById('hf'), ha=document.getElementById('ha');
-  hf.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    f.address.value=ha.value.trim();
-    ([...f.elements].find(x=>!x.value&&x.name!='website')||f.address).focus({preventScroll:true});
-    document.getElementById('tell-us').scrollIntoView();
+(function(){
+"use strict";
+
+/* ═══════════ 1. PARALLAX ═══════════
+   The choreography Dofrane specified, reproduced without GSAP, ScrollTrigger or Lenis
+   (51,727 B gzipped, measured 2026-09-09). Layer targets and the trigger window are the
+   component's own: layer top at viewport top through layer bottom at viewport top. */
+(function(){
+  var box=document.querySelector("[data-parallax-layers]");
+  if(!box) return;
+  if(window.matchMedia("(max-width:767px)").matches) return;
+  if(window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+
+  var TARGETS={"1":70,"2":55,"3":40,"4":10};
+  var layers=[].slice.call(box.querySelectorAll("[data-parallax-layer]")).map(function(el){
+    return {el:el,pct:TARGETS[el.getAttribute("data-parallax-layer")]||0,h:0};
   });
-  f.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    if(f.reportValidity()){
-      const d=Object.fromEntries(new FormData(f).entries());
-      const body={p_name:d.name||'',p_phone:d.phone||'',p_email:d.email||'',p_address:d.address||'',p_city:d.city||'',p_state:d.state||'MD',p_zip:d.zip||'',p_condition:d.condition||'',p_timeline:d.timeline||'',p_need:d.need||'',p_consent:!!d.consent_call,p_website:d.website||''};
-      msg.textContent='Sending...';
-      try{
-        const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY,'Authorization':'Bearer '+KEY},body:JSON.stringify(body)});
-        const t=await r.text();
-        if(r.ok && t.indexOf('"ok":true')>-1){ msg.textContent='Got it. Dofrane calls you back within one business day.'; f.reset(); }
-        else { msg.textContent='That did not send. Try once more in a minute, and if it still fails the fault is ours, not yours.'; }
-      }catch(err){ msg.textContent='That did not send. Check your connection and try once more in a minute.'; }
+  var ticking=false,active=false,start=0,span=1;
+
+  function measure(){
+    var r=box.getBoundingClientRect(),y=window.pageYOffset||document.documentElement.scrollTop;
+    start=r.top+y; span=Math.max(1,r.height);
+    layers.forEach(function(l){ l.h=l.el.offsetHeight; });
+  }
+  function frame(){
+    ticking=false;
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    var p=(y-start)/span; if(p<0)p=0; if(p>1)p=1;
+    for(var i=0;i<layers.length;i++){
+      var l=layers[i];
+      l.el.style.transform="translate3d(0,"+(l.h*(l.pct/100)*p).toFixed(2)+"px,0)";
     }
+  }
+  function onScroll(){ if(!ticking&&active){ ticking=true; requestAnimationFrame(frame); } }
+
+  measure(); frame();
+  window.addEventListener("scroll",onScroll,{passive:true});
+  window.addEventListener("resize",function(){ measure(); frame(); },{passive:true});
+
+  /* Park the listener once the hero has left the viewport. */
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(e){ active=e[0].isIntersecting; if(active) onScroll(); })
+      .observe(document.querySelector('[data-section="hero"]'));
+  } else { active=true; }
+})();
+
+/* ═══════════ 2. ATTRIBUTION ═══════════
+   Front tracking, captured client-side. No third-party script, no tag manager, zero extra
+   requests. First touch is kept in localStorage so a seller who comes back through a
+   different route keeps the campaign that actually found them.
+
+   IT IS NOT SENT AS ITS OWN PARAMETERS, DELIBERATELY. PostgREST matches an RPC by argument
+   NAME: adding p_gclid or p_utm to the body returns PGRST202 and every submission is lost
+   silently, which has already happened once on this site. The staged migration
+   HOD_WHOLESALE/migrations/2026-09-09_inbound_attribution_and_consent.sql adds the real
+   columns but its function body raises, so it cannot be applied as it stands.
+   Until the wholesale desk ports that body, attribution and the consent audit ride in
+   p_condition as one labelled line, which lands in wholesale.sellers.notes. */
+var ATTR=(function(){
+  var KEY="da_first_touch";
+  var q=new URLSearchParams(location.search);
+  var now={
+    gclid:q.get("gclid")||"",
+    utm_source:q.get("utm_source")||"", utm_medium:q.get("utm_medium")||"",
+    utm_campaign:q.get("utm_campaign")||"", utm_term:q.get("utm_term")||"",
+    utm_content:q.get("utm_content")||"",
+    page:location.pathname, ref:document.referrer||"", at:new Date().toISOString()
+  };
+  var first=null;
+  try{
+    var raw=localStorage.getItem(KEY);
+    if(raw){ first=JSON.parse(raw); }
+    else if(now.gclid||now.utm_source||now.ref){ localStorage.setItem(KEY,JSON.stringify(now)); first=now; }
+  }catch(e){ /* private mode, blocked storage: fall through on this visit's values */ }
+  return {first:first||now,last:now};
+})();
+
+function attrLine(consentEl){
+  var f=ATTR.first,l=ATTR.last,out=[];
+  function push(k,v){ if(v) out.push(k+"="+String(v).replace(/[|\n\r]/g," ").slice(0,60)); }
+  push("first_at",f.at); push("gclid",f.gclid);
+  push("utm_source",f.utm_source); push("utm_medium",f.utm_medium);
+  push("utm_campaign",f.utm_campaign); push("utm_term",f.utm_term); push("utm_content",f.utm_content);
+  push("ref",f.ref); push("landing",f.page); push("submit_page",l.page); push("submit_at",new Date().toISOString());
+  if(consentEl){ push("consent_shown",consentEl.textContent.trim()); }
+  return ("[attr] "+out.join(" | ")).slice(0,480);   /* sellers.notes is left(p_condition,500) */
+}
+
+/* ═══════════ 3. THE FORM ═══════════
+   The wire contract is frozen. Twelve p_* parameters, in this order, to a SECURITY DEFINER
+   RPC. p_consent IS NEVER RENAMED: renaming it returned PGRST202 and failed silently in the
+   browser, losing every submission. It has happened once. Prove any change with a real POST
+   before calling it done, then delete the test row. */
+var ENDPOINT="https://fdjnkqrqkmsdibehcbuq.supabase.co/rest/v1/rpc/inbound_submit";
+var KEY="sb_publishable_Zj82PEz_UMffxfAgJqOY4w_ITvxWxRU";
+
+var f=document.getElementById("f");
+var msg=document.getElementById("msg");
+var submit=document.getElementById("submit");
+var sending=false;
+
+f.addEventListener("submit",function(ev){
+  ev.preventDefault();
+  if(sending) return;                 /* double-submit guard: the v1 button was never disabled */
+  if(!f.reportValidity()) return;
+
+  var d={}; new FormData(f).forEach(function(v,k){ d[k]=v; });
+
+  var body={
+    p_name:"", p_phone:d.phone||"", p_email:"",
+    p_address:d.address||"", p_city:"", p_state:d.state||"MD", p_zip:"",
+    p_condition:attrLine(document.getElementById("consent_text")),
+    p_timeline:"", p_need:"",
+    p_consent:!!d.consent_call,
+    p_website:d.website||""
+  };
+
+  sending=true; submit.disabled=true; msg.textContent="Sending...";
+
+  fetch(ENDPOINT,{method:"POST",headers:{
+    "Content-Type":"application/json","apikey":KEY,"Authorization":"Bearer "+KEY
+  },body:JSON.stringify(body)}).then(function(r){
+    return r.text().then(function(t){ return {ok:r.ok,text:t}; });
+  }).then(function(res){
+    /* The RPC returns HTTP 200 with {"ok":false,...} for every business rejection, so r.ok
+       alone reads a rejection as a success. The substring test is the real check. */
+    if(res.ok && res.text.indexOf('"ok":true')>-1){
+      msg.textContent="Got it. One of us calls you back about this address.";
+      f.reset();
+    } else {
+      msg.textContent="That did not send. Try once more in a minute, and if it still fails the fault is ours, not yours.";
+    }
+  }).catch(function(){
+    msg.textContent="That did not send. Check your connection and try once more in a minute.";
+  }).then(function(){
+    sending=false; submit.disabled=false;
   });
+});
+
+/* ═══════════ 4. SECTION ISOLATION ═══════════
+   ?section=<id> renders one section alone. Preview hosts only, so it can never fire on the
+   Vercel deployment or on the live domain. See SECTIONS.md. */
+(function(){
+  var h=location.hostname;
+  var preview=(h==="localhost"||h==="127.0.0.1"||h===""||/\.replit\.dev$/.test(h)||/\.repl\.co$/.test(h));
+  if(!preview) return;
+  var id=new URLSearchParams(location.search).get("section");
+  if(!id) return;
+  var target=document.querySelector('[data-section="'+id.replace(/[^a-z-]/gi,"")+'"]');
+  if(!target) return;
+  document.body.classList.add("isolate");
+  target.classList.add("solo");
+})();
+
+})();
 </script>
 </body>
 </html>
