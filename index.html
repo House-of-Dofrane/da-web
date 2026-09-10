@@ -98,6 +98,7 @@ display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding
 color:var(--da-ivory);white-space:nowrap;text-decoration:none}
 .mark b{font-weight:400;color:var(--da-ivory-alt)}
 @media (max-width:30rem){.mark{letter-spacing:.16em;font-size:.6rem}}
+@media (max-width:26rem){.eyebrow{letter-spacing:.16em;font-size:.62rem}}
 @media (max-width:24rem){.mark{letter-spacing:.1em;font-size:.55rem}.act.ghost{font-size:.57rem;padding:.5rem .7rem;letter-spacing:.1em}}
 
 /* ---------- band grammar ---------- */
@@ -190,6 +191,25 @@ thead th.us{color:var(--da-midnight)}
 tbody th{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;color:var(--muted);white-space:nowrap}
 td.us{color:var(--da-oxblood);font-weight:700;border-left:1px solid var(--edge);background:var(--da-ivory)}
 tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+
+/* Below 46rem the table becomes one block per row, because a horizontally scrolling
+   comparison shows the seller the COMPETITOR column first and hides ours off-screen.
+   Our answer is ordered to the top of each block and is the only one that carries weight. */
+@media (max-width:46rem){
+.cmp{overflow:visible;border:0;margin-top:2.2rem}
+table{min-width:0;background:transparent}
+thead{display:none}
+tbody,tbody tr,tbody th,tbody td{display:block;width:auto}
+tbody tr{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--edge);
+margin-bottom:1rem;padding:1rem 1.1rem 1.1rem}
+tbody th{order:-2;border:0;padding:0 0 .6rem;color:var(--da-midnight);font-size:.63rem;letter-spacing:.16em}
+tbody td{order:1;border:0;border-bottom:0;padding:.45rem 0 0;font-size:.9rem}
+tbody td::before{content:attr(data-c);display:block;font-size:.58rem;letter-spacing:.14em;
+text-transform:uppercase;color:var(--muted);margin-bottom:.12rem}
+tbody td.us{order:-1;border:0;border-left:2px solid var(--da-midnight);background:transparent;
+padding:.1rem 0 .75rem .75rem;margin-bottom:.35rem;font-size:1rem}
+tbody td.us::before{color:var(--da-midnight)}
+}
 
 /* ---------- form ---------- */
 .formwrap{background:color-mix(in srgb,var(--da-ivory) 6%,transparent);border:1px solid var(--edge-dark);
@@ -386,13 +406,13 @@ body.isolate [data-section="nav"].solo{display:flex}
         <th scope="col">Traditional listing</th><th scope="col">iBuyer or online offer</th>
         <th scope="col" class="us">Dofrane Acquisitions</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Price</th><td>Highest, if it shows well and you can wait</td><td>Near retail, before the fees come off</td><td class="us">Below retail. That is the trade.</td></tr>
-        <tr><th scope="row">Repairs</th><td>You do them first, or you credit for them</td><td>Deducted after their inspection</td><td class="us">None. Priced as it stands.</td></tr>
-        <tr><th scope="row">What you leave behind</th><td>Broom clean</td><td>Broom clean</td><td class="us">Anything you want</td></tr>
-        <tr><th scope="row">Showings</th><td>Weeks of them</td><td>Photos, then an inspection</td><td class="us">One walkthrough</td></tr>
-        <tr><th scope="row">Commission</th><td>About 5 to 6 percent</td><td>A service fee</td><td class="us">None</td></tr>
-        <tr><th scope="row">Closing date</th><td>When the buyer's lender says</td><td>Their window</td><td class="us">Yours</td></tr>
-        <tr><th scope="row">Certainty</th><td>Contingent on financing and appraisal</td><td>The offer can be revised after inspection</td><td class="us">A written offer. We close it, or we bring the buyer who does.</td></tr>
+        <tr><th scope="row">Price</th><td data-c="Traditional listing">Highest, if it shows well and you can wait</td><td data-c="iBuyer or online offer">Near retail, before the fees come off</td><td class="us" data-c="Dofrane Acquisitions">Below retail. That is the trade.</td></tr>
+        <tr><th scope="row">Repairs</th><td data-c="Traditional listing">You do them first, or you credit for them</td><td data-c="iBuyer or online offer">Deducted after their inspection</td><td class="us" data-c="Dofrane Acquisitions">None. Priced as it stands.</td></tr>
+        <tr><th scope="row">What you leave behind</th><td data-c="Traditional listing">Broom clean</td><td data-c="iBuyer or online offer">Broom clean</td><td class="us" data-c="Dofrane Acquisitions">Anything you want</td></tr>
+        <tr><th scope="row">Showings</th><td data-c="Traditional listing">Weeks of them</td><td data-c="iBuyer or online offer">Photos, then an inspection</td><td class="us" data-c="Dofrane Acquisitions">One walkthrough</td></tr>
+        <tr><th scope="row">Commission</th><td data-c="Traditional listing">About 5 to 6 percent</td><td data-c="iBuyer or online offer">A service fee</td><td class="us" data-c="Dofrane Acquisitions">None</td></tr>
+        <tr><th scope="row">Closing date</th><td data-c="Traditional listing">When the buyer's lender says</td><td data-c="iBuyer or online offer">Their window</td><td class="us" data-c="Dofrane Acquisitions">Yours</td></tr>
+        <tr><th scope="row">Certainty</th><td data-c="Traditional listing">Contingent on financing and appraisal</td><td data-c="iBuyer or online offer">The offer can be revised after inspection</td><td class="us" data-c="Dofrane Acquisitions">A written offer. We close it, or we bring the buyer who does.</td></tr>
       </tbody>
     </table>
   </div>
