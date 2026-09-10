@@ -8,91 +8,90 @@
 <link rel="canonical" href="https://dofraneacquisitions.com/sell">
 <meta name="robots" content="noindex,follow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#14100F">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fraunces-display-italic.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-body.woff2">
+<meta name="theme-color" content="#4A0404">
 <style>
 /* ---------- type ----------
-   D1 ruled B on 2026-09-09: Fraunces for display, Inter for body and UI.
-   Self-hosted, same origin, Latin subset, axes instanced. No CDN, no third-party request. */
-@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;
-src:url(/fonts/fraunces-display-italic.woff2) format("woff2")}
-@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;
-src:url(/fonts/fraunces-display-roman.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:400 500;font-display:swap;
-src:url(/fonts/inter-body.woff2) format("woff2")}
-/* Metric-matched fallbacks. Values measured in /_design/d1 against the shipped woff2 files.
-   Without these the hero repaints at a different height on swap and CLS stops being 0. */
-@font-face{font-family:"Fraunces fallback";src:local("Iowan Old Style Italic"),local("Georgia Italic");
-size-adjust:93.1%;ascent-override:97.8%;descent-override:25.5%;line-gap-override:0%}
-@font-face{font-family:"Inter fallback";src:local("Helvetica Neue"),local("Arial");
-size-adjust:105.3%;ascent-override:96.9%;descent-override:24.1%;line-gap-override:0%}
+   Helvetica, one family, system stack. Ruled 2026-09-09, superseding D1's
+   Fraunces + Inter. Helvetica is licensed and not on Google Fonts, so it cannot be
+   self-hosted; the system stack costs nothing and loads nothing. macOS/iOS render
+   Helvetica Neue, Windows substitutes Arial, Android Roboto. No file, no CDN, no
+   request, nothing to preload and nothing to size-adjust. */
 
 /* ---------- colour ----------
-   The locked five from brand-tokens.css, inlined. That file is the source of truth; this page
-   carries a copy because an external stylesheet costs a request against LCP. Every other value
-   below is Ink, Ivory, Champagne or Silver mixed into another, and none is invented. The
-   playbook's forbidden greys (#333/#666/#999) appear nowhere.
-
-   Computed pairs, 2026-09-09 (same table as the money page):
-     body #45403C on champagne 8.00 · on panel 8.38 · on field 9.89
-     muted #605B55 on champagne 5.25 · on panel 5.50  (never on ink: 2.81, banned)
-     ink on champagne 14.78 · oxblood on champagne 8.72 · ivory on oxblood 9.49
-     silver on card-dark 10.92 · on panel-dark 9.59 · ivory on card-dark 14.83
-   Non-text UI (WCAG 1.4.11, needs 3:1):
-     field-line #88827A vs field 3.68 · vs panel 3.11  (was 26% ink = 2.02, under)
-     champagne corner mark vs card-dark 13.64 · oxblood corner mark vs panel 9.14 */
+   Ivory 60 / Oxblood 30 / Midnight 10, ruled 2026-09-09. brand-tokens.css is the source of
+   truth; this page carries a copy because an external stylesheet costs a request against LCP,
+   and the two must be kept in sync by hand. Every derived value below is one of the three
+   mixed into another, and none is invented. The playbook's forbidden greys appear nowhere.
+   HARD RULE: midnight never sits on oxblood - 1.03, failing at every size. Where the dark
+   band needs an accent it uses --da-ivory-alt, which measures 13.57 there. */
 :root{
---oxblood:#6E1E2A;--ivory:#F3ECDD;--ink:#14100F;--champagne:#EFE3C0;--silver:#C9CDD2;
---body:color-mix(in srgb,var(--ink) 78%,var(--ivory));
---muted: color-mix(in srgb, var(--ink) 66%, var(--ivory));
---rule-dark:color-mix(in srgb,var(--ivory) 18%,var(--ink));
---edge:color-mix(in srgb,var(--ink) 34%,var(--ivory));
---edge-dark:color-mix(in srgb,var(--ivory) 26%,var(--ink));
---panel:color-mix(in srgb,var(--champagne) 45%,var(--ivory));
---card-dark:color-mix(in srgb,var(--ivory) 4%,var(--ink));
---panel-dark:color-mix(in srgb,var(--ivory) 8%,var(--ink));
---field:color-mix(in srgb,#fff 78%,var(--ivory));
---field-line:color-mix(in srgb,var(--ink) 48%,var(--ivory));
---fade:color-mix(in srgb,var(--ink) 40%,var(--ivory));
---fade-dark:color-mix(in srgb,var(--ivory) 48%,var(--ink));
---ink-lift:color-mix(in srgb,var(--ink) 97%,var(--ivory));
---ink-deep:color-mix(in srgb,var(--ink) 62%,#000);
---serif:"Fraunces","Fraunces fallback","Iowan Old Style",Georgia,"Times New Roman",serif;
---sans:"Inter","Inter fallback",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+/* Dofrane Acquisitions, ruled 2026-09-09. Three colours, 60/30/10.
+   Canonical source: knowledge/brand/DA_BRAND_PLAYBOOK.md Part 3 + brand-tokens.css.
+   HARD RULE: --da-midnight and --da-oxblood never touch. They measure 1.03 against each
+   other and fail at every size. Ivory separates them, at ~14. */
+--da-ivory:#FAF4E4;        /* 60 - ground */
+--da-ivory-alt:#F2ECD9;    /* 60 - the second band value, a step not a fourth colour */
+--da-oxblood:#4A0404;      /* 30 - ink, structure, every dark ground, the mark */
+--da-midnight:#0C1A4D;     /* 10 - kickers, rules, corner marks, step numbers, CTA */
+
+/* Derived from the ink, never invented. Ratios verified 2026-09-09. */
+--body:color-mix(in srgb,var(--da-oxblood) 78%,var(--da-ivory));      /* 8.18 on ivory */
+--muted:color-mix(in srgb,var(--da-oxblood) 66%,var(--da-ivory));     /* 5.53 on ivory */
+--da-dim:color-mix(in srgb,var(--da-ivory) 70%,var(--da-oxblood));    /* 7.47 on oxblood */
+--rule:color-mix(in srgb,var(--da-oxblood) 16%,var(--da-ivory));
+--rule-dark:color-mix(in srgb,var(--da-ivory) 18%,var(--da-oxblood));
+--edge:color-mix(in srgb,var(--da-oxblood) 34%,var(--da-ivory));
+--edge-dark:color-mix(in srgb,var(--da-ivory) 26%,var(--da-oxblood));
+--panel:color-mix(in srgb,var(--da-ivory-alt) 45%,var(--da-ivory));
+--card-dark:color-mix(in srgb,var(--da-ivory) 4%,var(--da-oxblood));
+--panel-dark:color-mix(in srgb,var(--da-ivory) 8%,var(--da-oxblood));
+--field:color-mix(in srgb,#fff 78%,var(--da-ivory));
+--field-line:color-mix(in srgb,var(--da-oxblood) 48%,var(--da-ivory));
+--fade:color-mix(in srgb,var(--da-oxblood) 40%,var(--da-ivory));
+--fade-dark:color-mix(in srgb,var(--da-ivory) 48%,var(--da-oxblood));
+--da-ox-lift:color-mix(in srgb,var(--da-oxblood) 97%,var(--da-ivory));
+--da-ox-deep:color-mix(in srgb,var(--da-oxblood) 62%,#000);
+--hero-mute:color-mix(in srgb,var(--da-ivory) 68%,var(--da-oxblood));
+
+/* One family. Helvetica is licensed and not on Google Fonts, so it cannot be self-hosted;
+   the system stack costs nothing and loads nothing. macOS/iOS render Helvetica Neue,
+   Windows substitutes Arial, Android Roboto. Accepted trade, ruled 2026-09-09. */
+--da-font:"Helvetica Neue",Helvetica,Arial,sans-serif;
 --hdr:56px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--ivory);color:var(--body);font-family:var(--sans);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
+body{background:var(--da-ivory);color:var(--body);font-family:var(--da-font);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
 
-.hdr{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:20;background:var(--ink);
+.hdr{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:20;background:var(--da-oxblood);
 display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 .9rem;border-bottom:1px solid var(--rule-dark)}
-.mark{grid-column:2;font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory);text-align:center;white-space:nowrap;text-decoration:none}
-.mark b{font-weight:400;color:var(--champagne)}
-.pill{grid-column:3;justify-self:end;font-family:var(--sans);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
-color:var(--ivory);text-decoration:none;border:1px solid var(--champagne);border-radius:999px;padding:.5rem .85rem;white-space:nowrap}
-.pill:hover,.pill:focus{background:var(--oxblood);border-color:var(--oxblood)}
-@media (max-width:26rem){.short{display:none}.mark{letter-spacing:.18em;font-size:.6rem}}
+.mark{grid-column:2;font-family:var(--da-font);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--da-ivory);text-align:center;white-space:nowrap;text-decoration:none}
+.mark b{font-weight:400;color:var(--da-ivory-alt)}
+.pill{grid-column:3;justify-self:end;font-family:var(--da-font);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
+color:var(--da-ivory);text-decoration:none;border:1px solid var(--da-ivory-alt);border-radius:999px;padding:.5rem .85rem;white-space:nowrap}
+.pill:hover,.pill:focus{background:var(--da-midnight);border-color:var(--da-midnight)}
+/* Recalibrated 2026-09-09 for Helvetica/Arial, which set this string wider than Inter
+   did and collided the mark with the pill between 416px and ~470px. */
+@media (max-width:30rem){.short{display:none}.mark{letter-spacing:.18em;font-size:.6rem}}
+@media (max-width:24rem){.mark{letter-spacing:.12em;font-size:.56rem}.pill{font-size:.58rem;padding:.45rem .7rem}}
 
 section{padding:clamp(3.6rem,9vw,6.5rem) 1.25rem}
 .band{text-align:center}
-.kick{font-family:var(--sans);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood);display:block}
-.dark .kick{color:var(--champagne)}
-.dark{background:var(--ink);color:var(--silver)}
+.kick{font-family:var(--da-font);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--da-midnight);display:block}
+.dark .kick{color:var(--da-ivory-alt)}
+.dark{background:var(--da-oxblood);color:var(--da-dim)}
 .dark.tex{background:
-radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--oxblood) 50%,transparent),transparent 62%),
-radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--champagne) 7%,transparent),transparent 60%),
-linear-gradient(165deg,var(--ink-lift) 0%,var(--ink) 48%,var(--ink-deep) 100%)}
+radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--da-ox-lift) 78%,transparent),transparent 62%),
+radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--da-ivory-alt) 7%,transparent),transparent 60%),
+linear-gradient(165deg,var(--da-ox-lift) 0%,var(--da-oxblood) 48%,var(--da-ox-deep) 100%)}
 .copy{max-width:min(65ch,38rem);margin:1.5rem auto 0}
 .copy p{margin:1rem 0}
 .copy p:first-child{margin-top:0}
-.copy b{font-weight:400;color:var(--ink)}
-.dark .copy{color:var(--silver)}
-.dark .copy b{color:var(--ivory)}
-/* .disp is the 3xl-to-5xl responsive step with the +7.5% Fraunces correction already applied. */
-.disp{font-family:var(--serif);font-style:italic;font-weight:400;
-font-size:clamp(1.94rem,5.59vw,3.23rem);line-height:1.16;margin:1.1rem auto 0;max-width:24ch;color:var(--ink)}
-.dark .disp{color:var(--ivory)}
+.copy b{font-weight:400;color:var(--da-oxblood)}
+.dark .copy{color:var(--da-dim)}
+.dark .copy b{color:var(--da-ivory)}
+.disp{font-family:var(--da-font);font-weight:700;
+font-size:clamp(1.80rem,5.20vw,3.00rem);line-height:1.13;letter-spacing:-.022em;margin:1.1rem auto 0;max-width:24ch;color:var(--da-oxblood)}
+.dark .disp{color:var(--da-ivory)}
 
 /* ---------- the card system ----------
    Ported from the bordered-card component Dofrane chose: a hairline card carrying a plus mark
@@ -102,22 +101,22 @@ font-size:clamp(1.94rem,5.59vw,3.23rem);line-height:1.16;margin:1.1rem auto 0;ma
 .card{position:relative;background:var(--panel);border:1px solid var(--edge);
 padding:clamp(1.4rem,3.4vw,2rem) clamp(1.25rem,3vw,1.8rem);text-align:left}
 .dark .card{background:var(--card-dark);border-color:var(--edge-dark)}
-.pm{position:absolute;width:11px;height:11px;fill:none;stroke:var(--oxblood);stroke-width:1.4;stroke-linecap:round}
-.dark .pm{stroke:var(--champagne)}
+.pm{position:absolute;width:11px;height:11px;fill:none;stroke:var(--da-midnight);stroke-width:1.4;stroke-linecap:round}
+.dark .pm{stroke:var(--da-ivory-alt)}
 .pm.tl{top:-5.5px;left:-5.5px}
 .pm.tr{top:-5.5px;right:-5.5px}
 .pm.bl{bottom:-5.5px;left:-5.5px}
 .pm.br{bottom:-5.5px;right:-5.5px}
-.card h3{font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--ink);margin:.55rem 0 .45rem;line-height:1.35}
-.dark .card h3{color:var(--ivory)}
+.card h3{font-family:var(--da-font);font-weight:700;letter-spacing:-.012em;font-size:1.2rem;color:var(--da-oxblood);margin:.55rem 0 .45rem;line-height:1.35}
+.dark .card h3{color:var(--da-ivory)}
 .card p{font-size:.97rem;line-height:1.62}
-.dark .card p{color:var(--silver)}
-.card .ltr{font-family:var(--serif);font-style:italic;font-size:1.72rem;line-height:1;color:var(--oxblood);display:block}
-.dark .card .ltr{color:var(--champagne)}
+.dark .card p{color:var(--da-dim)}
+.card .ltr{font-family:var(--da-font);font-weight:700;font-size:1.60rem;line-height:1;color:var(--da-midnight);display:block}
+.dark .card .ltr{color:var(--da-ivory-alt)}
 
 .split{padding:0;display:grid}
 .split>.main{padding:clamp(1.5rem,3.6vw,2.4rem)}
-.split>.side{padding:clamp(1.4rem,3.2vw,2rem);background:var(--champagne);border-top:1px solid var(--edge)}
+.split>.side{padding:clamp(1.4rem,3.2vw,2rem);background:var(--da-ivory-alt);border-top:1px solid var(--edge)}
 @media (min-width:52rem){
 .split{grid-template-columns:2fr 1fr}
 .split>.side{border-top:0;border-left:1px solid var(--edge)}
@@ -125,42 +124,42 @@ padding:clamp(1.4rem,3.4vw,2rem) clamp(1.25rem,3vw,1.8rem);text-align:left}
 
 .ir{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;margin-top:1.5rem}
 .ir:first-child{margin-top:0}
-.ico{width:34px;height:34px;border-radius:9px;background:var(--oxblood);display:grid;place-items:center}
-.ico svg{width:17px;height:17px;fill:none;stroke:var(--ivory);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.ir b{display:block;font-family:var(--sans);font-weight:500;font-size:.95rem;line-height:1.4;color:var(--ink)}
+.ico{width:34px;height:34px;border-radius:9px;background:var(--da-midnight);display:grid;place-items:center}
+.ico svg{width:17px;height:17px;fill:none;stroke:var(--da-ivory);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ir b{display:block;font-family:var(--da-font);font-weight:500;font-size:.95rem;line-height:1.4;color:var(--da-oxblood)}
 .ir span{display:block;font-size:.88rem;line-height:1.55;color:var(--muted);margin-top:.25rem}
 
 /* ---------- tabs: the underline pattern, used for the two parallel things this site offers ---------- */
 .tabs{display:flex;gap:1.5rem;justify-content:center;align-items:stretch;
-padding:0 1.25rem;background:var(--ivory);border-bottom:1px solid var(--edge);overflow-x:auto}
-.tab{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+padding:0 1.25rem;background:var(--da-ivory);border-bottom:1px solid var(--edge);overflow-x:auto}
+.tab{font-family:var(--da-font);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
 color:var(--muted);text-decoration:none;white-space:nowrap;
 padding:1.05rem .15rem;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tab.on{color:var(--ink);border-bottom-color:var(--oxblood)}
-a.tab:hover,a.tab:focus{color:var(--ink);border-bottom-color:var(--edge)}
+.tab.on{color:var(--da-oxblood);border-bottom-color:var(--da-midnight)}
+a.tab:hover,a.tab:focus{color:var(--da-oxblood);border-bottom-color:var(--edge)}
 
 .hero{min-height:78vh;min-height:78svh;padding:calc(var(--hdr) + 2.4rem) 1.25rem 3rem;display:grid;grid-template-rows:auto 1fr auto;text-align:center}
-.hero .eyebrow{font-family:var(--sans);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
+.hero .eyebrow{font-family:var(--da-font);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--da-ivory-alt)}
 .heroline{display:grid;align-content:center;justify-items:center;padding:1.4rem 0}
 .heroline .inner{text-align:left;width:min(34rem,100%)}
 @media (min-width:52rem){.heroline{justify-items:end;padding-right:min(9vw,7rem)}}
-h1{font-family:var(--serif);font-style:italic;font-weight:400;
-font-size:clamp(2.15rem,7.53vw,3.44rem);line-height:1.1;letter-spacing:-.015em;color:var(--ivory)}
+h1{font-family:var(--da-font);font-weight:700;
+font-size:clamp(2.00rem,7.00vw,3.20rem);line-height:1.06;letter-spacing:-.03em;color:var(--da-ivory)}
 h1 span{display:block}
-.sub{margin-top:1.3rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
-.cue{font-family:var(--sans);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
-.cue i{display:block;width:11px;height:11px;border-right:1px solid var(--champagne);border-bottom:1px solid var(--champagne);transform:rotate(45deg)}
+.sub{margin-top:1.3rem;font-family:var(--da-font);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--da-dim)}
+.cue{font-family:var(--da-font);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--da-dim);text-decoration:none;display:grid;justify-items:center;gap:.85rem}
+.cue i{display:block;width:11px;height:11px;border-right:1px solid var(--da-ivory-alt);border-bottom:1px solid var(--da-ivory-alt);transform:rotate(45deg)}
 @media (prefers-reduced-motion:no-preference){.cue i{animation:dip 2.4s ease-in-out infinite}}
 @keyframes dip{0%,100%{transform:translateY(-2px) rotate(45deg)}50%{transform:translateY(3px) rotate(45deg)}}
 
 @supports (animation-timeline:view()){
 @media (prefers-reduced-motion:no-preference){
 .rev,.disp.rev{color:transparent;
-background-image:linear-gradient(90deg,var(--ink) 0 46%,var(--fade) 54% 100%);
+background-image:linear-gradient(90deg,var(--da-oxblood) 0 46%,var(--fade) 54% 100%);
 background-size:230% 100%;background-position:100% 0;background-repeat:no-repeat;
 -webkit-background-clip:text;background-clip:text;
 animation:sweep linear both;animation-timeline:view();animation-range:entry 20% cover 46%}
-.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--ivory) 0 46%,var(--fade-dark) 54% 100%)}
+.dark .rev,.dark .disp.rev{background-image:linear-gradient(90deg,var(--da-ivory) 0 46%,var(--fade-dark) 54% 100%)}
 }}
 @keyframes sweep{to{background-position:0 0}}
 
@@ -170,20 +169,25 @@ animation:sweep linear both;animation-timeline:view();animation-range:entry 20% 
 .one{max-width:64rem;margin:2.4rem auto 0}
 
 form{display:grid;gap:.9rem}
-label{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:grid;gap:.35rem}
-input,select,textarea{font:inherit;font-family:var(--sans);font-size:1rem;padding:.72rem .75rem;background:var(--field);border:1px solid var(--field-line);color:var(--ink);border-radius:2px;width:100%}
+label{font-family:var(--da-font);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:grid;gap:.35rem}
+input,select,textarea{font:inherit;font-family:var(--da-font);font-size:1rem;padding:.72rem .75rem;background:var(--field);border:1px solid var(--field-line);color:var(--da-oxblood);border-radius:2px;width:100%}
 textarea{min-height:5rem;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:var(--body);font-family:var(--sans)}
+.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.92rem;color:var(--body);font-family:var(--da-font)}
 .consent input{width:auto;margin-top:.35rem;flex:0 0 auto}
 .hp{position:absolute;left:-9999px}
-button{font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--oxblood);color:var(--ivory);border:0;cursor:pointer;width:100%}
-#msg{margin-top:.9rem;color:var(--oxblood);font-size:.98rem;min-height:1.5rem}
+button{font-family:var(--da-font);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 1.2rem;background:var(--da-midnight);color:var(--da-ivory);border:0;cursor:pointer;width:100%}
+/* THE HARD RULE, enforced here too. A midnight button on the oxblood band measures 1.03 —
+   the fill vanishes into the ground. On dark, the primary action is ivory-alt on oxblood,
+   13.57. Carried over from index.html so the two pages cannot drift on the one rule that
+   the palette cannot bend. */
+.dark button{background:var(--da-ivory-alt);color:var(--da-oxblood)}
+#msg{margin-top:.9rem;color:var(--da-midnight);font-size:.98rem;min-height:1.5rem}
 
-footer{background:var(--ink);color:var(--silver);padding:2.8rem 1.25rem 3.4rem;font-size:.86rem;line-height:1.65;text-align:center}
+footer{background:var(--da-oxblood);color:var(--da-dim);padding:2.8rem 1.25rem 3.4rem;font-size:.86rem;line-height:1.65;text-align:center}
 footer .in{max-width:min(70ch,42rem);margin:0 auto}
 footer p{margin:.8rem 0}
-footer a{color:var(--champagne);text-decoration:none;border-bottom:1px solid var(--oxblood)}
+footer a{color:var(--da-ivory-alt);text-decoration:none;border-bottom:1px solid var(--da-midnight)}
 @media (max-width:26rem){.row{grid-template-columns:1fr}.tabs{gap:1.1rem}.tab{font-size:.64rem;letter-spacing:.12em}}
 </style>
 </head>
