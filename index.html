@@ -3,23 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sell Your House As It Stands | Maryland | Dofrane Acquisitions</title>
-<meta name="description" content="A cash offer in writing on your house in Maryland. Leave what is in it. No repairs, no cleanout, no commission, no showings. You pick the closing date.">
+<title>Sell My Maryland House Fast for Cash | Dofrane Acquisitions</title>
+<meta name="description" content="Get a cash offer in writing on your Maryland house as-is. No repairs, no showings, no agent commission. You pick the closing date.">
 <link rel="canonical" href="https://dofraneacquisitions.com/">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#4A0404">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Leave it as it stands. Leave what is in it. Be done with it.">
-<meta property="og:description" content="A cash offer in writing on your house in Maryland. We close it, or we bring the buyer who does. No commission, no repairs, no showings.">
+<meta property="og:title" content="Sell My Maryland House Fast for Cash">
+<meta property="og:description" content="Get a cash offer in writing on your Maryland house as-is. We close it, or we bring the buyer who does. No repairs, no showings, no agent commission.">
 <meta property="og:url" content="https://dofraneacquisitions.com/">
 <meta property="og:site_name" content="Dofrane Acquisitions">
+<script>document.documentElement.className+=" js"</script>
 <style>
 /* ============================================================================
-   DOFRANE ACQUISITIONS - landing page v2
-   Seven sections, each addressable by data-section. See SECTIONS.md.
-   BRAND.md explains every value below; brand-tokens.css is the source of truth
-   and this block is a hand-synced copy, because an external stylesheet costs a
-   request against LCP. If the two disagree, brand-tokens.css wins.
+   DOFRANE ACQUISITIONS - landing page, round 02
+   Structure: the Sundae seller page (hero form, promise, situations, difference, cta).
+   Visual language: the HOFIN reference (rounded panels, floating form card, pill actions,
+   dark contact band, giant wordmark footer). Brand: brand-tokens.css is the source of truth
+   and this block is a hand-synced copy. If the two disagree, brand-tokens.css wins.
+   Seven data-section roots, unchanged ids. See SECTIONS.md.
    ========================================================================= */
 
 :root{
@@ -32,228 +34,194 @@
 --edge:color-mix(in srgb,var(--da-oxblood) 34%,var(--da-ivory));
 --edge-dark:color-mix(in srgb,var(--da-ivory) 26%,var(--da-oxblood));
 --panel:color-mix(in srgb,var(--da-ivory-alt) 45%,var(--da-ivory));
---card-dark:color-mix(in srgb,var(--da-ivory) 4%,var(--da-oxblood));
 --field:color-mix(in srgb,#fff 78%,var(--da-ivory));
 --field-line:color-mix(in srgb,var(--da-oxblood) 48%,var(--da-ivory));
---fade:color-mix(in srgb,var(--da-oxblood) 40%,var(--da-ivory));
---fade-dark:color-mix(in srgb,var(--da-ivory) 48%,var(--da-oxblood));
-/* --fade-dark is the faded half of the reveal gradient and measures 4.08 on oxblood.
-   It is NOT a text colour. The disclosure block needs its own value: ivory 60% over
-   oxblood, measured 5.75, which clears the 4.5 body floor and still steps down from
-   --da-dim at 7.47. Computed 2026-09-09, not estimated. */
---disc-ink:color-mix(in srgb,var(--da-ivory) 60%,var(--da-oxblood));
 --da-ox-lift:color-mix(in srgb,var(--da-oxblood) 97%,var(--da-ivory));
 --da-ox-deep:color-mix(in srgb,var(--da-oxblood) 62%,#000);
+--hero-mute:color-mix(in srgb,var(--da-ivory) 68%,var(--da-oxblood));
 
-/* One family. Helvetica, system stack, ruled 2026-09-09. Licensed by Monotype and not on
-   Google Fonts, so it cannot be self-hosted. 0 bytes, 0 requests, nothing to preload and
-   nothing to size-adjust. macOS/iOS render Helvetica Neue, Windows Arial, Android Roboto. */
+/* One family. Helvetica, system stack, ruled 2026-09-09. 0 bytes, 0 requests. */
 --da-font:"Helvetica Neue",Helvetica,Arial,sans-serif;
---hdr:56px}
 
-/* THE HARD RULE: --da-midnight and --da-oxblood measure 1.03 and never touch. Ivory carries
-   both at ~14. On the oxblood band the accent is --da-ivory-alt, which measures 13.57. */
+/* Motion. Strong ease-out for entrances and presses (emil-design-eng). */
+--ease-out:cubic-bezier(.23,1,.32,1);
+
+/* Shape system, one rule applied everywhere: panels 28, cards 20, fields and nested
+   tiles 12 (card radius minus its 8px inset), every action and label a full pill. */
+--r-panel:28px;--r-card:20px;--r-field:12px;--r-pill:999px;
+--frame:12px;--nav-h:60px}
+
+/* THE HARD RULE: --da-midnight and --da-oxblood measure 1.03 and never touch. Midnight
+   appears only on ivory surfaces. On oxblood the accent is --da-ivory-alt (13.57). */
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--da-ivory);color:var(--body);font-family:var(--da-font);font-size:1.06rem;line-height:1.68;overflow-x:hidden}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+body{background:var(--da-ivory);color:var(--body);font-family:var(--da-font);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1.25rem}
+.ic{display:block;fill:currentColor;flex:none}
 
-/* ---------- the button primitive ----------
-   ONE primitive, TWO weights. Ruling R6, which also answers D3: two visual languages for one
-   action costs recognition and doubles the state surface. Ported from the two reference
-   components: the fill expands from the left, the arrow slides. The pill shape is NOT ported,
-   because the primary button is locked border:0 with no radius. The only radius on this site
-   is 2px, on form inputs. */
-.act{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
-overflow:hidden;isolation:isolate;cursor:pointer;text-decoration:none;border-radius:0;
-font-family:var(--da-font);font-size:.74rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-padding:1.05rem 1.3rem;border:0;background:var(--da-midnight);color:var(--da-ivory);width:100%}
-.act .lbl,.act .arw{position:relative;z-index:2;transition:transform .55s cubic-bezier(.19,1,.22,1),color .35s ease}
-.act .arw{width:.85rem;height:.85rem;flex:none;stroke:currentColor;fill:none;stroke-width:1.6}
-.act::before{content:"";position:absolute;inset:0;z-index:1;background:var(--da-ivory-alt);
-transform:scaleX(0);transform-origin:left center;transition:transform .55s cubic-bezier(.19,1,.22,1)}
-.act:hover::before,.act:focus-visible::before{transform:scaleX(1)}
-.act:hover .arw,.act:focus-visible .arw{transform:translateX(.32rem)}
-.act:hover .lbl,.act:hover .arw,.act:focus-visible .lbl,.act:focus-visible .arw{color:var(--da-oxblood)}
-.act:active{transform:translateY(1px)}
-.act:focus-visible{outline:2px solid var(--da-midnight);outline-offset:2px}
-/* nav weight: outline, not fill. Same shape, same arrow, same easing. */
-.act.ghost{width:auto;background:transparent;border:1px solid var(--da-ivory-alt);color:var(--da-ivory);
-font-size:.63rem;letter-spacing:.16em;padding:.62rem .95rem}
-.act.ghost:focus-visible{outline-color:var(--da-ivory-alt)}
-/* On oxblood the fill inverts. A midnight button on oxblood measures 1.03: the fill is
-   invisible against the ground and only the border reads. */
-.dark .act{background:var(--da-ivory-alt);color:var(--da-oxblood)}
-.dark .act::before{background:var(--da-ivory)}
-.dark .act:hover .lbl,.dark .act:hover .arw,.dark .act:focus-visible .lbl,.dark .act:focus-visible .arw{color:var(--da-oxblood)}
-.dark .act:focus-visible{outline-color:var(--da-ivory-alt)}
-@media (prefers-reduced-motion:reduce){.act::before,.act .lbl,.act .arw{transition:none}}
+/* ---------- actions ----------
+   One pill primitive, two surfaces. Press feedback is scale(.97) at 160ms; the arrow
+   nudge is hover-only on fine pointers so a tap never leaves it stuck. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;
+padding:.8rem 1.35rem;border-radius:var(--r-pill);border:1px solid transparent;font:inherit;
+font-size:.95rem;font-weight:700;letter-spacing:-.005em;line-height:1.2;text-decoration:none;cursor:pointer;
+white-space:nowrap;-webkit-tap-highlight-color:transparent;
+transition:transform 160ms var(--ease-out),background-color 200ms ease,border-color 200ms ease,color 200ms ease}
+.btn:active{transform:scale(.97)}
+.btn .ic{width:1rem;height:1rem;transition:transform 200ms var(--ease-out)}
+.btn:focus-visible{outline:2px solid var(--da-midnight);outline-offset:3px}
+.btn-primary{background:var(--da-midnight);color:var(--da-ivory)}
+.btn-light{background:var(--da-ivory-alt);color:var(--da-oxblood)}
+.on-dark .btn:focus-visible{outline-color:var(--da-ivory-alt)}
+.btn-sm{min-height:44px;padding:.55rem 1rem;font-size:.85rem}
+@media (hover:hover) and (pointer:fine){
+.btn:hover .ic{transform:translate(2px,-2px)}
+.btn-primary:hover{background:color-mix(in srgb,var(--da-midnight) 86%,var(--da-ivory))}
+.btn-light:hover{background:var(--da-ivory)}
+}
+@media (prefers-reduced-motion:reduce){.btn,.btn .ic{transition:background-color 200ms ease,border-color 200ms ease,color 200ms ease}.btn:active{transform:none}}
+
+.pill{display:inline-flex;align-items:center;min-height:32px;padding:.3rem .95rem;border:1px solid var(--edge);
+border-radius:var(--r-pill);font-size:.8rem;font-weight:500;color:var(--da-oxblood);background:var(--da-ivory)}
+.on-dark .pill{background:transparent;color:var(--da-ivory-alt);border-color:var(--edge-dark)}
 
 /* ---------- nav ---------- */
-[data-section="nav"]{position:fixed;inset:0 0 auto;height:var(--hdr);z-index:30;background:var(--da-oxblood);
-display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:0 .9rem;border-bottom:1px solid var(--rule-dark)}
-.mark{font-family:var(--da-font);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
-color:var(--da-ivory);white-space:nowrap;text-decoration:none}
-.mark b{font-weight:400;color:var(--da-ivory-alt)}
-@media (max-width:30rem){.mark{letter-spacing:.16em;font-size:.6rem}}
-@media (max-width:26rem){.eyebrow{letter-spacing:.16em;font-size:.62rem}}
-@media (max-width:24rem){.mark{letter-spacing:.1em;font-size:.55rem}.act.ghost{font-size:.57rem;padding:.5rem .7rem;letter-spacing:.1em}}
+[data-section="nav"]{position:fixed;top:var(--frame);left:var(--frame);right:var(--frame);z-index:30;
+max-width:78.5rem;margin:0 auto;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+padding:0 .5rem 0 1.25rem;border-radius:var(--r-pill);border:1px solid var(--rule-dark);
+background:color-mix(in srgb,var(--da-oxblood) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){[data-section="nav"]{background:var(--da-oxblood)}}
+.mark{font-size:.78rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--da-ivory);white-space:nowrap;text-decoration:none}
+.mark:focus-visible{outline:2px solid var(--da-ivory-alt);outline-offset:4px;border-radius:4px}
+@media (max-width:30rem){.mark-full{display:none}}
 
-/* ---------- band grammar ---------- */
-section{padding:clamp(4.2rem,10vw,8rem) 1.25rem}
-.band{text-align:center}
-.alt{background:var(--da-ivory-alt)}
-.kick{font-family:var(--da-font);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--da-midnight);display:block}
-.dark .kick{color:var(--da-ivory-alt)}
-.disp{font-family:var(--da-font);font-weight:700;font-size:clamp(1.85rem,5.40vw,3.30rem);
-line-height:1.12;letter-spacing:-.022em;margin:1.15rem auto 0;max-width:22ch;color:var(--da-oxblood);text-wrap:balance}
-.disp.wide{max-width:30ch;font-size:clamp(1.60rem,4.50vw,2.70rem)}
-.dark .disp{color:var(--da-ivory)}
-.copy{max-width:min(65ch,38rem);margin:1.6rem auto 0}
-.copy p{margin:1rem 0}.copy p:first-child{margin-top:0}
-.copy b{font-weight:400;color:var(--da-oxblood)}
-.dark .copy{color:var(--da-dim)}.dark .copy b{color:var(--da-ivory)}
-.hr{width:44px;height:1px;background:var(--da-midnight);margin:1.7rem auto}
-.dark .hr{background:var(--da-ivory-alt)}
-.dark{background:var(--da-oxblood);color:var(--da-dim)}
-.dark.tex{background:
-radial-gradient(120% 85% at 74% 12%,color-mix(in srgb,var(--da-ox-lift) 78%,transparent),transparent 62%),
-radial-gradient(95% 75% at 10% 100%,color-mix(in srgb,var(--da-ivory-alt) 7%,transparent),transparent 60%),
-linear-gradient(165deg,var(--da-ox-lift) 0%,var(--da-oxblood) 48%,var(--da-ox-deep) 100%)}
-
-/* ---------- hero + parallax ----------
-   Choreography preserved verbatim from the component Dofrane specified: four layers on the
-   data-parallax-layer contract, yPercent targets 70 / 55 / 40 / 10, linear, scrubbed to scroll
-   with no smoothing. GSAP + ScrollTrigger + Lenis measured 51,727 B gzipped; the rAF listener
-   in this page is about 1.5 KB and produces the same motion. transform only: no layout, no
-   paint. Off below 768px and under prefers-reduced-motion. If the script never runs the hero
-   renders static and the form still works. */
-[data-section="hero"]{position:relative;min-height:auto;scroll-margin-top:var(--hdr);padding:calc(var(--hdr) + clamp(3rem,9vw,5.5rem)) 1.25rem clamp(3.4rem,8vw,5rem);
-overflow:hidden;isolation:isolate}
-.px{position:absolute;inset:-12% 0 -12%;z-index:0;pointer-events:none}
-.px-l{position:absolute;left:0;right:0;will-change:transform}
-/* The strata are deliberate, not a stand-in photograph. IMAGE_BRIEF.md forbids stock houses
-   and AI property imagery; when the real photograph exists it drops into layer 2 as an <img>
-   with explicit width/height and fetchpriority="high". */
-.px-l[data-parallax-layer="1"]{top:-6%;height:62%;background:linear-gradient(180deg,var(--da-ox-lift),transparent)}
-.px-l[data-parallax-layer="2"]{top:26%;height:58%;background:radial-gradient(120% 70% at 68% 30%,color-mix(in srgb,var(--da-ivory-alt) 9%,transparent),transparent 70%)}
-.px-l[data-parallax-layer="3"]{top:48%;height:46%;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--da-ox-deep) 55%,transparent))}
-.px-l[data-parallax-layer="4"]{bottom:-4%;height:34%;background:linear-gradient(0deg,var(--da-ox-deep),transparent)}
-.px-fade{position:absolute;inset:auto 0 0;height:26%;z-index:1;pointer-events:none;
-background:linear-gradient(0deg,var(--da-oxblood),transparent)}
-.hero-in{position:relative;z-index:2;max-width:64rem;margin:0 auto;display:grid;gap:clamp(2.2rem,6vw,3.4rem)}
-@media (min-width:60rem){.hero-in{grid-template-columns:1.05fr .95fr;align-items:start;gap:4rem}}
-.eyebrow{font-family:var(--da-font);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--da-ivory-alt)}
-h1{font-family:var(--da-font);font-weight:700;font-size:clamp(2.00rem,7.20vw,3.40rem);
-line-height:1.06;letter-spacing:-.03em;color:var(--da-ivory);margin:1.15rem 0 0;text-wrap:balance}
+/* ---------- hero ---------- */
+[data-section="hero"]{padding:var(--frame) var(--frame) 0}
+.hero-panel{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--r-panel);
+padding:calc(var(--nav-h) + var(--frame) + clamp(2.75rem,8vw,5.5rem)) clamp(.75rem,3vw,1.5rem) clamp(.75rem,3vw,1.5rem);
+background:
+radial-gradient(90% 70% at 50% 0%,color-mix(in srgb,var(--da-ivory-alt) 10%,transparent),transparent 65%),
+radial-gradient(70% 60% at 85% 100%,color-mix(in srgb,var(--da-ivory-alt) 6%,transparent),transparent 60%),
+linear-gradient(170deg,var(--da-ox-lift) 0%,var(--da-oxblood) 52%,var(--da-ox-deep) 100%)}
+/* IMAGE SLOT: the hero photograph specified in IMAGE_BRIEF.md drops in here as the first
+   child of .hero-panel (absolute, object-fit:cover, under a 55% oxblood scrim). Until it
+   exists the panel ships the brand gradient. No stock and no generated houses. */
+.hero-copy{text-align:center;max-width:52rem;margin:0 auto;padding:0 .5rem}
+h1{font-weight:700;font-size:clamp(2.2rem,6vw,4rem);line-height:1.03;letter-spacing:-.035em;color:var(--da-ivory);text-wrap:balance}
 h1 span{display:block}
-h1 span:last-child{color:var(--da-ivory-alt)}
-.lede{margin-top:1.5rem;max-width:44ch;color:var(--da-dim);font-size:1.06rem}
-.lede b{color:var(--da-ivory);font-weight:400}
-.terms{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem .9rem;list-style:none;
-font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--da-ivory-alt)}
-.terms li{display:flex;align-items:center;gap:.45rem}
-.terms li::before{content:"";width:4px;height:4px;background:var(--da-ivory-alt);flex:none}
+h1 .tone{color:var(--hero-mute)}
+.sub{margin:1.25rem auto 0;max-width:40ch;color:var(--da-dim);font-size:clamp(1rem,1.5vw,1.125rem);text-wrap:pretty}
+.assure{margin-top:1.15rem;display:inline-flex;align-items:center;gap:.5rem;color:var(--da-ivory-alt);font-size:.95rem;font-weight:500}
+.assure .ic{width:1.15rem;height:1.15rem}
 
-/* ---------- the card system ----------
-   A hairline card carrying a plus mark at each corner, the marks sitting OUTSIDE the border.
-   Inline SVG from one <symbol>: no icon font, no CDN, no script. Absolutely positioned, so
-   they add no layout box and cannot shift it. */
-.card{position:relative;background:var(--panel);border:1px solid var(--edge);text-align:left;
-padding:clamp(1.4rem,3.4vw,2rem) clamp(1.25rem,3vw,1.8rem)}
-.dark .card{background:var(--card-dark);border-color:var(--edge-dark)}
-.pm{position:absolute;width:11px;height:11px;stroke:var(--da-midnight);stroke-width:1.4;fill:none;stroke-linecap:round}
-.dark .pm{stroke:var(--da-ivory-alt)}
-.pm.tl{top:-5.5px;left:-5.5px}.pm.tr{top:-5.5px;right:-5.5px}
-.pm.bl{bottom:-5.5px;left:-5.5px}.pm.br{bottom:-5.5px;right:-5.5px}
-.card h3{font-size:1.23rem;font-weight:700;letter-spacing:-.012em;line-height:1.35;color:var(--da-oxblood);text-wrap:balance}
-.dark .card h3{color:var(--da-ivory)}
-.card p{font-size:.98rem;line-height:1.62;margin-top:.7rem}
-.card .ltr{font-family:var(--da-font);font-size:1.90rem;font-weight:700;line-height:1;color:var(--da-midnight);display:block;margin-bottom:.75rem}
-
-/* Gap is 2rem so the corner marks of two neighbouring cards keep 10px of clear air. */
-.trio{display:grid;gap:2rem;max-width:60rem;margin:2.8rem auto 0}
-@media (min-width:46rem){.trio{grid-template-columns:repeat(3,1fr)}}
-.cards{display:grid;gap:2rem;max-width:76rem;margin:3rem auto 0}
-.cards .card h3{font-size:1.08rem;line-height:1.3}
-@media (min-width:40rem){.cards{grid-template-columns:1fr 1fr}}
-@media (min-width:62rem){.cards{grid-template-columns:repeat(4,1fr)}}
-
-/* ---------- comparison ---------- */
-.cmp{max-width:64rem;margin:2.8rem auto 0;overflow-x:auto;border:1px solid var(--edge)}
-table{border-collapse:collapse;width:100%;min-width:38rem;background:var(--panel);text-align:left}
-th,td{padding:.85rem .95rem;border-bottom:1px solid var(--rule);font-size:.94rem;line-height:1.5;vertical-align:top}
-thead th{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted);
-background:var(--da-ivory);border-bottom:1px solid var(--edge)}
-thead th.us{color:var(--da-midnight)}
-tbody th{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;color:var(--muted);white-space:nowrap}
-td.us{color:var(--da-oxblood);font-weight:700;border-left:1px solid var(--edge);background:var(--da-ivory)}
-tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
-
-/* Below 46rem the table becomes one block per row, because a horizontally scrolling
-   comparison shows the seller the COMPETITOR column first and hides ours off-screen.
-   Our answer is ordered to the top of each block and is the only one that carries weight. */
-@media (max-width:46rem){
-.cmp{overflow:visible;border:0;margin-top:2.2rem}
-table{min-width:0;background:transparent}
-thead{display:none}
-tbody,tbody tr,tbody th,tbody td{display:block;width:auto}
-tbody tr{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--edge);
-margin-bottom:1rem;padding:1rem 1.1rem 1.1rem}
-tbody th{order:-2;border:0;padding:0 0 .6rem;color:var(--da-midnight);font-size:.63rem;letter-spacing:.16em}
-tbody td{order:1;border:0;border-bottom:0;padding:.45rem 0 0;font-size:.9rem}
-tbody td::before{content:attr(data-c);display:block;font-size:.58rem;letter-spacing:.14em;
-text-transform:uppercase;color:var(--muted);margin-bottom:.12rem}
-tbody td.us{order:-1;border:0;border-left:2px solid var(--da-midnight);background:transparent;
-padding:.1rem 0 .75rem .75rem;margin-bottom:.35rem;font-size:1rem}
-tbody td.us::before{color:var(--da-midnight)}
-}
-
-/* ---------- form ---------- */
-.formwrap{background:color-mix(in srgb,var(--da-ivory) 6%,transparent);border:1px solid var(--edge-dark);
-padding:clamp(1.35rem,4vw,1.9rem)}
-form{display:grid;gap:.9rem}
-.flabel{font-family:var(--da-font);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-color:var(--da-ivory-alt);display:grid;gap:.35rem}
-.addr{display:grid;grid-template-columns:1fr 5.6rem;gap:.6rem;align-items:stretch}
-.addr select{align-self:stretch}
-input,select{font:inherit;font-family:var(--da-font);font-size:1rem;padding:.78rem .75rem;
-background:var(--field);border:1px solid var(--field-line);color:var(--da-oxblood);border-radius:2px;width:100%}
+.offer{position:relative;max-width:64rem;margin:clamp(2.25rem,6vw,3.75rem) auto 0;background:var(--da-ivory);
+border-radius:var(--r-card);padding:clamp(1rem,2.6vw,1.5rem);
+box-shadow:0 28px 60px -34px color-mix(in srgb,var(--da-ox-deep) 80%,transparent)}
+#f{display:grid;gap:.9rem 1rem}
+@media (min-width:56rem){#f{grid-template-columns:1.5fr 1fr auto;align-items:end}.consent,#msg{grid-column:1/-1}}
+.field{display:grid;gap:.4rem}
+.lab{font-size:.85rem;font-weight:500;color:var(--muted)}
+.addr{display:grid;grid-template-columns:1fr 5rem;gap:.5rem}
+input,select{font:inherit;font-size:1rem;min-height:50px;padding:.7rem .9rem;width:100%;color:var(--da-oxblood);
+background:var(--field);border:1px solid var(--field-line);border-radius:var(--r-field);
+transition:border-color 150ms ease,box-shadow 150ms ease}
 input::placeholder{color:var(--muted);opacity:1}
-input:focus-visible,select:focus-visible{outline:2px solid var(--da-ivory-alt);outline-offset:1px}
-.consent{display:flex;gap:.6rem;align-items:flex-start;text-transform:none;letter-spacing:0;
-font-size:.9rem;line-height:1.5;color:var(--da-dim);font-family:var(--da-font);font-weight:400}
-.consent input{width:auto;margin-top:.3rem;flex:0 0 auto}
+input:focus-visible,select:focus-visible{outline:none;border-color:var(--da-midnight);
+box-shadow:0 0 0 3px color-mix(in srgb,var(--da-midnight) 22%,transparent)}
+#submit{min-height:50px;width:100%}
+@media (min-width:56rem){#submit{width:auto}}
+#submit:disabled{cursor:progress;opacity:.72}
+.consent{display:flex;gap:.65rem;align-items:flex-start;font-size:.9rem;line-height:1.5;color:var(--body)}
+.consent input{width:1.1rem;height:1.1rem;min-height:0;margin-top:.17rem;padding:0;accent-color:var(--da-midnight);flex:none}
 .hp{position:absolute;left:-9999px}
-#msg{margin-top:.2rem;color:var(--da-ivory-alt);font-size:.95rem;min-height:1.4rem}
-.undernote{margin-top:.9rem;font-size:.83rem;color:var(--da-dim);line-height:1.55}
+#msg{min-height:1.4rem;font-size:.95rem;color:var(--da-oxblood)}
+#msg:empty{min-height:0}
 
-/* ---------- cta ---------- */
-[data-section="cta"] .act{display:flex;max-width:22rem;margin:2.2rem auto 0}
+/* ---------- section rhythm ---------- */
+main > section:not([data-section="hero"]):not([data-section="cta"]){padding:clamp(4.5rem,10vw,7.5rem) 0}
+h2{font-weight:700;font-size:clamp(1.9rem,4.4vw,3.1rem);line-height:1.08;letter-spacing:-.03em;color:var(--da-oxblood);text-wrap:balance}
+.head{text-align:center;max-width:46rem;margin:0 auto}
+.head .pill + h2{margin-top:1.1rem}
+.lead{margin-top:1rem;max-width:58ch;color:var(--body);text-wrap:pretty}
+.head .lead{margin-left:auto;margin-right:auto}
+h3{font-weight:700;letter-spacing:-.015em;line-height:1.25;color:var(--da-oxblood)}
 
-/* ---------- footer ---------- */
-[data-section="footer"]{background:var(--da-oxblood);color:var(--da-dim);padding:3.4rem 1.25rem 3.8rem;
-font-size:.86rem;line-height:1.65;text-align:center}
-[data-section="footer"] .in{max-width:min(70ch,44rem);margin:0 auto}
-.fbrand{font-family:var(--da-font);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;
-color:var(--da-ivory-alt);display:block;margin-bottom:1rem}
-.area{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--da-ivory-alt);margin:1.1rem 0}
-.disc{margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid var(--rule-dark);font-size:.76rem;line-height:1.6;color:var(--disc-ink)}
-.disc p{margin:.65rem 0}
+/* ---------- promise: split, heading left, pledges stacked right ---------- */
+.promise{display:grid;gap:2.25rem}
+@media (min-width:60rem){.promise{grid-template-columns:.85fr 1.15fr;gap:5rem;align-items:start}
+.promise .intro{position:sticky;top:calc(var(--nav-h) + 3rem)}}
+.pledges{display:grid;gap:.9rem}
+.pledge{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;padding:1.5rem;border-radius:var(--r-card);
+background:var(--panel);border:1px solid var(--rule)}
+.pledge:nth-child(2){background:var(--da-ivory-alt)}
+.tile{width:52px;height:52px;border-radius:var(--r-field);display:grid;place-items:center;
+background:var(--da-ivory);border:1px solid var(--rule);color:var(--da-midnight)}
+.tile .ic{width:26px;height:26px}
+.pledge h3{font-size:1.25rem}
+.pledge p{margin-top:.4rem;font-size:1rem}
 
-/* ---------- scroll reveal, progressive enhancement only ---------- */
-@supports (animation-timeline:view()){
-@media (prefers-reduced-motion:no-preference){
-.rev{color:transparent;
-background-image:linear-gradient(90deg,var(--da-oxblood) 0 46%,var(--fade) 54% 100%);
-background-size:230% 100%;background-position:100% 0;background-repeat:no-repeat;
--webkit-background-clip:text;background-clip:text;
-animation:sweep linear both;animation-timeline:view();animation-range:entry 20% cover 46%}
-.dark .rev{background-image:linear-gradient(90deg,var(--da-ivory) 0 46%,var(--fade-dark) 54% 100%)}
-}}
-@keyframes sweep{to{background-position:0 0}}
+/* ---------- situations: 8 cells, 4 x 2, image-card anatomy ---------- */
+.sits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-top:3rem;list-style:none}
+@media (min-width:56rem){.sits{grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}}
+.sit{display:flex;flex-direction:column;gap:.5rem;padding:.5rem;border-radius:var(--r-card);background:var(--da-ivory-alt);min-height:13.5rem}
+.sit .art{flex:1;min-height:7rem;display:grid;place-items:center;border-radius:var(--r-field);color:var(--da-midnight)}
+.sit .art .ic{width:40px;height:40px}
+.sit .cap{background:var(--da-ivory);border-radius:var(--r-field);padding:.85rem .95rem;font-size:.98rem;font-weight:700;
+line-height:1.3;letter-spacing:-.01em;color:var(--da-oxblood)}
+.sit.deep{background:var(--da-oxblood)}
+.sit.deep .art{color:var(--da-ivory-alt)}
+
+/* ---------- difference: three columns, ours raised in the middle ---------- */
+.cmp3{display:grid;gap:1rem;margin-top:3rem}
+@media (min-width:56rem){.cmp3{grid-template-columns:1fr 1.12fr 1fr;align-items:center;gap:0}}
+.col{border-radius:var(--r-card);background:var(--panel);border:1px solid var(--rule);overflow:hidden}
+.col h3{padding:1.1rem 1.4rem;font-size:.95rem;text-align:center;color:var(--muted);background:var(--da-ivory-alt);border-bottom:1px solid var(--rule)}
+.col ul{list-style:none;padding:1.3rem 1.4rem 1.5rem;display:grid;gap:.95rem}
+.col li{display:grid;grid-template-columns:1.25rem 1fr;gap:.7rem;align-items:start;font-size:.98rem;line-height:1.45;color:var(--body)}
+.col li .ic{width:1.25rem;height:1.25rem;margin-top:.08rem;color:var(--muted)}
+.col.us{order:-1;background:var(--da-ivory);border-color:var(--edge);position:relative;z-index:1;
+box-shadow:0 34px 70px -40px color-mix(in srgb,var(--da-oxblood) 55%,transparent)}
+@media (min-width:56rem){.col.us{order:0}.col.us ul{padding-top:1.6rem;padding-bottom:2rem}
+.col:first-child{border-radius:var(--r-card) 0 0 var(--r-card);border-right:0}
+.col:last-child{border-radius:0 var(--r-card) var(--r-card) 0;border-left:0}}
+.col.us .brandhead{padding:1.25rem 1.4rem;text-align:center;font-size:1.75rem;font-weight:700;letter-spacing:-.035em;line-height:1;
+color:var(--da-ivory);background:var(--da-oxblood)}
+.col.us li{color:var(--da-oxblood)}
+.col.us li .ic{color:var(--da-midnight)}
+
+/* ---------- cta: the one dark band ---------- */
+[data-section="cta"]{padding:0 var(--frame) var(--frame)}
+.band{border-radius:var(--r-panel);padding:clamp(2.5rem,6vw,4.5rem) clamp(1.5rem,5vw,4.5rem);display:grid;gap:2rem;
+background:radial-gradient(80% 90% at 90% 10%,color-mix(in srgb,var(--da-ivory-alt) 8%,transparent),transparent 60%),
+linear-gradient(160deg,var(--da-ox-lift),var(--da-oxblood) 55%,var(--da-ox-deep))}
+@media (min-width:56rem){.band{grid-template-columns:1fr auto;align-items:end}}
+.band .pill + h2{margin-top:1.1rem}
+.band h2{color:var(--da-ivory)}
+.band .lead{color:var(--da-dim)}
+
+/* ---------- footer: giant wordmark over the disclosure card ---------- */
+[data-section="footer"]{padding:0 var(--frame) var(--frame)}
+.foot{border-radius:var(--r-panel);overflow:hidden;padding:clamp(1.75rem,6vw,3.25rem) clamp(.75rem,2.5vw,1.25rem) clamp(.75rem,2.5vw,1.25rem);
+background:linear-gradient(180deg,var(--da-ox-deep),var(--da-oxblood))}
+.giant{display:block;text-align:center;font-weight:700;text-transform:uppercase;color:var(--da-ivory);
+font-size:clamp(3rem,16.5vw,16rem);line-height:.78;letter-spacing:-.055em;white-space:nowrap;margin-bottom:clamp(.9rem,3vw,1.5rem);user-select:none}
+.foot-card{background:var(--da-ivory);border-radius:var(--r-card);padding:clamp(1.25rem,3.5vw,2rem)}
+.foot-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 2rem;padding-bottom:1.1rem;border-bottom:1px solid var(--rule)}
+.fbrand{font-weight:700;font-size:1.05rem;color:var(--da-oxblood)}
+.area{font-size:.95rem;color:var(--muted)}
+.disc{margin-top:1.1rem;display:grid;gap:.55rem;font-size:.8rem;line-height:1.55;color:var(--muted)}
+@media (min-width:56rem){.disc{grid-template-columns:1fr 1fr;gap:.65rem 2.5rem}}
+.legal{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.8rem;color:var(--muted)}
+
+/* ---------- reveal on entry, below the fold only ----------
+   Opacity + 12px rise, 500/600ms strong ease-out, 60ms stagger via --i. The hero is never
+   hidden: the form must be usable before any animation runs. No scroll listener. */
+.js [data-reveal]{opacity:0;transform:translateY(12px);
+transition:opacity 500ms ease,transform 600ms var(--ease-out);transition-delay:calc(var(--i,0) * 60ms)}
+.js [data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js [data-reveal]{transform:none;transition:opacity 300ms ease;transition-delay:0ms}}
 
 /* ---------- section isolation, preview hosts only ---------- */
 body.isolate [data-section]{display:none}
@@ -263,54 +231,58 @@ body.isolate [data-section="nav"].solo{display:flex}
 </head>
 <body>
 
+<!-- Icons: Phosphor Icons (MIT), regular weight, inlined so the page makes no icon request. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<symbol id="pm" viewBox="0 0 12 12"><path d="M6 .9v10.2M.9 6h10.2"/></symbol>
-<symbol id="arw" viewBox="0 0 16 16"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 256 256"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 256 256"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></symbol>
+<symbol id="i-minus" viewBox="0 0 256 256"><path d="M176,128a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm56,0A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></symbol>
+<symbol id="i-dollar" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-68a28,28,0,0,1-28,28h-4v8a8,8,0,0,1-16,0v-8H104a8,8,0,0,1,0-16h36a12,12,0,0,0,0-24H116a28,28,0,0,1,0-56h4V72a8,8,0,0,1,16,0v8h16a8,8,0,0,1,0,16H116a12,12,0,0,0,0,24h24A28,28,0,0,1,168,148Z"/></symbol>
+<symbol id="i-house" viewBox="0 0 256 256"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"/></symbol>
+<symbol id="i-handshake" viewBox="0 0 256 256"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l55.07-55.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41ZM41.53,64,62,74.22,36.43,125.27,16,115.06Zm116,119.13L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm62-57.87-25.52-51L214.47,64,240,115.06Zm-87.75,92.67a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 256 256"><path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z"/></symbol>
+<symbol id="i-truck" viewBox="0 0 256 256"><path d="M255.42,117l-14-35A15.93,15.93,0,0,0,226.58,72H192V64a8,8,0,0,0-8-8H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H49a32,32,0,0,0,62,0h50a32,32,0,0,0,62,0h17a16,16,0,0,0,16-16V120A7.94,7.94,0,0,0,255.42,117ZM192,88h34.58l9.6,24H192ZM32,72H176v64H32ZM80,208a16,16,0,1,1,16-16A16,16,0,0,1,80,208Zm81-24H111a32,32,0,0,0-62,0H32V152H176v12.31A32.11,32.11,0,0,0,161,184Zm31,24a16,16,0,1,1,16-16A16,16,0,0,1,192,208Zm48-24H223a32.06,32.06,0,0,0-31-24V128h48Z"/></symbol>
+<symbol id="i-warning" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"/></symbol>
+<symbol id="i-key" viewBox="0 0 256 256"><path d="M216.57,39.43A80,80,0,0,0,83.91,120.78L28.69,176A15.86,15.86,0,0,0,24,187.31V216a16,16,0,0,0,16,16H72a8,8,0,0,0,8-8V208H96a8,8,0,0,0,8-8V184h16a8,8,0,0,0,5.66-2.34l9.56-9.57A79.73,79.73,0,0,0,160,176h.1A80,80,0,0,0,216.57,39.43ZM224,98.1c-1.09,34.09-29.75,61.86-63.89,61.9H160a63.7,63.7,0,0,1-23.65-4.51,8,8,0,0,0-8.84,1.68L116.69,168H96a8,8,0,0,0-8,8v16H72a8,8,0,0,0-8,8v16H40V187.31l58.83-58.82a8,8,0,0,0,1.68-8.84A63.72,63.72,0,0,1,96,95.92c0-34.14,27.81-62.8,61.9-63.89A64,64,0,0,1,224,98.1ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
+<symbol id="i-package" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44-29.77,16.3-80.35-44ZM128,120,47.66,76l33.9-18.56,80.34,44ZM40,90l80,43.78v85.79L40,175.82Zm176,85.78h0l-80,43.79V133.82l32-17.51V152a8,8,0,0,0,16,0V107.55L216,90v85.77Z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-68-76a12,12,0,1,1-12-12A12,12,0,0,1,140,132Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,132ZM96,172a12,12,0,1,1-12-12A12,12,0,0,1,96,172Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,140,172Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,172Z"/></symbol>
+<symbol id="i-buildings" viewBox="0 0 256 256"><path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48ZM112,112v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm-32,0v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm0,56v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm32,0v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Z"/></symbol>
+<symbol id="i-drop" viewBox="0 0 256 256"><path d="M174,47.75a254.19,254.19,0,0,0-41.45-38.3,8,8,0,0,0-9.18,0A254.19,254.19,0,0,0,82,47.75C54.51,79.32,40,112.6,40,144a88,88,0,0,0,176,0C216,112.6,201.49,79.32,174,47.75ZM128,216a72.08,72.08,0,0,1-72-72c0-57.23,55.47-105,72-118,16.53,13,72,60.75,72,118A72.08,72.08,0,0,1,128,216Zm55.89-62.66a57.6,57.6,0,0,1-46.56,46.55A8.75,8.75,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol>
 </defs></svg>
 
-<header data-section="nav">
-  <a class="mark" href="/">Dofrane <b>Acquisitions</b></a>
-  <a class="act ghost" href="#offer"><span class="lbl">Get Offer</span><svg class="arw" aria-hidden="true"><use href="#arw"/></svg></a>
+<header data-section="nav" class="on-dark">
+  <a class="mark" href="/">Dofrane<span class="mark-full"> Acquisitions</span></a>
+  <a class="btn btn-light btn-sm" href="#offer">Get my cash offer<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
 </header>
 
 <main>
 
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
-<section data-section="hero" class="dark tex" id="offer">
-  <div class="px" data-parallax-layers aria-hidden="true">
-    <div class="px-l" data-parallax-layer="1"></div>
-    <div class="px-l" data-parallax-layer="2"></div>
-    <div class="px-l" data-parallax-layer="3"></div>
-    <div class="px-l" data-parallax-layer="4"></div>
-  </div>
-  <div class="px-fade" aria-hidden="true"></div>
-
-  <div class="hero-in">
-    <div>
-      <span class="eyebrow">Maryland</span>
-      <h1><span>Leave it as it stands.</span><span>Leave what is in it.</span><span>Be done with it.</span></h1>
-      <p class="lede"><b>A cash offer in writing on your house.</b> We close it, or we bring the buyer who does.</p>
-      <ul class="terms">
-        <li>No commission</li><li>No repairs</li><li>No showings</li><li>You pick the closing date</li>
-      </ul>
+<section data-section="hero" id="offer">
+  <div class="hero-panel on-dark">
+    <div class="hero-copy">
+      <h1><span>Sell My Maryland House</span><span class="tone">Fast for Cash</span></h1>
+      <p class="sub">Get a cash offer in writing on your Maryland house as-is. No repairs, no showings, no agent commission.</p>
+      <p class="assure"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>You pick the closing date</p>
     </div>
 
-    <div class="formwrap">
+    <div class="offer">
       <form id="f" novalidate>
-        <label class="flabel" for="address">Property address
+        <label class="field" for="address"><span class="lab">Property address</span>
           <span class="addr">
             <input id="address" name="address" type="text" autocomplete="street-address"
-                   placeholder="123 Main St, Rockville 20850" enterkeyhint="next" required>
+                   placeholder="123 Main St, Rockville" enterkeyhint="next" required>
             <select id="state" name="state" aria-label="State" required>
               <option value="MD" selected>MD</option>
             </select>
           </span>
         </label>
 
-        <label class="flabel" for="phone">Phone
+        <label class="field" for="phone"><span class="lab">Phone number</span>
           <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"
                  placeholder="301 555 0142" enterkeyhint="go" required>
         </label>
+
+        <button class="btn btn-primary" id="submit" type="submit">Get my cash offer<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
 
         <label class="consent" for="consent_call">
           <input id="consent_call" name="consent_call" type="checkbox" required>
@@ -321,179 +293,158 @@ body.isolate [data-section="nav"].solo{display:flex}
         <label class="hp" aria-hidden="true"><span>Website</span>
           <input name="website" type="text" tabindex="-1" autocomplete="off"></label>
 
-        <button class="act" id="submit" type="submit">
-          <span class="lbl">Get Offer</span><svg class="arw" aria-hidden="true"><use href="#arw"/></svg>
-        </button>
         <div id="msg" role="status" aria-live="polite"></div>
       </form>
-      <p class="undernote">One person reads every submission. One person calls you back.</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════ PROMISE ══════════════════════════ -->
-<section data-section="promise" class="band">
-  <span class="kick">What you do not have to do</span>
-  <h2 class="disp rev">Three things you can stop thinking about.</h2>
-  <div class="hr"></div>
-  <div class="trio">
-    <article class="card">
-      <svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg>
-      <svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <h3>You do not empty it.</h3>
-      <p>Furniture, boxes, a basement that has been filling for forty years. Take what you want. Leave
-         the rest exactly where it is. Clearing it out is our problem, not yours.</p>
-    </article>
-    <article class="card">
-      <svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg>
-      <svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <h3>You do not fix it.</h3>
-      <p>The roof, the systems, the water that came in last spring. We price the house as it stands
-         today. No inspection list, no repair credits, no work before closing.</p>
-    </article>
-    <article class="card">
-      <svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg>
-      <svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <h3>You get a number, not a maybe.</h3>
-      <p>The offer comes in writing, with the figure on it and how we arrived at it. If it does not
-         work for you, say no and you will not hear from us again.</p>
-    </article>
+<section data-section="promise">
+  <div class="wrap promise">
+    <div class="intro" data-reveal>
+      <h2>The Dofrane Promise</h2>
+      <p class="lead">Peace of mind from the first call to closing day, with a simple process and every term in writing.</p>
+    </div>
+    <div class="pledges">
+      <article class="pledge" data-reveal style="--i:0">
+        <span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-dollar"/></svg></span>
+        <div><h3>No Commission</h3>
+          <p>No agent commission and no listing costs, so more of the sale stays with you.</p></div>
+      </article>
+      <article class="pledge" data-reveal style="--i:1">
+        <span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg></span>
+        <div><h3>Sell As Is</h3>
+          <p>No cleanout, no repairs, no showings or open houses. Take what you want and leave the rest.</p></div>
+      </article>
+      <article class="pledge" data-reveal style="--i:2">
+        <span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg></span>
+        <div><h3>Close With Certainty</h3>
+          <p>You pick the closing date. The offer comes in writing, and we close it or bring the buyer who does.</p></div>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- ══════════════════════════ SITUATIONS ══════════════════════════ -->
-<section data-section="situations" class="band alt">
-  <span class="kick">When this is the right call</span>
-  <h2 class="disp rev">Eight houses we say yes to.</h2>
-  <div class="copy"><p>If one of these is yours, the form takes about thirty seconds.</p></div>
-  <div class="cards">
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">A</span><h3>You cannot face emptying it.</h3>
-      <p>Decades of someone's life is in there and nobody has the time or the heart to sort it.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">B</span><h3>It needs more work than you will put into it.</h3>
-      <p>You have already decided you are not spending another dollar on this house.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">C</span><h3>It has been sitting empty and the bills have not stopped.</h3>
-      <p>Taxes, insurance, the lawn, and a house that attracts attention when nobody is in it.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">D</span><h3>You do not live near it.</h3>
-      <p>It is four hours away, and every trip costs you a weekend.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">E</span><h3>It has been listed for months and nothing is happening.</h3>
-      <p>You cut the price once already and the showings stopped. You want a decision, not another open house.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">F</span><h3>You inherited it with other people.</h3>
-      <p>Three names on the deed and three opinions. A clean number is easier to split than a house.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">G</span><h3>You are done being a landlord.</h3>
-      <p>The turnover, the repairs, the call at eleven at night. You want the last one to be the last one.</p></article>
-    <article class="card"><svg class="pm tl"><use href="#pm"/></svg><svg class="pm tr"><use href="#pm"/></svg><svg class="pm bl"><use href="#pm"/></svg><svg class="pm br"><use href="#pm"/></svg>
-      <span class="ltr">H</span><h3>The date has to work around something else.</h3>
-      <p>A move, a school year, a job. Tell us the date you need and we work to it.</p></article>
+<section data-section="situations">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <span class="pill">Who we help</span>
+      <h2>When You Should Turn To Dofrane</h2>
+      <p class="lead">Dofrane makes written cash offers on Maryland houses in any condition. Situations like these, and more:</p>
+    </div>
+    <ul class="sits">
+      <li class="sit deep" data-reveal style="--i:0"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></span><span class="cap">Property is dated or in need of repairs</span></li>
+      <li class="sit" data-reveal style="--i:1"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span><span class="cap">Downsizing or relocating</span></li>
+      <li class="sit" data-reveal style="--i:2"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-warning"/></svg></span><span class="cap">Structural issues or unpermitted work</span></li>
+      <li class="sit" data-reveal style="--i:3"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></span><span class="cap">Inherited a property you can&rsquo;t keep</span></li>
+      <li class="sit" data-reveal style="--i:4"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg></span><span class="cap">A house full of belongings you can&rsquo;t face clearing</span></li>
+      <li class="sit" data-reveal style="--i:5"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></span><span class="cap">Sudden or unexpected life events</span></li>
+      <li class="sit" data-reveal style="--i:6"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-buildings"/></svg></span><span class="cap">Vacant or problem rental house</span></li>
+      <li class="sit deep" data-reveal style="--i:7"><span class="art"><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg></span><span class="cap">Damage from water, fire or storms</span></li>
+    </ul>
   </div>
 </section>
 
 <!-- ══════════════════════════ DIFFERENCE ══════════════════════════ -->
-<section data-section="difference" class="band">
-  <span class="kick">How this compares</span>
-  <h2 class="disp wide rev">Three ways to sell it. Here is the honest version.</h2>
-  <div class="cmp">
-    <table>
-      <thead><tr><th scope="col"><span class="vh">Comparison</span></th>
-        <th scope="col">Traditional listing</th><th scope="col">iBuyer or online offer</th>
-        <th scope="col" class="us">Dofrane Acquisitions</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Price</th><td data-c="Traditional listing">Highest, if it shows well and you can wait</td><td data-c="iBuyer or online offer">Near retail, before the fees come off</td><td class="us" data-c="Dofrane Acquisitions">Below retail. That is the trade.</td></tr>
-        <tr><th scope="row">Repairs</th><td data-c="Traditional listing">You do them first, or you credit for them</td><td data-c="iBuyer or online offer">Deducted after their inspection</td><td class="us" data-c="Dofrane Acquisitions">None. Priced as it stands.</td></tr>
-        <tr><th scope="row">What you leave behind</th><td data-c="Traditional listing">Broom clean</td><td data-c="iBuyer or online offer">Broom clean</td><td class="us" data-c="Dofrane Acquisitions">Anything you want</td></tr>
-        <tr><th scope="row">Showings</th><td data-c="Traditional listing">Weeks of them</td><td data-c="iBuyer or online offer">Photos, then an inspection</td><td class="us" data-c="Dofrane Acquisitions">One walkthrough</td></tr>
-        <tr><th scope="row">Commission</th><td data-c="Traditional listing">About 5 to 6 percent</td><td data-c="iBuyer or online offer">A service fee</td><td class="us" data-c="Dofrane Acquisitions">None</td></tr>
-        <tr><th scope="row">Closing date</th><td data-c="Traditional listing">When the buyer's lender says</td><td data-c="iBuyer or online offer">Their window</td><td class="us" data-c="Dofrane Acquisitions">Yours</td></tr>
-        <tr><th scope="row">Certainty</th><td data-c="Traditional listing">Contingent on financing and appraisal</td><td data-c="iBuyer or online offer">The offer can be revised after inspection</td><td class="us" data-c="Dofrane Acquisitions">A written offer. We close it, or we bring the buyer who does.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="copy">
-    <p>A clean house with time on the clock belongs with an agent. If you can wait ninety days, show it
-       on a Saturday, and pay a commission out of the proceeds, <b>a listing will beat us on price
-       nearly every time.</b> We are worth talking to when one of those three is not available to you.</p>
+<section data-section="difference" id="difference">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <h2>The Dofrane Difference</h2>
+      <p class="lead">Straightforward written offers on houses in any condition, and a simple process from the first call to closing.</p>
+    </div>
+    <div class="cmp3">
+      <div class="col" data-reveal style="--i:0">
+        <h3>Traditional Sales Process</h3>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Agent commission, often 5 to 6 percent</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Weeks or months on the market</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Cleanup and repairs before listing</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Showings and open houses</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Price haggling and financing contingencies</li>
+        </ul>
+      </div>
+      <div class="col us" data-reveal style="--i:1">
+        <p class="brandhead">Dofrane</p>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>No agent commission</b> to sell your house</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Sell <b>as-is</b>. No cleanup, repairs or showings</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Leave behind anything you don&rsquo;t want</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>A written cash offer. We close it, or we bring the buyer who does</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>You pick the closing date</b></span></li>
+        </ul>
+      </div>
+      <div class="col" data-reveal style="--i:2">
+        <h3>Online Instant Offer</h3>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Service fees taken at closing</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Repair costs deducted after inspection</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>The offer can change after inspection</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Broom clean before closing</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg>Closing on their timeline</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ══════════════════════════ CTA ══════════════════════════ -->
-<section data-section="cta" class="band dark tex">
-  <h2 class="disp rev">Tell us the address. We will do the rest.</h2>
-  <div class="copy"><p>No commission, no repairs, nothing to clear out. If the number does not work, say no.</p></div>
-  <a class="act" href="#offer"><span class="lbl">Get Cash Offer</span><svg class="arw" aria-hidden="true"><use href="#arw"/></svg></a>
+<section data-section="cta">
+  <div class="band on-dark" data-reveal>
+    <div>
+      <span class="pill">Next step</span>
+      <h2>Ready to get started?</h2>
+      <p class="lead">Tell us about the house. We&rsquo;ll handle the rest.</p>
+    </div>
+    <div><a class="btn btn-light" href="#offer">Get my cash offer<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+  </div>
 </section>
 
 </main>
 
 <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
 <footer data-section="footer">
-  <div class="in">
-    <span class="fbrand">Dofrane Acquisitions</span>
-    <p class="area">Maryland</p>
-    <div class="disc">
-      <p data-disc="L1">An offer made through this page may involve the assignment of a contract for the
-         purchase of the property. Any such assignment is disclosed in writing before settlement.</p>
-      <p data-disc="L2">Dofrane Acquisitions is not a real estate broker and does not provide brokerage
-         services. We do not represent you in the sale of your property.</p>
-      <p data-disc="L3">An offer made here is not an appraisal and is not a valuation of your property.</p>
-      <p data-disc="L4">Calls are recorded only with the consent of all parties to the call.</p>
-      <p data-disc="L5">An offer made here does not affect a seller's disclosure obligations.</p>
-      <p data-disc="L6">We do business in accordance with federal fair housing law.</p>
+  <div class="foot">
+    <span class="giant" aria-hidden="true">Dofrane</span>
+    <div class="foot-card">
+      <div class="foot-top">
+        <span class="fbrand">Dofrane Acquisitions</span>
+        <p class="area">Maryland</p>
+      </div>
+      <div class="disc">
+        <p data-disc="L1">An offer made through this page may involve the assignment of a contract for the
+           purchase of the property. Any such assignment is disclosed in writing before settlement.</p>
+        <p data-disc="L2">Dofrane Acquisitions is not a real estate broker and does not provide brokerage
+           services. We do not represent you in the sale of your property.</p>
+        <p data-disc="L3">An offer made here is not an appraisal and is not a valuation of your property.</p>
+        <p data-disc="L4">Calls are recorded only with the consent of all parties to the call.</p>
+        <p data-disc="L5">An offer made here does not affect a seller's disclosure obligations.</p>
+        <p data-disc="L6">We do business in accordance with federal fair housing law.</p>
+      </div>
+      <p class="legal">&copy; 2026 Dofrane Acquisitions</p>
     </div>
   </div>
 </footer>
 
 <script>
+/* ═══════════ 1. REVEAL ═══════════
+   Own script block, so a failure in the form code below can never leave content hidden.
+   IntersectionObserver, once per element. No scroll listener. */
+(function(){
+  var els=[].slice.call(document.querySelectorAll("[data-reveal]"));
+  function show(e){ e.classList.add("in"); }
+  if(!("IntersectionObserver" in window)){ els.forEach(show); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ show(en.target); io.unobserve(en.target); } });
+  },{rootMargin:"0px 0px -8% 0px",threshold:0.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+
+<script>
 (function(){
 "use strict";
-
-/* ═══════════ 1. PARALLAX ═══════════
-   The choreography Dofrane specified, reproduced without GSAP, ScrollTrigger or Lenis
-   (51,727 B gzipped, measured 2026-09-09). Layer targets and the trigger window are the
-   component's own: layer top at viewport top through layer bottom at viewport top. */
-(function(){
-  var box=document.querySelector("[data-parallax-layers]");
-  if(!box) return;
-  if(window.matchMedia("(max-width:767px)").matches) return;
-  if(window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-
-  var TARGETS={"1":70,"2":55,"3":40,"4":10};
-  var layers=[].slice.call(box.querySelectorAll("[data-parallax-layer]")).map(function(el){
-    return {el:el,pct:TARGETS[el.getAttribute("data-parallax-layer")]||0,h:0};
-  });
-  var ticking=false,active=false,start=0,span=1;
-
-  function measure(){
-    var r=box.getBoundingClientRect(),y=window.pageYOffset||document.documentElement.scrollTop;
-    start=r.top+y; span=Math.max(1,r.height);
-    layers.forEach(function(l){ l.h=l.el.offsetHeight; });
-  }
-  function frame(){
-    ticking=false;
-    var y=window.pageYOffset||document.documentElement.scrollTop;
-    var p=(y-start)/span; if(p<0)p=0; if(p>1)p=1;
-    for(var i=0;i<layers.length;i++){
-      var l=layers[i];
-      l.el.style.transform="translate3d(0,"+(l.h*(l.pct/100)*p).toFixed(2)+"px,0)";
-    }
-  }
-  function onScroll(){ if(!ticking&&active){ ticking=true; requestAnimationFrame(frame); } }
-
-  measure(); frame();
-  window.addEventListener("scroll",onScroll,{passive:true});
-  window.addEventListener("resize",function(){ measure(); frame(); },{passive:true});
-
-  /* Park the listener once the hero has left the viewport. */
-  if("IntersectionObserver" in window){
-    new IntersectionObserver(function(e){ active=e[0].isIntersecting; if(active) onScroll(); })
-      .observe(document.querySelector('[data-section="hero"]'));
-  } else { active=true; }
-})();
 
 /* ═══════════ 2. ATTRIBUTION ═══════════
    Front tracking, captured client-side. No third-party script, no tag manager, zero extra

@@ -17,13 +17,13 @@ decoration: it exists so a section can be dissected without touching the six aro
 
 | id | Job | Success test | Components | Copy owner |
 |---|---|---|---|---|
-| `nav` | Put the action within reach at any scroll depth | Wordmark and one button, nothing else. Reachable in one tap from any scroll position. | button (nav weight) | Dofrane |
-| `hero` | State the trade and capture the address | Form usable within one thumb-scroll on a 375px phone, before any animation completes | parallax layers, form, button (cta weight) | Dofrane |
-| `promise` | Remove the three fears that stop a seller submitting | A seller can name what they do not have to do, from three glances, without reading a paragraph | card, corner marks | Alara, sourced |
-| `situations` | Let the seller self-identify without reading prose | At least one row is recognisably them within five seconds | card, corner marks, letter index | Alara, sourced |
-| `difference` | Position against a listing and an iBuyer without slandering our own category | Every claim in our column is a term we actually offer, not a comparison | comparison table | Dofrane, counsel |
-| `cta` | Capture the reader who scrolled the whole page | The only oxblood full-bleed band on the page. One action, no second link. | button (cta weight) | Dofrane |
-| `footer` | Legitimacy and compliance | Entity, service area, and every disclosure line isolated for a one-edit swap | disclosure block | Counsel |
+| `nav` | Put the action within reach at any scroll depth | Wordmark and one button, nothing else. Reachable in one tap from any scroll position. | floating pill bar, pill button | Dofrane |
+| `hero` | State the trade and capture the address | Form usable within one thumb-scroll on a 375px phone, before any animation completes | rounded panel (image slot), floating form card, pill button | Dofrane |
+| `promise` | Remove the three fears that stop a seller submitting | A seller can name what they do not have to do, from three glances, without reading a paragraph | split layout, stacked pledge cards, Phosphor icon tiles | Alara, sourced |
+| `situations` | Let the seller self-identify without reading prose | At least one row is recognisably them within five seconds | 4 x 2 icon card grid, Phosphor icons | Alara, sourced |
+| `difference` | Position against a listing and an iBuyer without slandering our own category | Every claim in our column is a term we actually offer, not a comparison | three-column comparison, ours raised and first on mobile | Dofrane, counsel |
+| `cta` | Capture the reader who scrolled the whole page | The only oxblood full-bleed band on the page. One action, no second link. | rounded dark band, pill button | Dofrane |
+| `footer` | Legitimacy and compliance | Entity, service area, and every disclosure line isolated for a one-edit swap | giant wordmark panel, disclosure card | Counsel |
 
 ## The refinement loop, one section per cycle
 
