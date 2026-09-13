@@ -13,7 +13,6 @@
 <meta property="og:description" content="Get a cash offer in writing on your Maryland house as-is. We close it, or we bring the buyer who does. No repairs, no showings, no agent commission.">
 <meta property="og:url" content="https://dofraneacquisitions.com/">
 <meta property="og:site_name" content="Dofrane Acquisitions">
-<script>document.documentElement.className+=" js"</script>
 <style>
 /* ============================================================================
    DOFRANE ACQUISITIONS - landing page, round 02
@@ -216,12 +215,14 @@ font-size:clamp(3rem,16.5vw,16rem);line-height:.78;letter-spacing:-.055em;white-
 .legal{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.8rem;color:var(--muted)}
 
 /* ---------- reveal on entry, below the fold only ----------
-   Opacity + 12px rise, 500/600ms strong ease-out, 60ms stagger via --i. The hero is never
-   hidden: the form must be usable before any animation runs. No scroll listener. */
-.js [data-reveal]{opacity:0;transform:translateY(12px);
-transition:opacity 500ms ease,transform 600ms var(--ease-out);transition-delay:calc(var(--i,0) * 60ms)}
-.js [data-reveal].in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.js [data-reveal]{transform:none;transition:opacity 300ms ease;transition-delay:0ms}}
+   Fail-safe by construction: nothing is hidden by CSS alone. The observer's first report
+   marks an element .pre only if it is off-screen at that moment; crossing into view swaps
+   .pre for .in. If the observer never runs (background tab, prerender, crawler, old
+   browser) nothing is ever hidden. Opacity + 12px rise, 500/600ms strong ease-out, 60ms
+   stagger via --i. The hero is never observed. No scroll listener. */
+[data-reveal].pre{opacity:0;transform:translateY(12px)}
+[data-reveal].in{transition:opacity 500ms ease,transform 600ms var(--ease-out);transition-delay:calc(var(--i,0) * 60ms)}
+@media (prefers-reduced-motion:reduce){[data-reveal].pre{transform:none}[data-reveal].in{transition:opacity 300ms ease;transition-delay:0ms}}
 
 /* ---------- section isolation, preview hosts only ---------- */
 body.isolate [data-section]{display:none}
@@ -429,14 +430,24 @@ body.isolate [data-section="nav"].solo{display:flex}
 
 <script>
 /* ═══════════ 1. REVEAL ═══════════
-   Own script block, so a failure in the form code below can never leave content hidden.
-   IntersectionObserver, once per element. No scroll listener. */
+   Own script block, so a failure in the form code below can never touch it. The first
+   callback per element decides: off-screen gets .pre (hidden, below the fold, unseen);
+   on-screen is left alone and unobserved. Later crossings reveal. Nothing is hidden
+   unless the observer is demonstrably running. */
 (function(){
+  if(!("IntersectionObserver" in window)) return;
   var els=[].slice.call(document.querySelectorAll("[data-reveal]"));
-  function show(e){ e.classList.add("in"); }
-  if(!("IntersectionObserver" in window)){ els.forEach(show); return; }
+  var seen=[];
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if(en.isIntersecting){ show(en.target); io.unobserve(en.target); } });
+    entries.forEach(function(en){
+      var e=en.target;
+      if(seen.indexOf(e)<0){
+        seen.push(e);
+        if(en.isIntersecting){ io.unobserve(e); } else { e.classList.add("pre"); }
+        return;
+      }
+      if(en.isIntersecting){ e.classList.remove("pre"); e.classList.add("in"); io.unobserve(e); }
+    });
   },{rootMargin:"0px 0px -8% 0px",threshold:0.12});
   els.forEach(function(e){ io.observe(e); });
 })();
