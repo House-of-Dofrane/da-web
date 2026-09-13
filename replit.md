@@ -86,7 +86,7 @@ than 1.4 s is a regression however good it looks.**
    on ink (1.69), silver and champagne never carry text on a light ground (1.09–1.36).
 
 5. **The content fences — a violation here is a legal problem, not a design one.**
-   DMV: District of Columbia, Maryland, Virginia, ruled 2026-09-09 (R2) · **D1 is ruled "both, deal-dependent," so all
+   Maryland only, ruled 2026-09-13 (D4, superseding R2's DMV) · **D1 is ruled "both, deal-dependent," so all
    copy is written to the assignment standard: never state or imply Dofrane Acquisitions is the
    purchaser** · fair housing on every line · no social links, ever · no testimonials, deal counts
    or volume claims until there is a closed deal and written permission · no pre-foreclosure or

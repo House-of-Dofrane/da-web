@@ -66,10 +66,8 @@ Fraunces' x-height is 0.444 em against the previous face's 0.477 em. If you chan
 correction — a straight swap silently shrinks the hero.
 
 ### 5. The content fences — a violation here is a legal problem, not a design one
-- **Service area is the DMV: District of Columbia, Maryland, Virginia.** Ruled by Dofrane 2026-09-09
-  (R2), superseding the Maryland-only fence that stood here. The Maryland specialization is real and
-  internal: it lives in outreach, systems, processes and protocol, and is never explained on the page.
-  **Open consequence, with counsel:** the desk's jurisdiction gate still rejects DC and VA rows.
+- **Service area is Maryland only.** Ruled by Dofrane 2026-09-13 (D4), superseding the DMV ruling
+  (R2, 2026-09-09). DC and Virginia appear nowhere on the page, in the form, or in page metadata.
 - **No investment-solicitation language.** No returns, yields, IRR, cap rate, "invest with us",
   LP/GP, distributions. This page speaks **to a seller**; House of Dofrane is the buyer.
 - **Fair housing** applies to every published word. Nothing that targets or excludes a protected

@@ -12,12 +12,12 @@ own intent line and approved as ruling R10.
 
 ## THE ONE-PARAGRAPH INTENT
 
-A landing page for a real estate cash buying business specializing in the DMV. One page, one job:
+A landing page for a real estate cash buying business specializing in Maryland. One page, one job:
 a seller with a house they want out of arrives, recognises their own situation in under five seconds,
 and gives us an address. Everything else on this page is in service of that or it does not belong.
 No login. No account. No dashboard. No second call to action.
 
-Sellers in the District of Columbia, Maryland and Virginia fill in the form on this page. Breaking it
+Sellers in Maryland fill in the form on this page. Breaking it
 is not a styling regression. It is a lost lead from someone trying to get out of a house.
 
 ---
@@ -67,11 +67,9 @@ here may invent it.
 
 ## THE FENCES. A violation here is a legal problem, not a design one.
 
-1. **Service area is the DMV: District of Columbia, Maryland, Virginia.** Ruled R2, 2026-09-09,
-   superseding the Maryland-only fence. The Maryland specialization is real but internal: it lives in
-   outreach, systems, processes and protocol, and it is never explained on this page.
-   **Open consequence:** the desk's jurisdiction gate currently rejects DC and VA rows. Advertising
-   the DMV before that gate opens means DMV leads land and stop. That question is with counsel.
+1. **Service area is Maryland only.** Ruled D4, 2026-09-13, superseding R2 (DMV, 2026-09-09).
+   DC and Virginia appear nowhere on the page, in the form, or in page metadata. This matches the
+   desk's jurisdiction gate, which already rejects DC and VA rows.
 2. **D1 is ruled "both, deal-dependent," so all copy is written to the assignment standard.** Never
    state or imply Dofrane Acquisitions is the purchaser. The compliant construction is the model:
    "A cash offer in writing. We close it, or we bring the buyer who does."
@@ -119,6 +117,6 @@ however good it looks.** If the budget breaks, the motion goes, not the budget.
 - The credibility section. See fence 6.
 - The hero photograph. `IMAGE_BRIEF.md` specifies it. Until it exists the hero ships a labelled
   placeholder, which is not finished but is honest.
-- The counsel answers: the DC/VA jurisdiction question, the assignment disclosure lines, and the
-  "Get Cash Offer" call to action.
+- The counsel answers: the assignment disclosure lines and the "Get Cash Offer" call to action.
+  (The DC/VA jurisdiction question is moot under D4, Maryland only.)
 - Going live. DNS still points at GoDaddy on purpose. It is one A record and it is his to throw.

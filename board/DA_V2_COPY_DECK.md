@@ -10,7 +10,7 @@ attorney before launch. Nothing marked either way ships until it is cleared.**
 
 **Standards this deck is written to.** Assignment standard (D1): never state or imply Dofrane
 Acquisitions is the purchaser. Relief, not speed (R3): no speed claim appears anywhere, because
-nothing in 107 comments supports one. DMV service area (R2). No em dashes, no banned vocabulary,
+nothing in 107 comments supports one. Maryland-only service area (D4, superseding R2). No em dashes, no banned vocabulary,
 passes `copy_lint.py`.
 
 ---
@@ -28,7 +28,7 @@ Nothing else. No menu, no phone number, no login.
 ## `hero`
 
 **Eyebrow**
-> DISTRICT OF COLUMBIA · MARYLAND · VIRGINIA
+> MARYLAND
 
 **Headline**, three lines, left-weighted
 > Leave it as it stands.
@@ -185,7 +185,7 @@ because the button promises an offer to anyone who clicks. Dofrane ruled it back
 > `[VERIFY: legal entity name, formation date, state of formation]`
 >
 > **Where we buy**
-> District of Columbia · Maryland · Virginia
+> Maryland
 >
 > `[VERIFY: contact phone]` · `[VERIFY: contact email]`
 
