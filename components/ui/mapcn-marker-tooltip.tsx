@@ -21,9 +21,10 @@ const MapContext = createContext<MapLibreMap | null>(null);
 const MarkerContext = createContext<{ open: boolean; id: string } | null>(null);
 
 export function DefaultLoader() {
+  // Never covers the map: a spinner in the corner, pointer-events off, so pins and tiles show as they arrive.
   return (
-    <div aria-hidden className="absolute inset-0 grid place-items-center bg-[color-mix(in_srgb,var(--da-ivory)_70%,var(--da-ivory-alt))]">
-      <span className="size-5 animate-spin rounded-full border-2 border-[var(--da-gold-ink)] border-t-transparent motion-reduce:animate-none" />
+    <div aria-hidden className="pointer-events-none absolute right-3 top-3 z-20 grid size-8 place-items-center rounded-full bg-[var(--da-ivory)]/90 shadow-sm">
+      <span className="size-4 animate-spin rounded-full border-2 border-[var(--da-gold-ink)] border-t-transparent motion-reduce:animate-none" />
     </div>
   );
 }
@@ -63,8 +64,27 @@ export function Map({ center, zoom, bounds, boundsPadding = 48, styleUrl = FREE_
     const done = () => setReady(true);
     instance.once("load", done);
     instance.once("idle", done); // belt and braces: idle fires after the first full render too
+    // Diagnostics on the container (read by the verification script), plus a fallback so the
+    // spinner never outlives 8 s even if the first frame is late.
+    const host = container.current.parentElement;
+    const state: Record<string, number | string> = { frames: 0 };
+    const mark = (k: string) => (e: unknown) => {
+      const err = (e as { error?: { message?: string } } | undefined)?.error;
+      state[k] = err?.message ?? Date.now();
+      host?.setAttribute("data-map-state", JSON.stringify(state));
+    };
+    instance.on("styledata", mark("styledata"));
+    instance.on("load", mark("load"));
+    instance.on("idle", mark("idle"));
+    instance.on("error", mark("error"));
+    instance.on("render", () => {
+      state.frames = (state.frames as number) + 1;
+      if ((state.frames as number) % 10 === 1) host?.setAttribute("data-map-state", JSON.stringify(state));
+    });
+    const fallback = window.setTimeout(done, 8000);
     setMap(instance);
     return () => {
+      window.clearTimeout(fallback);
       setMap(null);
       instance.remove();
     };
