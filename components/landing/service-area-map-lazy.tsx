@@ -16,24 +16,45 @@ export function ServiceAreaMapLazy() {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
+  // Fail-safe reveal (lesson from Round 03: an IntersectionObserver never reports in a background
+  // tab). Measure directly on mount and whenever the tab becomes visible; the observer only adds
+  // the scroll case. If the section is near the viewport, load, whatever the observer says.
   useEffect(() => {
     const el = ref.current;
     if (!el || inView) return;
-    if (!("IntersectionObserver" in window)) {
+    const near = () => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight + 400 && r.bottom > -400;
+    };
+    if (near()) {
       setInView(true);
       return;
     }
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setInView(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "400px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && near()) setInView(true);
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    let io: IntersectionObserver | null = null;
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting || e.intersectionRatio > 0)) setInView(true);
+        },
+        { rootMargin: "400px 0px" },
+      );
+      io.observe(el);
+    } else {
+      const onScroll = () => near() && setInView(true);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        document.removeEventListener("visibilitychange", onVisible);
+      };
+    }
+    return () => {
+      io?.disconnect();
+      document.removeEventListener("visibilitychange", onVisible);
+    };
   }, [inView]);
 
   return (
