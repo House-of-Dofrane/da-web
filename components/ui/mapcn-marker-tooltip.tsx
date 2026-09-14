@@ -15,61 +15,13 @@ import { Map as MapLibreMap, Marker, NavigationControl, type StyleSpecification 
 import "maplibre-gl/dist/maplibre-gl.css";
 import { cn } from "@/lib/utils";
 
-// Basemap: OpenFreeMap vector tiles (free for commercial use, no key, no limits) with a small
-// INLINE style and NO label layers. Labels are what force sprite + glyph downloads and most of the
-// worker decoding before the first paint; the pins already name every place. Nothing is fetched
-// before the tiles themselves. CARTO's raster tiles were tried and rejected: they now watermark
-// "API KEY REQUIRED". CARTO's vector Positron style stays keyless but paints seconds later.
-export const FREE_BASEMAP_STYLE_VECTOR_FULL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
-export const FREE_BASEMAP_HOSTS = ["https://tiles.openfreemap.org"];
-export const FREE_BASEMAP_STYLE: StyleSpecification = {
-  version: 8,
-  sources: {
-    ofm: {
-      type: "vector",
-      url: "https://tiles.openfreemap.org/planet",
-    },
-  },
-  layers: [
-    { id: "bg", type: "background", paint: { "background-color": "#F6F1E6" } },
-    { id: "landcover", type: "fill", source: "ofm", "source-layer": "landcover", paint: { "fill-color": "#EEE9DA", "fill-opacity": 0.6 } },
-    { id: "park", type: "fill", source: "ofm", "source-layer": "park", paint: { "fill-color": "#E6E6D2", "fill-opacity": 0.7 } },
-    { id: "water", type: "fill", source: "ofm", "source-layer": "water", paint: { "fill-color": "#D6DDE3" } },
-    { id: "waterway", type: "line", source: "ofm", "source-layer": "waterway", paint: { "line-color": "#D6DDE3", "line-width": 1 } },
-    {
-      id: "roads-minor",
-      type: "line",
-      source: "ofm",
-      "source-layer": "transportation",
-      filter: ["in", ["get", "class"], ["literal", ["primary", "secondary", "tertiary", "trunk"]]],
-      paint: { "line-color": "#FFFFFF", "line-width": ["interpolate", ["linear"], ["zoom"], 8, 0.6, 12, 2] },
-    },
-    {
-      id: "roads-major",
-      type: "line",
-      source: "ofm",
-      "source-layer": "transportation",
-      filter: ["==", ["get", "class"], "motorway"],
-      paint: { "line-color": "#F3E6C8", "line-width": ["interpolate", ["linear"], ["zoom"], 8, 1.2, 12, 3.5] },
-    },
-    {
-      id: "boundary-county",
-      type: "line",
-      source: "ofm",
-      "source-layer": "boundary",
-      filter: ["all", ["==", ["get", "admin_level"], 6], ["!=", ["get", "maritime"], 1]],
-      paint: { "line-color": "#B9A48E", "line-width": 1, "line-dasharray": [3, 2] },
-    },
-    {
-      id: "boundary-state",
-      type: "line",
-      source: "ofm",
-      "source-layer": "boundary",
-      filter: ["all", ["==", ["get", "admin_level"], 4], ["!=", ["get", "maritime"], 1]],
-      paint: { "line-color": "#8F6238", "line-width": 1.6 },
-    },
-  ],
-};
+// Basemap: CARTO Positron vector style — free, keyless, and the config that actually renders here.
+// (An inline label-free OpenFreeMap style was tried for speed and reverted: in maplibre-gl 6.9.1 it
+// loaded but created no source cache, so it fetched zero tiles and never painted. CARTO's raster
+// tiles now watermark "API KEY REQUIRED".) The wins that survived — chunk prefetch, preconnect,
+// fadeDuration 0, a non-covering loader — cut the perceived load without touching what renders.
+export const FREE_BASEMAP_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+export const FREE_BASEMAP_HOSTS = ["https://basemaps.cartocdn.com"];
 
 const MapContext = createContext<MapLibreMap | null>(null);
 const MarkerContext = createContext<{ open: boolean; id: string } | null>(null);
