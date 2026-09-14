@@ -35,7 +35,7 @@ export function ServiceAreaMapLazy() {
     };
     document.addEventListener("visibilitychange", onVisible);
     let io: IntersectionObserver | null = null;
-    if ("IntersectionObserver" in window) {
+    if (typeof IntersectionObserver !== "undefined") {
       io = new IntersectionObserver(
         (entries) => {
           if (entries.some((e) => e.isIntersecting || e.intersectionRatio > 0)) setInView(true);
