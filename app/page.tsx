@@ -1,18 +1,46 @@
-import { FlowButton } from "@/components/ui/flow-button";
+import {
+  AskBand,
+  Compare,
+  DirectSale,
+  Faq,
+  Footer,
+  Header,
+  Hero,
+  Process,
+  ProofBand,
+  ServiceArea,
+  Situations,
+  TrustBar,
+  WhyDofrane,
+} from "@/components/landing/sections";
+import { StickyBar } from "@/components/landing/sticky-bar";
+import { PAGE_COPY } from "@/lib/page-copy";
 
-// Round 03 holding page. Phase 6 assembles the funnel here after the copy ruling.
+// Section order mirrors docs/STRUCTURE_MAP.md. The recovery modal from the reference is omitted:
+// it runs on an incentive and SMS consent that Dofrane Acquisitions does not offer.
 export default function Home() {
+  const isProduction = process.env.VERCEL_ENV === "production";
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-10 bg-background px-4 py-24">
-      <p className="text-sm text-muted-foreground">Round 03 foundation preview</p>
-      <div className="flex flex-wrap items-center justify-center gap-6">
-        <div className="rounded-2xl bg-ivory p-8">
-          <FlowButton text="Get Cash Offer" />
-        </div>
-        <div className="rounded-2xl bg-oxblood p-8">
-          <FlowButton text="Get Cash Offer" tone="inverted" />
-        </div>
-      </div>
-    </main>
+    <>
+      {!isProduction && (
+        <p className="bg-midnight px-4 py-2 text-center text-xs font-semibold text-ivory">{PAGE_COPY.previewBanner}</p>
+      )}
+      <StickyBar brand={PAGE_COPY.brand} />
+      <Header />
+      <main>
+        <Hero />
+        <TrustBar />
+        <ProofBand />
+        <DirectSale />
+        <Situations />
+        <Process />
+        <AskBand />
+        <WhyDofrane />
+        <Compare />
+        <ServiceArea />
+        <Faq />
+      </main>
+      <Footer />
+    </>
   );
 }
