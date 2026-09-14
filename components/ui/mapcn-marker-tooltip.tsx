@@ -144,6 +144,7 @@ export function Map({ center, zoom, bounds, boundsPadding = 48, styleUrl = FREE_
       if ((state.frames as number) % 10 === 1) host?.setAttribute("data-map-state", JSON.stringify(state));
     });
     const fallback = window.setTimeout(done, 8000);
+    if (host) (host as HTMLElement & { __map?: MapLibreMap }).__map = instance; // diagnostics only
     setMap(instance);
     return () => {
       window.clearTimeout(fallback);
