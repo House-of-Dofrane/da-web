@@ -56,7 +56,9 @@ export function Map({ center, zoom, styleUrl = FREE_BASEMAP_STYLE, className, ar
       touchPitch: false,
     });
     instance.addControl(new NavigationControl({ showCompass: false }), "top-right");
-    instance.once("load", () => setReady(true));
+    const done = () => setReady(true);
+    instance.once("load", done);
+    instance.once("idle", done); // belt and braces: idle fires after the first full render too
     setMap(instance);
     return () => {
       setMap(null);
@@ -70,7 +72,9 @@ export function Map({ center, zoom, styleUrl = FREE_BASEMAP_STYLE, className, ar
     <div role="img" aria-label={ariaLabel} className={cn("relative isolate overflow-hidden", className)}>
       <div ref={container} className="absolute inset-0" />
       {!ready && <DefaultLoader />}
-      {map && ready && <MapContext.Provider value={map}>{children}</MapContext.Provider>}
+      {/* Markers do not depend on the style; mount them as soon as the map exists so a throttled
+          first frame (background tab) delays only the tiles, never the pins. */}
+      {map && <MapContext.Provider value={map}>{children}</MapContext.Provider>}
     </div>
   );
 }
