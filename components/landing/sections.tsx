@@ -37,10 +37,10 @@ function Eyebrow({ children, onDark = false }: { children: ReactNode; onDark?: b
   );
 }
 
-function SectionHead({ eyebrow, title, body }: { eyebrow?: string; title: string; body?: string }) {
+function SectionHead({ eyebrow, title, body, onDark = false }: { eyebrow?: string; title: string; body?: string; onDark?: boolean }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow>}
       <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{title}</h2>
       {body && <p className="mx-auto mt-4 max-w-[60ch] text-pretty text-base text-muted-foreground sm:text-lg">{body}</p>}
     </div>
@@ -50,21 +50,21 @@ function SectionHead({ eyebrow, title, body }: { eyebrow?: string; title: string
 export function Header() {
   const icons = [MapPin, FileText, CircleDollarSign];
   return (
-    <header data-section="nav" className="border-b border-border bg-background px-4">
+    <header data-section="nav" className="border-b border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] bg-oxblood px-4">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6">
-        <span className="text-sm font-bold uppercase tracking-[0.24em] text-foreground">{C.brand}</span>
+        <span className="text-sm font-bold uppercase tracking-[0.24em] text-ivory">{C.brand}</span>
         <ul className="hidden items-center gap-7 lg:flex">
           {C.header.badges.map((badge, i) => {
             const Icon = icons[i];
             return (
-              <li key={badge} className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <Icon aria-hidden className="size-5 text-oxblood" />
+              <li key={badge} className="flex items-center gap-2 text-sm font-semibold text-ivory">
+                <Icon aria-hidden className="size-5 text-ivory-alt" />
                 {badge}
               </li>
             );
           })}
         </ul>
-        <OfferCta />
+        <OfferCta tone="inverted" />
       </div>
     </header>
   );
@@ -134,15 +134,15 @@ export function Hero() {
 export function TrustBar() {
   const icons = [MapPin, FileText, CircleDollarSign, CalendarCheck];
   return (
-    <section data-section="trust" className="border-b border-border bg-background px-4 py-8">
-      <p className="text-center text-sm font-semibold text-foreground">{C.trust.label}</p>
-      <ul className="mx-auto mt-5 grid max-w-4xl grid-cols-2 gap-y-5 sm:grid-cols-4 sm:divide-x sm:divide-border">
+    <section data-section="trust" className="bg-oxblood px-4 py-8">
+      <p className="text-center text-sm font-semibold text-ivory">{C.trust.label}</p>
+      <ul className="mx-auto mt-5 grid max-w-4xl grid-cols-2 gap-y-5 sm:grid-cols-4 sm:divide-x sm:divide-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))]">
         {C.trust.tiles.map((tile, i) => {
           const Icon = icons[i];
           return (
-            <li key={tile} className="flex flex-col items-center gap-2 px-3 text-center text-sm font-semibold text-foreground">
-              <span className="grid size-10 place-items-center rounded-full bg-secondary">
-                <Icon aria-hidden className="size-5 text-oxblood" />
+            <li key={tile} className="flex flex-col items-center gap-2 px-3 text-center text-sm font-semibold text-ivory">
+              <span className="grid size-10 place-items-center rounded-full bg-[color-mix(in_srgb,var(--da-ivory)_8%,var(--da-oxblood))]">
+                <Icon aria-hidden className="size-5 text-ivory-alt" />
               </span>
               {tile}
             </li>
@@ -280,27 +280,27 @@ export function WhyDofrane() {
 
 export function Compare() {
   return (
-    <section data-section="compare" className="bg-secondary/60 px-4 py-20 sm:py-24">
-      <SectionHead eyebrow={C.compare.eyebrow} title={C.compare.title} body={C.compare.body} />
+    <section data-section="compare" className="dark bg-oxblood px-4 py-20 sm:py-24">
+      <SectionHead onDark eyebrow={C.compare.eyebrow} title={C.compare.title} body={C.compare.body} />
       <ul className="mx-auto mt-10 grid max-w-3xl gap-3">
         {C.compare.rows.map((row) => (
           <li
             key={row.label}
             className={cn(
               'flex flex-col gap-1 rounded-xl border bg-background px-5 py-4 sm:flex-row sm:items-center sm:justify-between',
-              row.ours ? 'border-2 border-oxblood' : 'border-border',
+              row.ours ? 'border-2 border-ivory-alt' : 'border-border',
             )}
           >
             <span className="flex items-center gap-2 font-bold text-foreground">
-              {row.ours && <Check aria-hidden className="size-4 text-oxblood" />}
+              {row.ours && <Check aria-hidden className="size-4 text-ivory-alt" />}
               {row.label}
             </span>
-            <span className={cn('text-sm', row.ours ? 'font-semibold text-oxblood' : 'text-muted-foreground')}>{row.text}</span>
+            <span className={cn('text-sm', row.ours ? 'font-semibold text-ivory-alt' : 'text-muted-foreground')}>{row.text}</span>
           </li>
         ))}
       </ul>
       <div className="mt-8 flex justify-center">
-        <OfferCta />
+        <OfferCta tone="inverted" />
       </div>
     </section>
   );
