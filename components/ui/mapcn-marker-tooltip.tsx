@@ -31,13 +31,16 @@ export function DefaultLoader() {
 type MapProps = {
   center: [number, number];
   zoom: number;
+  /** When set, the initial view fits these [[west, south], [east, north]] bounds with padding, overriding center/zoom. */
+  bounds?: [[number, number], [number, number]];
+  boundsPadding?: number;
   styleUrl?: string;
   className?: string;
   ariaLabel: string;
   children?: ReactNode;
 };
 
-export function Map({ center, zoom, styleUrl = FREE_BASEMAP_STYLE, className, ariaLabel, children }: MapProps) {
+export function Map({ center, zoom, bounds, boundsPadding = 48, styleUrl = FREE_BASEMAP_STYLE, className, ariaLabel, children }: MapProps) {
   const container = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<MapLibreMap | null>(null);
   const [ready, setReady] = useState(false);
@@ -49,6 +52,7 @@ export function Map({ center, zoom, styleUrl = FREE_BASEMAP_STYLE, className, ar
       style: styleUrl,
       center,
       zoom,
+      ...(bounds ? { bounds, fitBoundsOptions: { padding: boundsPadding, maxZoom: 10 } } : {}),
       attributionControl: { compact: true },
       scrollZoom: false,
       dragRotate: false,

@@ -5,13 +5,15 @@
 // oxblood #3D0606. No blue on a DA page. The text list of areas lives in the section, not here.
 
 import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/mapcn-marker-tooltip";
-import { SERVICE_AREA_CENTER, SERVICE_AREA_ZOOM, serviceAreas } from "@/lib/service-areas";
+import { SERVICE_AREA_BOUNDS, SERVICE_AREA_CENTER, SERVICE_AREA_ZOOM, serviceAreas } from "@/lib/service-areas";
 
 export function ServiceAreaMap() {
   return (
     <Map
       center={SERVICE_AREA_CENTER}
       zoom={SERVICE_AREA_ZOOM}
+      bounds={SERVICE_AREA_BOUNDS}
+      boundsPadding={56}
       ariaLabel="Interactive map of Maryland counties and cities where Dofrane Acquisitions buys houses"
       className="h-[420px] w-full rounded-2xl border border-border bg-[var(--da-ivory-alt)] md:h-[520px]"
     >

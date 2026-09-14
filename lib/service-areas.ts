@@ -40,6 +40,10 @@ export const serviceAreas: ServiceArea[] = [
 export const serviceAreaCounties = serviceAreas.filter((a) => a.tier === "county");
 export const serviceAreaCities = serviceAreas.filter((a) => a.tier === "city");
 
-// Map framing: the six counties, Baltimore City to the DC line.
+// Map framing: fit every pin with padding (holds at any container size); center/zoom are the fallback.
 export const SERVICE_AREA_CENTER: [number, number] = [-76.85, 39.05];
 export const SERVICE_AREA_ZOOM = 8.5;
+export const SERVICE_AREA_BOUNDS: [[number, number], [number, number]] = [
+  [Math.min(...serviceAreas.map((a) => a.lng)), Math.min(...serviceAreas.map((a) => a.lat))],
+  [Math.max(...serviceAreas.map((a) => a.lng)), Math.max(...serviceAreas.map((a) => a.lat))],
+];
