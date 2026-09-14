@@ -16,6 +16,20 @@ export function ServiceAreaMapLazy() {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
+  // Warm the map code while the browser is idle after the hero has painted, so the chunk is already
+  // cached when the section comes near. Initialization itself still waits for the viewport.
+  useEffect(() => {
+    const warm = () => {
+      import("@/components/ServiceAreaMap").catch(() => undefined);
+    };
+    if (typeof requestIdleCallback === "function") {
+      const id = requestIdleCallback(warm, { timeout: 4000 });
+      return () => cancelIdleCallback(id);
+    }
+    const t = setTimeout(warm, 2500);
+    return () => clearTimeout(t);
+  }, []);
+
   // Fail-safe reveal (lesson from Round 03: an IntersectionObserver never reports in a background
   // tab). Measure directly on mount and whenever the tab becomes visible; the observer only adds
   // the scroll case. If the section is near the viewport, load, whatever the observer says.
@@ -24,7 +38,7 @@ export function ServiceAreaMapLazy() {
     if (!el || inView) return;
     const near = () => {
       const r = el.getBoundingClientRect();
-      return r.top < window.innerHeight + 400 && r.bottom > -400;
+      return r.top < window.innerHeight + 900 && r.bottom > -400;
     };
     if (near()) {
       setInView(true);
@@ -40,7 +54,7 @@ export function ServiceAreaMapLazy() {
         (entries) => {
           if (entries.some((e) => e.isIntersecting || e.intersectionRatio > 0)) setInView(true);
         },
-        { rootMargin: "400px 0px" },
+        { rootMargin: "900px 0px" },
       );
       io.observe(el);
     } else {

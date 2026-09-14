@@ -11,11 +11,28 @@
 
 import { createContext, useContext, useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { Map as MapLibreMap, Marker, NavigationControl } from "maplibre-gl";
+import { Map as MapLibreMap, Marker, NavigationControl, type StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { cn } from "@/lib/utils";
 
-export const FREE_BASEMAP_STYLE = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+// Vector Positron needs style + sprite + glyphs + worker decoding before the first paint. The raster
+// edition of the same free CARTO basemap paints after one tile round trip, so it is the default;
+// the style is inlined so nothing is fetched before the tiles themselves. Keyless, attribution kept.
+export const FREE_BASEMAP_STYLE_VECTOR = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+export const FREE_BASEMAP_STYLE = {
+  version: 8 as const,
+  sources: {
+    carto: {
+      type: "raster" as const,
+      tiles: ["a", "b", "c", "d"].map((s) => `https://${s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png`),
+      tileSize: 256,
+      maxzoom: 19,
+      attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    },
+  },
+  layers: [{ id: "carto", type: "raster" as const, source: "carto" }],
+};
+export const FREE_BASEMAP_HOSTS = ["https://a.basemaps.cartocdn.com", "https://b.basemaps.cartocdn.com", "https://c.basemaps.cartocdn.com", "https://d.basemaps.cartocdn.com"];
 
 const MapContext = createContext<MapLibreMap | null>(null);
 const MarkerContext = createContext<{ open: boolean; id: string } | null>(null);
@@ -35,7 +52,8 @@ type MapProps = {
   /** When set, the initial view fits these [[west, south], [east, north]] bounds with padding, overriding center/zoom. */
   bounds?: [[number, number], [number, number]];
   boundsPadding?: number;
-  styleUrl?: string;
+  /** A style URL or an inline style object. Defaults to the inline raster CARTO style. */
+  styleUrl?: string | StyleSpecification;
   className?: string;
   ariaLabel: string;
   children?: ReactNode;
@@ -55,6 +73,8 @@ export function Map({ center, zoom, bounds, boundsPadding = 48, styleUrl = FREE_
       zoom,
       ...(bounds ? { bounds, fitBoundsOptions: { padding: boundsPadding, maxZoom: 10 } } : {}),
       attributionControl: { compact: true },
+      fadeDuration: 0, // tiles show the moment they arrive
+      maxTileCacheSize: 64,
       scrollZoom: false,
       dragRotate: false,
       pitchWithRotate: false,
@@ -67,13 +87,18 @@ export function Map({ center, zoom, bounds, boundsPadding = 48, styleUrl = FREE_
     // Diagnostics on the container (read by the verification script), plus a fallback so the
     // spinner never outlives 8 s even if the first frame is late.
     const host = container.current.parentElement;
+    const t0 = performance.now();
     const state: Record<string, number | string> = { frames: 0 };
     const mark = (k: string) => (e: unknown) => {
       const err = (e as { error?: { message?: string } } | undefined)?.error;
-      state[k] = err?.message ?? Date.now();
+      state[k] = err?.message ?? Math.round(performance.now() - t0); // ms since the map was created
       host?.setAttribute("data-map-state", JSON.stringify(state));
     };
     instance.on("styledata", mark("styledata"));
+    instance.once("sourcedata", mark("first_source"));
+    instance.once("data", (e: unknown) => {
+      if ((e as { tile?: unknown }).tile) mark("first_tile")(e);
+    });
     instance.on("load", mark("load"));
     instance.on("idle", mark("idle"));
     instance.on("error", mark("error"));
