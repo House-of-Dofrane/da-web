@@ -177,7 +177,7 @@ export function LeadForm({ className }: { className?: string }) {
               className={cn(
                 'flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3.5 py-2.5 text-base transition-[border-color,background-color] duration-150',
                 checked
-                  ? 'border-[var(--da-oxblood)] bg-[var(--da-ivory)] text-foreground'
+                  ? 'border-[var(--da-gold-ink)] bg-[var(--da-gold-tint)] text-foreground'
                   : 'border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] text-foreground hover:border-[var(--da-oxblood)]/60',
               )}
             >
@@ -187,7 +187,7 @@ export function LeadForm({ className }: { className?: string }) {
                 value={option}
                 checked={checked}
                 onChange={() => set(key, option)}
-                className="size-4 accent-[var(--da-oxblood)]"
+                className="size-4 accent-[var(--da-gold-ink)]"
               />
               {(LEAD_COPY.options[key] as Record<string, string>)[option]}
             </label>
@@ -222,7 +222,7 @@ export function LeadForm({ className }: { className?: string }) {
               key={i}
               className={cn(
                 'h-1.5 rounded-full transition-colors duration-300',
-                i <= step ? 'bg-[var(--da-oxblood)]' : 'bg-[color-mix(in_srgb,var(--da-oxblood)_16%,var(--da-ivory))]',
+                i <= step ? 'bg-[var(--da-gold-ink)]' : 'bg-[color-mix(in_srgb,var(--da-oxblood)_16%,var(--da-ivory))]',
               )}
             />
           ))}
@@ -358,7 +358,7 @@ export function LeadForm({ className }: { className?: string }) {
                   onChange={(e) => set('consent', e.target.checked)}
                   aria-invalid={Boolean(errors.consent)}
                   aria-describedby={describedBy('consent')}
-                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-oxblood)]"
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-gold-ink)]"
                 />
                 <span>{CONSENT_TEXT}</span>
               </label>

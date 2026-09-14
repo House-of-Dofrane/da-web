@@ -46,6 +46,9 @@
   --color-ivory: var(--da-ivory);
   --color-ivory-alt: var(--da-ivory-alt);
   --color-midnight: var(--da-midnight);
+  --color-gold: var(--da-gold);
+  --color-gold-ink: var(--da-gold-ink);
+  --color-gold-tint: var(--da-gold-tint);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -55,7 +58,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Light surfaces: ivory ground, oxblood ink and oxblood accent (R04 two-colour law, 40/60).
+/* Light surfaces: ivory ground, oxblood ink, gold-ink accent (60/30/10, 2026-09-13).
    NAME CLASH: brand-tokens.css defines --muted as a TEXT colour (oxblood 66% over ivory).
    shadcn uses --muted as a SURFACE. It is redefined here for shadcn, and the brand text value
    lives on as --muted-foreground. Midnight is not used on this page. */

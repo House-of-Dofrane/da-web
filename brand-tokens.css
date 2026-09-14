@@ -21,9 +21,13 @@
                                not a fourth colour. 1.08 against ivory. */
   --da-oxblood:   #3D0606;  /* 30% — ink and structure: all body and display type, header
                                and footer bands, the one dark band per page, and the mark. */
-  /* R04 (Dofrane, 2026-09-13): the landing page runs two colours, 40% deep oxblood #3D0606 /
-     60% ivory. Midnight is not used on the page. Contrast table for #3D0606: docs/R04_PALETTE.md.
-     The ratios in the comments below were measured for #4A0404 and are superseded there. */
+  /* 60/30/10 (Dofrane, 2026-09-13): 60% ivory ground, 30% deep oxblood #3D0606 (ink and
+     structure), 10% gold #C5A059 (accent). Midnight is retired. Gold on oxblood 6.96; gold on
+     ivory 2.24 FAILS, so on ivory the accent is --da-gold-ink (4.81). Gold is never a large ground.
+     Full table: docs/R04_PALETTE.md. Ratios in older comments below were for #4A0404. */
+  --da-gold:      #C5A059;  /* 10% accent on oxblood and as CTA / band fill under oxblood text */
+  --da-gold-ink:  color-mix(in srgb, var(--da-gold) 60%, var(--da-oxblood));  /* #8F6238, gold on ivory */
+  --da-gold-tint: color-mix(in srgb, var(--da-gold) 15%, var(--da-ivory));    /* #F2E7CF, highlight surface */
   --da-midnight:  #0C1A4D;  /* 10% — accent: kickers, short rules, corner marks, step
                                numbers, the primary CTA, links. */
 

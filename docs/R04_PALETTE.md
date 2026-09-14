@@ -1,15 +1,33 @@
-# R04 palette: 40% deep oxblood / 60% ivory
+# R04 palette: 60 ivory / 30 deep oxblood / 10 gold
 
-Ruled by Dofrane 2026-09-13 for the landing page. Two colours, measured by visual weight across the
-page: oxblood carries the hero, calls to action and section anchors; ivory carries the body sections.
-Midnight is not used on the page. `brand-tokens.css` holds the value; the brand-wide change is
-pending his confirmation (the 2026-09-09 ruling was #4A0404 at 60/30/10 with midnight).
+Ruled by Dofrane 2026-09-13. Supersedes the R04 two-colour law (40% oxblood / 60% ivory) ruled earlier
+the same day, and the 2026-09-09 brand accent (midnight `#0C1A4D`). Shares are measured by painted
+area across the page. `brand-tokens.css` holds the values; the brand playbook (v1.0, Drive
+`06_Brand/Brand Playbook/DA_BRAND_PLAYBOOK.md`) records the ruling.
 
-| Token | Value |
-|---|---|
-| `--da-oxblood` | `#3D0606` |
-| `--da-ivory` | `#FAF4E4` |
-| `--da-ivory-alt` | `#F2ECD9` (a step inside the ivory ground, not a third colour) |
+| Share | Role | Token | Hex | RGB | HSL |
+|---|---|---|---|---|---|
+| 60% | Ground | `--da-ivory` | `#FAF4E4` | 250, 244, 228 | 44, 69%, 94% |
+| (60%) | Band step | `--da-ivory-alt` | `#F2ECD9` | 242, 236, 217 | 46, 49%, 90% |
+| 30% | Ink, structure | `--da-oxblood` | `#3D0606` | 61, 6, 6 | 0, 82%, 13% |
+| 10% | Accent | `--da-gold` | `#C5A059` | 197, 160, 89 | 39, 48%, 56% |
+| (10%) | Accent on ivory | `--da-gold-ink` = gold 60 / oxblood 40 | `#8F6238` | 143, 98, 56 | 29, 44%, 39% |
+| (10%) | Highlight surface | `--da-gold-tint` = gold 15 over ivory | `#F2E7CF` | 242, 231, 207 | 42, 57%, 88% |
+
+Gold-ink and gold-tint are derived from the three colours, not new colours.
+
+## Where each colour lives on the page
+
+| Section | Ground | Accent |
+|---|---|---|
+| Header, footer | Oxblood | Gold icons and brand line; inverted CTA |
+| Hero (photo + 80% oxblood scrim) | Oxblood | Gold check icons; kicker stays ivory (see scrim rule) |
+| Trust bar | **Gold, the one gold band** | Oxblood type and icons |
+| Proof card | Oxblood | Gold column titles |
+| Direct sale, process, why, service area | Ivory | Gold-tint step pills; default CTA with gold circle |
+| Situations, compare, FAQ | Ivory-alt 60% | Gold-ink icons; compare "ours" row gold-tint with gold-ink border |
+| Ask band (photo + 88% oxblood scrim) | Oxblood | Gold note; inverted CTA |
+| Lead form | Card on ivory | Gold-ink progress, checked radios on gold-tint |
 
 ## Contrast, computed (WCAG 2 relative luminance, color-mix in sRGB)
 
@@ -17,23 +35,29 @@ pending his confirmation (the 2026-09-09 ruling was #4A0404 at 60/30/10 with mid
 |---|---|---|---|
 | Oxblood on ivory | 15.59 | Body, headings | AA / AAA |
 | Oxblood on ivory-alt | 14.49 | Tinted sections | AA / AAA |
-| Oxblood on card (ivory-alt 45%) | 15.08 | Cards, form | AA / AAA |
-| Oxblood on field (white 78% over ivory) | 16.77 | Input text | AA / AAA |
-| Ivory on oxblood | 15.59 | Dark sections, button text | AA / AAA |
-| Ivory-alt on oxblood | 14.49 | Accent on dark | AA / AAA |
-| Muted: oxblood 66% over ivory, on ivory | 5.70 | Secondary text | AA |
-| Muted 66% on ivory-alt | 5.30 | Secondary text on tint | AA |
-| Muted 60% on ivory-alt | **4.35** | **Do not use** | Fails 4.5 |
-| Placeholder: oxblood 60% on field | 5.03 | Input placeholder | AA |
-| Ivory 72% over oxblood | 8.35 | Dim text on dark | AA / AAA |
-| Ivory 66% over oxblood | 7.16 | Disclosures on dark | AA / AAA |
-| Input border: oxblood 48% vs field | 3.46 | Form control boundary | Meets 3:1 (non-text) |
-| Input border: oxblood 40% vs field | **2.75** | **Do not use for controls** | Fails 3:1 |
-| Ivory 40% over oxblood vs oxblood | 3.33 | Outline button border on dark | Meets 3:1 (non-text) |
-| Ivory on 80% oxblood scrim over a white photo pixel | 8.86 | Hero and band text, worst case | AA / AAA |
-| Ivory on 72% oxblood scrim over a white photo pixel | 6.68 | Minimum scrim allowed | AA |
+| Ivory on oxblood | 15.59 | Dark sections | AA / AAA |
+| Gold on oxblood | 6.96 | Kickers, titles, CTA label on dark | AA |
+| Oxblood on gold | 6.96 | Trust band type | AA |
+| Oxblood on oxblood 10% over gold | 5.84 | Trust icon disc | AA |
+| Oxblood on gold-tint 15 | 13.98 | Compare highlight row | AA / AAA |
+| Oxblood on gold-tint 22 | 13.27 | Step pills | AA / AAA |
+| Gold-ink on ivory | 4.81 | Accent on light grounds | AA |
+| Gold-ink on card field | 5.17 | Form accents | AA |
+| Gold-ink on ivory-alt 60% band | 4.60 | Icons (text allowed, narrowly) | AA |
+| Gold-ink on ivory-alt | **4.47** | **Icons and rules only, no text** | Fails 4.5 text; meets 3:1 |
+| Gold-ink border vs gold-tint 15 | 4.31 | Highlight row edge | Meets 3:1 (non-text) |
+| Gold 60% over oxblood vs oxblood | 3.24 | Inverted CTA border | Meets 3:1 (non-text) |
+| Muted: oxblood 66% over ivory | 5.70 | Secondary text | AA |
+| Gold on 88% oxblood scrim over a white pixel | 5.16 | Gold type over photos, worst case | AA |
+| Gold on 84% scrim | 4.54 | Passes by 0.04, not relied on | AA, no margin |
+| Gold on 80% scrim | **3.96** | **Icons only** | Fails 4.5 text |
+| **Gold on ivory** | **2.24** | **Never** | Fails at every size |
+| **Gold on ivory-alt** | **2.08** | **Never** | Fails at every size |
 
 Rules that fall out of the table:
-- Secondary text stays at oxblood 66% or darker; 60% fails on the tinted sections.
-- Form control borders stay at oxblood 48% or darker.
-- Any photograph behind text carries an oxblood scrim of at least 72%; the page uses 80-84%.
+- Gold is never type on ivory. On light grounds the accent is gold-ink.
+- Gold-ink text stays on ivory or white fields; on ivory-alt it is for icons and rules.
+- Gold type over a photograph needs an oxblood scrim of at least 88%; below that, gold is icons only.
+- One gold band per page. Gold never becomes a hero or a full section ground.
+- Carried from the two-colour law: muted text at oxblood 66% or darker, control borders at oxblood 48%
+  or darker, photo scrims at 72% or darker for ivory type.
