@@ -88,7 +88,7 @@ export function Hero() {
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-ivory-alt">{C.hero.eyebrow}</p>
           <h1 className="mt-4 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-ivory sm:text-5xl lg:text-[3.4rem]">
             <span className="block">{C.hero.headline[0]}</span>
-            <span className="mt-2 block text-[color-mix(in_srgb,var(--da-ivory)_72%,var(--da-oxblood))]">{C.hero.headline[1]}</span>
+            <span className="mt-3 block text-2xl leading-tight text-[color-mix(in_srgb,var(--da-ivory)_72%,var(--da-oxblood))] sm:text-3xl">{C.hero.headline[1]}</span>
           </h1>
           <p className="mt-5 max-w-[46ch] text-pretty text-lg text-[color-mix(in_srgb,var(--da-ivory)_80%,var(--da-oxblood))]">
             {C.hero.subhead}
