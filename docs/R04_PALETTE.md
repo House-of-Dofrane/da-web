@@ -24,7 +24,8 @@ Gold-ink and gold-tint are derived from the three colours, not new colours.
 | Hero (photo + 80% oxblood scrim) | Oxblood | Gold check icons; kicker stays ivory (see scrim rule) |
 | Trust bar | **Gold, the one gold band** | Oxblood type and icons |
 | Proof card | Oxblood | Gold column titles |
-| Direct sale, process, why, service area | Ivory | Gold-tint step pills; default CTA with gold circle |
+| Direct sale, why, service area | Ivory | Default CTA with gold circle |
+| Process | **Gold 22% over ivory, the one tinted section** | Solid gold step pills |
 | Situations, compare, FAQ | Ivory-alt 60% | Gold-ink icons; compare "ours" row gold-tint with gold-ink border |
 | Ask band (photo + 88% oxblood scrim) | Oxblood | Gold note; inverted CTA |
 | Lead form | Card on ivory | Gold-ink progress, checked radios on gold-tint |
@@ -40,7 +41,8 @@ Gold-ink and gold-tint are derived from the three colours, not new colours.
 | Oxblood on gold | 6.96 | Trust band type | AA |
 | Oxblood on oxblood 10% over gold | 5.84 | Trust icon disc | AA |
 | Oxblood on gold-tint 15 | 13.98 | Compare highlight row | AA / AAA |
-| Oxblood on gold-tint 22 | 13.27 | Step pills | AA / AAA |
+| Oxblood on gold-tint 22 | 13.27 | Tinted process section | AA / AAA |
+| Muted on gold-tint 22 | 4.85 | Secondary text, tinted section | AA |
 | Gold-ink on ivory | 4.81 | Accent on light grounds | AA |
 | Gold-ink on card field | 5.17 | Form accents | AA |
 | Gold-ink on ivory-alt 60% band | 4.60 | Icons (text allowed, narrowly) | AA |
@@ -59,5 +61,7 @@ Rules that fall out of the table:
 - Gold-ink text stays on ivory or white fields; on ivory-alt it is for icons and rules.
 - Gold type over a photograph needs an oxblood scrim of at least 88%; below that, gold is icons only.
 - One gold band per page. Gold never becomes a hero or a full section ground.
+- One tinted section per page (gold 22% over ivory) carries the rest of the accent's area. Measured before
+  it: solid gold 3.1% of the page, oxblood 29.8%, ivory 67.4%.
 - Carried from the two-colour law: muted text at oxblood 66% or darker, control borders at oxblood 48%
   or darker, photo scrims at 72% or darker for ivory type.

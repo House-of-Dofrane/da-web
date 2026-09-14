@@ -215,12 +215,12 @@ export function Situations() {
 
 export function Process() {
   return (
-    <section data-section="process" className="bg-background px-4 py-20 sm:py-24">
+    <section data-section="process" className="bg-[color-mix(in_srgb,var(--da-gold)_22%,var(--da-ivory))] px-4 py-20 sm:py-24">
       <SectionHead eyebrow={C.process.eyebrow} title={C.process.title} body={C.process.body} />
       <ol className="mx-auto mt-12 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {C.process.steps.map((step, i) => (
           <li key={step} className="rounded-2xl border border-border bg-card p-6">
-            <span className="inline-flex rounded-full bg-[color-mix(in_srgb,var(--da-gold)_22%,var(--da-ivory))] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-oxblood">
+            <span className="inline-flex rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-oxblood">
               Step {i + 1}
             </span>
             <p className="mt-4 text-base font-semibold text-foreground">{step}</p>
