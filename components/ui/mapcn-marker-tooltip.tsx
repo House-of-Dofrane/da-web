@@ -94,7 +94,9 @@ export function Map({ center, zoom, bounds, boundsPadding = 48, styleUrl = FREE_
 
   return (
     <div role="img" aria-label={ariaLabel} className={cn("relative isolate overflow-hidden", className)}>
-      <div ref={container} className="absolute inset-0" />
+      {/* Inline size: maplibre-gl.css sets `.maplibregl-map { position: relative }` outside any cascade
+          layer, which beats Tailwind's layered `absolute inset-0` and collapsed the container to 0 px high. */}
+      <div ref={container} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
       {!ready && <DefaultLoader />}
       {/* Markers do not depend on the style; mount them as soon as the map exists so a throttled
           first frame (background tab) delays only the tiles, never the pins. */}
