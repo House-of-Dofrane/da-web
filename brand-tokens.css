@@ -19,8 +19,11 @@
                                which measures 0.9907 luminance and reads white, not cream. */
   --da-ivory-alt: #F2ECD9;  /* 60% — the second band value. A step inside the ground,
                                not a fourth colour. 1.08 against ivory. */
-  --da-oxblood:   #4A0404;  /* 30% — ink and structure: all body and display type, header
+  --da-oxblood:   #3D0606;  /* 30% — ink and structure: all body and display type, header
                                and footer bands, the one dark band per page, and the mark. */
+  /* R04 (Dofrane, 2026-09-13): the landing page runs two colours, 40% deep oxblood #3D0606 /
+     60% ivory. Midnight is not used on the page. Contrast table for #3D0606: docs/R04_PALETTE.md.
+     The ratios in the comments below were measured for #4A0404 and are superseded there. */
   --da-midnight:  #0C1A4D;  /* 10% — accent: kickers, short rules, corner marks, step
                                numbers, the primary CTA, links. */
 

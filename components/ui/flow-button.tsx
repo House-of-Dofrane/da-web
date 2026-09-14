@@ -17,7 +17,7 @@ const tones: Record<Tone, { button: string; arrow: string; circle: string; focus
     button: 'border-[var(--da-oxblood)]/40 text-[var(--da-oxblood)] hover:text-[var(--da-ivory)]',
     arrow: 'stroke-[var(--da-oxblood)] group-hover:stroke-[var(--da-ivory)]',
     circle: 'bg-[var(--da-oxblood)]',
-    focus: 'focus-visible:outline-[var(--da-midnight)]',
+    focus: 'focus-visible:outline-[var(--da-oxblood)]',
   },
   inverted: {
     button: 'border-[var(--da-ivory)]/40 text-[var(--da-ivory)] hover:text-[var(--da-oxblood)]',

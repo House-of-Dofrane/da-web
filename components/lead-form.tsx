@@ -52,7 +52,7 @@ const STEP_OF: Record<Field, number> = {
 };
 
 const inputClass =
-  'h-12 w-full rounded-lg border border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] px-3.5 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] duration-150 focus-visible:border-[var(--da-midnight)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[var(--da-midnight)]/20 aria-invalid:border-[var(--da-oxblood)]';
+  'h-12 w-full rounded-lg border border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] px-3.5 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] duration-150 focus-visible:border-[var(--da-oxblood)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[var(--da-oxblood)]/20 aria-invalid:border-[var(--da-oxblood)]';
 
 export function LeadForm({ className }: { className?: string }) {
   const [step, setStep] = useState(0);
@@ -177,8 +177,8 @@ export function LeadForm({ className }: { className?: string }) {
               className={cn(
                 'flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3.5 py-2.5 text-base transition-[border-color,background-color] duration-150',
                 checked
-                  ? 'border-[var(--da-midnight)] bg-[var(--da-ivory)] text-foreground'
-                  : 'border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] text-foreground hover:border-[var(--da-midnight)]/60',
+                  ? 'border-[var(--da-oxblood)] bg-[var(--da-ivory)] text-foreground'
+                  : 'border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] text-foreground hover:border-[var(--da-oxblood)]/60',
               )}
             >
               <input
@@ -187,7 +187,7 @@ export function LeadForm({ className }: { className?: string }) {
                 value={option}
                 checked={checked}
                 onChange={() => set(key, option)}
-                className="size-4 accent-[var(--da-midnight)]"
+                className="size-4 accent-[var(--da-oxblood)]"
               />
               {(LEAD_COPY.options[key] as Record<string, string>)[option]}
             </label>
@@ -222,7 +222,7 @@ export function LeadForm({ className }: { className?: string }) {
               key={i}
               className={cn(
                 'h-1.5 rounded-full transition-colors duration-300',
-                i <= step ? 'bg-[var(--da-midnight)]' : 'bg-[color-mix(in_srgb,var(--da-oxblood)_16%,var(--da-ivory))]',
+                i <= step ? 'bg-[var(--da-oxblood)]' : 'bg-[color-mix(in_srgb,var(--da-oxblood)_16%,var(--da-ivory))]',
               )}
             />
           ))}
@@ -358,7 +358,7 @@ export function LeadForm({ className }: { className?: string }) {
                   onChange={(e) => set('consent', e.target.checked)}
                   aria-invalid={Boolean(errors.consent)}
                   aria-describedby={describedBy('consent')}
-                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-midnight)]"
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-oxblood)]"
                 />
                 <span>{CONSENT_TEXT}</span>
               </label>
@@ -385,7 +385,7 @@ export function LeadForm({ className }: { className?: string }) {
               setErrors({});
               setStep(step - 1);
             }}
-            className="h-11 rounded-full px-4 text-sm font-semibold text-muted-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--da-midnight)]"
+            className="h-11 rounded-full px-4 text-sm font-semibold text-muted-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--da-oxblood)]"
           >
             {LEAD_COPY.back}
           </button>

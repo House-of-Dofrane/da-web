@@ -55,10 +55,10 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Light surfaces: ivory ground, oxblood ink, midnight accent.
+/* Light surfaces: ivory ground, oxblood ink and oxblood accent (R04 two-colour law, 40/60).
    NAME CLASH: brand-tokens.css defines --muted as a TEXT colour (oxblood 66% over ivory).
    shadcn uses --muted as a SURFACE. It is redefined here for shadcn, and the brand text value
-   lives on as --muted-foreground. Midnight and oxblood never touch (1.03). */
+   lives on as --muted-foreground. Midnight is not used on this page. */
 :root {
   --background: var(--da-ivory);
   --foreground: var(--da-oxblood);
@@ -66,7 +66,7 @@
   --card-foreground: var(--da-oxblood);
   --popover: var(--da-ivory);
   --popover-foreground: var(--da-oxblood);
-  --primary: var(--da-midnight);
+  --primary: var(--da-oxblood);
   --primary-foreground: var(--da-ivory);
   --secondary: var(--da-ivory-alt);
   --secondary-foreground: var(--da-oxblood);
@@ -77,24 +77,24 @@
   --destructive: var(--da-oxblood);
   --border: color-mix(in srgb, var(--da-oxblood) 16%, var(--da-ivory));
   --input: color-mix(in srgb, var(--da-oxblood) 48%, var(--da-ivory));
-  --ring: var(--da-midnight);
-  --chart-1: var(--da-midnight);
+  --ring: var(--da-oxblood);
+  --chart-1: var(--da-oxblood);
   --chart-2: var(--da-oxblood);
-  --chart-3: color-mix(in srgb, var(--da-midnight) 60%, var(--da-ivory));
+  --chart-3: color-mix(in srgb, var(--da-oxblood) 40%, var(--da-ivory));
   --chart-4: color-mix(in srgb, var(--da-oxblood) 60%, var(--da-ivory));
   --chart-5: var(--da-ivory-alt);
   --radius: 0.75rem;
   --sidebar: var(--da-ivory-alt);
   --sidebar-foreground: var(--da-oxblood);
-  --sidebar-primary: var(--da-midnight);
+  --sidebar-primary: var(--da-oxblood);
   --sidebar-primary-foreground: var(--da-ivory);
   --sidebar-accent: var(--da-ivory);
   --sidebar-accent-foreground: var(--da-oxblood);
   --sidebar-border: color-mix(in srgb, var(--da-oxblood) 16%, var(--da-ivory));
-  --sidebar-ring: var(--da-midnight);
+  --sidebar-ring: var(--da-oxblood);
 }
 
-/* Dark surfaces: oxblood ground, ivory ink. The accent is ivory-alt (13.57), never midnight. */
+/* Dark surfaces: oxblood ground, ivory ink, ivory-alt accent. */
 .dark {
   --background: var(--da-oxblood);
   --foreground: var(--da-ivory);

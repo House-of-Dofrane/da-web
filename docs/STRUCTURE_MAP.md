@@ -162,3 +162,82 @@ rectangles with a small radius: green fill for the primary, navy outline for the
 | Service-area chips | Maryland only | D4 |
 | "We buy" framing | Assignment standard | D1: "we close it, or we bring the buyer who does" |
 | Google Places Autocomplete | Optional enhancement | Phase 5 flag: key, cost, privacy decision |
+
+---
+
+## 8. Geometry, type and breakpoints (computed styles, 2026-09-13)
+
+Measured in Chrome at a 1,800 px viewport from `getComputedStyle` and the page's CSS media rules.
+
+### Type scale (Inter throughout, root 16 px)
+
+| Role | Size / line-height | Weight | Case / tracking |
+|---|---|---|---|
+| H1 | 64 / 67.2 px | 900 | none |
+| H2 | 30 / 33.6 px | 900 | none |
+| H3 | 17 / 20.4 px | 700 | none |
+| Body | 16 / 23.2 px | 400 | none |
+| Eyebrow | 14 / 20.3 px | 900 | uppercase, 2.1 px |
+| Section CTA | 15 px | 850 | uppercase |
+| Hero submit | 23 px | 900 | none |
+
+### Spacing rhythm and containers
+
+| Block | Padding top / bottom | Content width |
+|---|---|---|
+| Header | 18 / 18 px | full |
+| Hero | 52 / 36 px | form card 430 px |
+| Trust bar | 13 / 16 px | full |
+| Testimonial band | 28 / 18 px | 1,366 px grid: 236 / 590 / 540 px columns |
+| Standard section | 58 / 58 px | 1,040 px max |
+| Navy band | 30 / 30 px | 1,040 px max |
+| Footer | 40 / 44 px | full |
+
+### Controls
+
+| Control | Geometry |
+|---|---|
+| Section CTA | 54 px tall, 16 px side padding, 7 px radius, green fill |
+| Hero submit | 66 px tall, 7 px radius, green glow shadow |
+| Address input | 64 px tall, 7 px radius, 1 px slate border, 54 px left padding for the pin icon, 17 px text |
+
+### Breakpoints (from media rules)
+
+359/360 · 640 · 767/768 · 840 · 900 · 980/981 · 1100 · 1179/1180 · 1439 px, plus
+`prefers-reduced-motion` and `(hover: none) and (pointer: coarse)`.
+
+| Width | Behavior |
+|---|---|
+| ≤ 1439 / ≤ 1179 px | Header trust signals drop one at a time |
+| ≤ 980 px | Hero collapses to one column (form stacks under the copy), header keeps only the phone signal, **trust bar and testimonial band are hidden**, padding tightens to 12-16 px |
+| ≤ 840 px | Header gaps tighten to 10 px |
+| ≥ 768 px | Sticky recovery bar exists (fixed, 1 px bottom border, call + form buttons); below 768 px it is not shown |
+| ≤ 640 px or coarse pointer | Recovery modal tightens field gaps to 9 px, hides the name field on its step 2, 17 px buttons |
+
+### Validation triggers and submit behavior
+
+| Aspect | Observed |
+|---|---|
+| Client validation | None: form is `novalidate`, no `required` or `aria-required` attributes |
+| Trigger | Submit only; Gravity Forms AJAX posts to the same page and renders server-side validation |
+| Multi-page | Gravity Forms page fields (`gform_target_page_number_7`) plus a step-destination field: step 1 submit advances to step 2 |
+| Error UI | Not observed (requires a submit to their server, which was not made) |
+
+### Offer elements presented, by block
+
+| Block | Offer elements |
+|---|---|
+| Header | Review rating + count, homes-bought count, local team, 24/7 phone |
+| Hero | As-is, no fees/commissions, your timeline, no showings, free no-obligation offer review, ~30 seconds, privacy |
+| Trust bar | Rating, 100% no obligation, homes-bought count, years in business |
+| Testimonial band | Named customer outcome, response speed, fair offers, local reliability |
+| Direct-sale option | Cash option without listing, repairs, open houses, uncertainty; no listing agreement |
+| Situations | Inherited, repairs, rental/tenant, fast or private sale |
+| Process | Address first, contact + details, review, no-obligation cash offer |
+| Mid band | As-is value, private process, call if urgent |
+| Why choose | Strongest as-is cash offer, no obligation + honest referral, bilingual support |
+| Comparison | As-is, no commissions, flexible close vs listing and FSBO burdens |
+| Service area | 13 Virginia localities, start anyway |
+| FAQ | Repairs, fees, speed, not ready |
+| Footer | Cash sale without repairs/commissions/open houses, no obligation |
+| Recovery modal | Cash advance before closing, SMS/call consent |

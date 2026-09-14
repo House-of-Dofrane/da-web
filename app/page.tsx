@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       {!isProduction && (
-        <p className="bg-midnight px-4 py-2 text-center text-xs font-semibold text-ivory">{PAGE_COPY.previewBanner}</p>
+        <p className="bg-oxblood px-4 py-2 text-center text-xs font-semibold text-ivory">{PAGE_COPY.previewBanner}</p>
       )}
       <StickyBar brand={PAGE_COPY.brand} />
       <Header />

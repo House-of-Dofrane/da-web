@@ -19,8 +19,8 @@ import { PAGE_COPY as C } from '@/lib/page-copy';
 import { IMAGES } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 
-// Section order and layout logic follow docs/STRUCTURE_MAP.md. Palette law: midnight appears only
-// on ivory surfaces; on oxblood the accent is ivory-alt.
+// Section order and layout logic follow docs/STRUCTURE_MAP.md.
+// R04 two-colour law: oxblood on ivory surfaces, ivory and ivory-alt on oxblood surfaces.
 
 function Eyebrow({ children, onDark = false }: { children: ReactNode; onDark?: boolean }) {
   return (
@@ -30,9 +30,9 @@ function Eyebrow({ children, onDark = false }: { children: ReactNode; onDark?: b
         onDark ? 'text-ivory-alt' : 'text-muted-foreground',
       )}
     >
-      <span className={cn('h-px w-5', onDark ? 'bg-ivory-alt' : 'bg-midnight')} />
+      <span className={cn('h-px w-5', onDark ? 'bg-ivory-alt' : 'bg-oxblood')} />
       {children}
-      <span className={cn('h-px w-5', onDark ? 'bg-ivory-alt' : 'bg-midnight')} />
+      <span className={cn('h-px w-5', onDark ? 'bg-ivory-alt' : 'bg-oxblood')} />
     </p>
   );
 }
@@ -58,7 +58,7 @@ export function Header() {
             const Icon = icons[i];
             return (
               <li key={badge} className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <Icon aria-hidden className="size-5 text-midnight" />
+                <Icon aria-hidden className="size-5 text-oxblood" />
                 {badge}
               </li>
             );
@@ -76,12 +76,24 @@ export function Hero() {
       mode="hero"
       data-section="hero"
       className="bg-oxblood text-ivory"
+      strength={140}
       background={
         <>
           <Image src={IMAGES.hero.src} alt={IMAGES.hero.alt} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-[color-mix(in_srgb,var(--da-oxblood)_80%,transparent)]" />
         </>
       }
+      layers={[
+        {
+          speed: 0.45,
+          node: (
+            <div className="absolute inset-y-0 right-0 hidden w-[42%] opacity-[0.16] mix-blend-luminosity lg:block">
+              <Image src={IMAGES.heroLayer.src} alt={IMAGES.heroLayer.alt} fill sizes="42vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--da-oxblood)] to-transparent" />
+            </div>
+          ),
+        },
+      ]}
     >
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-14">
         <div>
@@ -130,7 +142,7 @@ export function TrustBar() {
           return (
             <li key={tile} className="flex flex-col items-center gap-2 px-3 text-center text-sm font-semibold text-foreground">
               <span className="grid size-10 place-items-center rounded-full bg-secondary">
-                <Icon aria-hidden className="size-5 text-midnight" />
+                <Icon aria-hidden className="size-5 text-oxblood" />
               </span>
               {tile}
             </li>
@@ -187,7 +199,7 @@ export function Situations() {
           const Icon = icons[i];
           return (
             <li key={card.title} className="rounded-2xl border border-border bg-background p-6">
-              <Icon aria-hidden className="size-6 text-midnight" />
+              <Icon aria-hidden className="size-6 text-oxblood" />
               <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">{card.title}</h3>
               <p className="mt-2 text-base text-muted-foreground">{card.text}</p>
             </li>
@@ -205,7 +217,7 @@ export function Process() {
       <ol className="mx-auto mt-12 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {C.process.steps.map((step, i) => (
           <li key={step} className="rounded-2xl border border-border bg-card p-6">
-            <span className="inline-flex rounded-full bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-midnight">
+            <span className="inline-flex rounded-full bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-oxblood">
               Step {i + 1}
             </span>
             <p className="mt-4 text-base font-semibold text-foreground">{step}</p>
@@ -229,6 +241,14 @@ export function AskBand() {
           <div className="absolute inset-0 bg-[color-mix(in_srgb,var(--da-oxblood)_84%,transparent)]" />
         </>
       }
+      layers={[
+        {
+          speed: 0.3,
+          node: (
+            <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_50%,transparent,color-mix(in_srgb,var(--da-oxblood)_55%,transparent))]" />
+          ),
+        },
+      ]}
     >
       <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:py-24">
         <h2 className="text-balance text-3xl font-bold tracking-tight text-ivory sm:text-4xl">{C.band.title}</h2>
@@ -268,14 +288,14 @@ export function Compare() {
             key={row.label}
             className={cn(
               'flex flex-col gap-1 rounded-xl border bg-background px-5 py-4 sm:flex-row sm:items-center sm:justify-between',
-              row.ours ? 'border-2 border-midnight' : 'border-border',
+              row.ours ? 'border-2 border-oxblood' : 'border-border',
             )}
           >
             <span className="flex items-center gap-2 font-bold text-foreground">
-              {row.ours && <Check aria-hidden className="size-4 text-midnight" />}
+              {row.ours && <Check aria-hidden className="size-4 text-oxblood" />}
               {row.label}
             </span>
-            <span className={cn('text-sm', row.ours ? 'font-semibold text-midnight' : 'text-muted-foreground')}>{row.text}</span>
+            <span className={cn('text-sm', row.ours ? 'font-semibold text-oxblood' : 'text-muted-foreground')}>{row.text}</span>
           </li>
         ))}
       </ul>
@@ -308,9 +328,9 @@ export function Faq() {
       <div className="mx-auto mt-10 grid max-w-3xl gap-3">
         {C.faq.items.map((item) => (
           <details key={item.q} className="group rounded-xl border border-border bg-background">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-bold text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight [&::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-bold text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood [&::-webkit-details-marker]:hidden">
               {item.q}
-              <ChevronDown aria-hidden className="size-5 shrink-0 text-midnight transition-transform duration-200 ease-out group-open:rotate-180 motion-reduce:transition-none" />
+              <ChevronDown aria-hidden className="size-5 shrink-0 text-oxblood transition-transform duration-200 ease-out group-open:rotate-180 motion-reduce:transition-none" />
             </summary>
             <p className="px-5 pb-5 text-base text-muted-foreground">{item.a}</p>
           </details>
