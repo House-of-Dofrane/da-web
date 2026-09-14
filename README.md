@@ -2,8 +2,9 @@
 
 Public site for **Dofrane Acquisitions** at **dofraneacquisitions.com**.
 
-Static HTML, no build step, no dependencies. Open `index.html` in a browser to run it.
-Deploy: push to `main`; Vercel auto-deploys.
+Next.js 16 (App Router) + TypeScript + Tailwind v4 + shadcn/ui. Run: `npm ci`, then `npm run dev`
+and open http://localhost:3000. Build: `npm run build`. Deploy: every branch gets a Vercel preview;
+merging to `main` deploys. Round 03 replaced the static page; it is kept in `legacy-static/`.
 
 ## What this replaced
 
