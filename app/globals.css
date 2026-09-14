@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/* The DA palette. brand-tokens.css stays the single source of truth; this file only maps it
+   onto the shadcn theme contract below. */
+@import "../brand-tokens.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-oxblood: var(--da-oxblood);
+  --color-ivory: var(--da-ivory);
+  --color-ivory-alt: var(--da-ivory-alt);
+  --color-midnight: var(--da-midnight);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Light surfaces: ivory ground, oxblood ink, midnight accent.
+   NAME CLASH: brand-tokens.css defines --muted as a TEXT colour (oxblood 66% over ivory).
+   shadcn uses --muted as a SURFACE. It is redefined here for shadcn, and the brand text value
+   lives on as --muted-foreground. Midnight and oxblood never touch (1.03). */
+:root {
+  --background: var(--da-ivory);
+  --foreground: var(--da-oxblood);
+  --card: color-mix(in srgb, var(--da-ivory-alt) 45%, var(--da-ivory));
+  --card-foreground: var(--da-oxblood);
+  --popover: var(--da-ivory);
+  --popover-foreground: var(--da-oxblood);
+  --primary: var(--da-midnight);
+  --primary-foreground: var(--da-ivory);
+  --secondary: var(--da-ivory-alt);
+  --secondary-foreground: var(--da-oxblood);
+  --muted: var(--da-ivory-alt);
+  --muted-foreground: color-mix(in srgb, var(--da-oxblood) 66%, var(--da-ivory));
+  --accent: var(--da-ivory-alt);
+  --accent-foreground: var(--da-oxblood);
+  --destructive: var(--da-oxblood);
+  --border: color-mix(in srgb, var(--da-oxblood) 16%, var(--da-ivory));
+  --input: color-mix(in srgb, var(--da-oxblood) 48%, var(--da-ivory));
+  --ring: var(--da-midnight);
+  --chart-1: var(--da-midnight);
+  --chart-2: var(--da-oxblood);
+  --chart-3: color-mix(in srgb, var(--da-midnight) 60%, var(--da-ivory));
+  --chart-4: color-mix(in srgb, var(--da-oxblood) 60%, var(--da-ivory));
+  --chart-5: var(--da-ivory-alt);
+  --radius: 0.75rem;
+  --sidebar: var(--da-ivory-alt);
+  --sidebar-foreground: var(--da-oxblood);
+  --sidebar-primary: var(--da-midnight);
+  --sidebar-primary-foreground: var(--da-ivory);
+  --sidebar-accent: var(--da-ivory);
+  --sidebar-accent-foreground: var(--da-oxblood);
+  --sidebar-border: color-mix(in srgb, var(--da-oxblood) 16%, var(--da-ivory));
+  --sidebar-ring: var(--da-midnight);
+}
+
+/* Dark surfaces: oxblood ground, ivory ink. The accent is ivory-alt (13.57), never midnight. */
+.dark {
+  --background: var(--da-oxblood);
+  --foreground: var(--da-ivory);
+  --card: color-mix(in srgb, var(--da-ivory) 4%, var(--da-oxblood));
+  --card-foreground: var(--da-ivory);
+  --popover: color-mix(in srgb, var(--da-ivory) 4%, var(--da-oxblood));
+  --popover-foreground: var(--da-ivory);
+  --primary: var(--da-ivory-alt);
+  --primary-foreground: var(--da-oxblood);
+  --secondary: color-mix(in srgb, var(--da-ivory) 8%, var(--da-oxblood));
+  --secondary-foreground: var(--da-ivory);
+  --muted: color-mix(in srgb, var(--da-ivory) 8%, var(--da-oxblood));
+  --muted-foreground: color-mix(in srgb, var(--da-ivory) 70%, var(--da-oxblood));
+  --accent: color-mix(in srgb, var(--da-ivory) 8%, var(--da-oxblood));
+  --accent-foreground: var(--da-ivory);
+  --destructive: var(--da-ivory-alt);
+  --border: color-mix(in srgb, var(--da-ivory) 18%, var(--da-oxblood));
+  --input: color-mix(in srgb, var(--da-ivory) 26%, var(--da-oxblood));
+  --ring: var(--da-ivory-alt);
+  --chart-1: var(--da-ivory-alt);
+  --chart-2: color-mix(in srgb, var(--da-ivory) 70%, var(--da-oxblood));
+  --chart-3: color-mix(in srgb, var(--da-ivory) 50%, var(--da-oxblood));
+  --chart-4: color-mix(in srgb, var(--da-ivory) 30%, var(--da-oxblood));
+  --chart-5: color-mix(in srgb, var(--da-ivory) 18%, var(--da-oxblood));
+  --sidebar: color-mix(in srgb, var(--da-ivory) 4%, var(--da-oxblood));
+  --sidebar-foreground: var(--da-ivory);
+  --sidebar-primary: var(--da-ivory-alt);
+  --sidebar-primary-foreground: var(--da-oxblood);
+  --sidebar-accent: color-mix(in srgb, var(--da-ivory) 8%, var(--da-oxblood));
+  --sidebar-accent-foreground: var(--da-ivory);
+  --sidebar-border: color-mix(in srgb, var(--da-ivory) 18%, var(--da-oxblood));
+  --sidebar-ring: var(--da-ivory-alt);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
