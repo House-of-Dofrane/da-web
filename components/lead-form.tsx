@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { FlowButton } from '@/components/ui/flow-button';
 import { captureAttribution } from '@/lib/attribution';
-import { CONSENT_TEXT, LEAD_COPY } from '@/lib/lead-copy';
+import { CONSENT_TEXT, CONSENT_TEXT_SMS, LEAD_COPY } from '@/lib/lead-copy';
 import { CONDITIONS, OCCUPANCY, STEPS, TIMELINES, type Attribution } from '@/lib/lead-schema';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +17,7 @@ type Values = {
   phone: string;
   email: string;
   consent: boolean;
+  consentText: boolean;
   website: string;
 };
 
@@ -34,6 +35,7 @@ const INITIAL: Values = {
   phone: '',
   email: '',
   consent: false,
+  consentText: false,
   website: '',
 };
 
@@ -48,6 +50,7 @@ const STEP_OF: Record<Field, number> = {
   phone: 2,
   email: 2,
   consent: 2,
+  consentText: 2,
   website: 2,
 };
 
@@ -363,6 +366,19 @@ export function LeadForm({ className }: { className?: string }) {
                 <span>{CONSENT_TEXT}</span>
               </label>
               {errorText('consent')}
+            </div>
+            <div>
+              <label htmlFor="lead-consent-text" className="flex items-start gap-3 text-xs leading-relaxed text-muted-foreground">
+                <input
+                  id="lead-consent-text"
+                  name="consentText"
+                  type="checkbox"
+                  checked={values.consentText}
+                  onChange={(e) => set('consentText', e.target.checked)}
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-gold-ink)]"
+                />
+                <span>{CONSENT_TEXT_SMS}</span>
+              </label>
             </div>
           </>
         )}

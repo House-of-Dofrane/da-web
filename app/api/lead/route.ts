@@ -27,10 +27,16 @@ export async function POST(request: Request) {
   }
 
   const lead = parsed.data;
+  // Consent evidence: the request's own IP, user agent and page, written to wholesale.consent_records.
+  const ctx = {
+    ip: request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? request.headers.get("x-real-ip"),
+    userAgent: request.headers.get("user-agent"),
+    page: lead.attribution?.landing_page ?? request.headers.get("referer"),
+  };
   const res = await fetch(`${supabaseUrl}/rest/v1/rpc/inbound_submit`, {
     method: "POST",
     headers: { "Content-Type": "application/json", apikey: publishableKey, Authorization: `Bearer ${publishableKey}` },
-    body: JSON.stringify(buildInboundSubmit(lead)),
+    body: JSON.stringify(buildInboundSubmit(lead, ctx)),
     cache: "no-store",
   });
 

@@ -22,7 +22,7 @@ export async function notifyNewLead(lead: LeadNotification): Promise<{ sent: boo
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ event: "inbound_lead", source: "landing_r03", at: new Date().toISOString(), ...lead }),
+      body: JSON.stringify({ event: "inbound_lead", source: "landing_r04", at: new Date().toISOString(), ...lead }),
       signal: AbortSignal.timeout(4000),
     });
     return res.ok ? { sent: true } : { sent: false, reason: `http_${res.status}` };

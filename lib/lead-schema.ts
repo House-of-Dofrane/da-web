@@ -36,6 +36,8 @@ export const stepContact = z.object({
     .max(200)
     .refine((v) => v === "" || z.email().safeParse(v).success, { error: "Enter a valid email, or leave it blank." }),
   consent: z.literal(true, { error: "Tick the box so we can contact you." }),
+  // Separate SMS consent (TCPA Option C). Optional; stored on its own row in consent_records.
+  consentText: z.boolean().optional().default(false),
 });
 
 export const STEPS = [stepAddress, stepProperty, stepContact] as const;
