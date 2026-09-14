@@ -1,120 +1,148 @@
-// Page copy. DRAFT awaiting Dofrane's Phase 6 ruling; the reviewable version with [VERIFY]
-// markers lives in Drive: 07_Landing_Page/00_Brief/R03_COPY_DRAFT.md. The ruling edits strings
-// here only; no component changes. Section order follows STRUCTURE_MAP.md.
+// Page copy: the R04 Maryland cash-buyer draft (Drive 07_Landing_Page/00_Brief/R04_COPY_DRAFT.md)
+// wired 2026-09-14 on the nine recommended defaults, pending Dofrane's "keep" on the preview.
+// Defaults applied: K1 may-assign disclosed · we pay our own closing costs, transfer/recordation per
+// contract [VERIFY] · fastest close 14 days once title is clear [VERIFY] · one business day response ·
+// street-level pricing claim kept [VERIFY] · "best cash number, in writing" (not "strongest") ·
+// tax card softened to carrying costs (PHIFA) · six-county coverage kept · consent Option C (form).
+// Footer L1 says "before you sign" (Md. Real Prop. § 10-715 notice before contract), attorney review pending.
+// The ruling edits strings here only; no component changes. Section order follows STRUCTURE_MAP.md.
 
 export const PAGE_COPY = {
   brand: "Dofrane Acquisitions",
-  previewBanner: "Preview. Copy is a draft awaiting ruling.",
+  previewBanner: "Preview. R04 copy on the recommended defaults, awaiting Dofrane's keep.",
 
   header: {
-    badges: ["Maryland only", "Written cash offer", "No commission"],
+    badges: ["Maryland cash buyers", "Cash offer in writing", "No commission to you"],
   },
 
   hero: {
-    eyebrow: "Maryland homeowners",
-    headline: ["Sell Your Maryland House As It Stands.", "No Repairs, No Showings, No Commission."],
-    subhead: "A written cash offer from one Maryland team. We close it, or we bring the buyer who does.",
+    eyebrow: "Maryland cash home buyers",
+    headline: ["A Cash Offer for Your Maryland House, As Is.", "No repairs. No agent. No buyer's loan to fall through."],
+    subhead:
+      "Local cash buyers from Baltimore to Bethesda. Give us the address and we put a written cash offer in front of you. We close it, or we bring the buyer who does.",
     bullets: [
-      { label: "Leave it as is.", text: "No repairs, no cleanout." },
-      { label: "No commission.", text: "No agent fee comes out of your sale." },
-      { label: "Your closing date.", text: "You pick the day." },
+      { label: "Sold as is.", text: "Leave the repairs and the cleanout to us." },
+      { label: "No commission.", text: "No agent fee comes out of your cash, and we pay our own closing costs." },
+      { label: "Your closing date.", text: "You choose it, as soon as 14 days once title is clear." },
       { label: "No showings.", text: "One walkthrough, no open houses." },
     ],
-    underButton: "See the number first. You decide after, and saying no costs nothing.",
-    privacy: "Your details go to our team only. We never sell them.",
+    underButton: "See your cash number first. Say no and it costs you nothing.",
+    privacy: "We use your details only to prepare your cash offer. We never sell them.",
   },
 
   trust: {
-    label: "What you can count on",
-    tiles: ["Maryland only", "Written offer", "No commission", "You set the date"],
+    label: "Built for Maryland sellers",
+    tiles: ["Baltimore City & County", "Prince George's & Montgomery", "Anne Arundel & Howard", "Cash offer in writing"],
   },
 
   proof: {
     statement:
-      "Every address is read by a person, not a pricing robot. The person who reviews your house is the person you talk to until closing.",
+      "A rowhouse in Hampden and a rancher in Glen Burnie do not sell the same way. We price each Maryland house on what cash buyers actually pay on that street.",
     columns: [
-      { title: "Plain terms", text: "The offer says what you get and what you do not pay." },
-      { title: "No pressure", text: "Say no and you will not hear from us again." },
-      { title: "Maryland focus", text: "We only look at Maryland houses." },
+      { title: "Street-level pricing", text: "Recent Maryland sales near your house, not a national formula." },
+      { title: "Maryland paperwork", text: "Estates, liens and open permits handled with your attorney or title company." },
+      { title: "Straight answers", text: "If a cash sale is the wrong move for you, we say so." },
     ],
   },
 
   direct: {
-    eyebrow: "A direct sale",
-    title: "A Straight Path for Maryland Homeowners",
-    body: "Skip the listing, the repairs, the open houses and the months of waiting. Get a written number and decide from there.",
-    note: "No listing agreement. No obligation to accept.",
+    eyebrow: "A direct cash sale",
+    title: "A Cash Option Built for Maryland Homeowners",
+    body: "Skip the listing, the repairs, the open houses and the months waiting on a buyer's lender. Get a cash offer for the house exactly as it stands.",
+    note: "No listing agreement. No obligation to accept our cash offer.",
   },
 
   situations: {
-    eyebrow: "Who we help",
-    title: "Houses That Are Hard to Sell the Usual Way",
-    body: "You do not need to fix, clear out or stage anything. Tell us what is going on, and we will tell you if a direct offer fits.",
+    eyebrow: "Maryland situations we buy in",
+    title: "Maryland Houses That Are Hard to Sell the Usual Way",
+    body: "No repairs, no cleanout, no staging. Tell us what is going on and we will tell you if a cash offer fits.",
     cards: [
-      { title: "You inherited a house.", text: "Decide what happens to it without months of sorting and repairs." },
-      { title: "It needs real work.", text: "Roof, systems, water damage, code issues. We price it as it stands." },
-      { title: "You are done renting it out.", text: "Tenant in place or empty, we look at it as is." },
-      { title: "You need to move.", text: "Fewer people through the door and a closing date you choose." },
+      {
+        title: "You inherited a Maryland house.",
+        text: "Estate still open with the county Register of Wills? We can make a cash offer and work the timing out with the estate's attorney.",
+      },
+      {
+        title: "Code violations or open permits.",
+        text: "A notice from Baltimore City housing inspectors or your county's code enforcement does not stop a cash offer. We price the house with the violations in it.",
+      },
+      {
+        title: "Carrying costs you do not want to keep paying.",
+        text: "Taxes, insurance and upkeep on a house you do not live in add up every month. A cash sale ends the bills.",
+      },
+      {
+        title: "Relocating out of Maryland.",
+        text: "A new job, military orders from Fort Meade or Joint Base Andrews, or family out of state. Close on a date that fits the move.",
+      },
     ],
   },
 
   process: {
     eyebrow: "How it works",
-    title: "Four Steps From Address to Offer",
-    body: "The form asks for the address first, so we can start looking before we ask you anything else.",
+    title: "From Address to Cash Offer in Four Steps",
+    body: "We ask for the address first, so we can start reviewing the house before we ask you anything else.",
     steps: [
-      "Enter the address.",
-      "Tell us about the house and how to reach you.",
-      "We review the house, recent Maryland sales and your timeline.",
+      "Enter the Maryland address.",
+      "Tell us about the house and the best way to reach you.",
+      "We review the house, recent sales in your neighborhood and your timeline.",
       "You get a written cash offer and decide.",
     ],
   },
 
   band: {
-    title: "What Would Your House Bring As It Stands?",
+    title: "What Would a Cash Buyer Pay for Your House As Is?",
     body: "Start with the address. We take it from there, privately.",
     note: "It takes about a minute.",
   },
 
   why: {
     eyebrow: "Why Dofrane",
-    title: "Why Sellers Pick Dofrane",
-    body: "No commission, no repair list, no cleaning, no showings. The work happens after closing, on our side.",
+    title: "Why Maryland Sellers Take Our Cash Offer",
+    body: "No commission, no repair demands, no cleaning, no showings. We buy the house as is and handle the work after closing.",
     cards: [
-      { title: "A real number up front.", text: "After we review the house, you get our strongest written offer." },
-      { title: "You stay in charge.", text: "No obligation to accept. If listing would net you more, we will say so." },
-      { title: "One Maryland team.", text: "The person who reviews your house answers your questions." },
+      { title: "Our best cash number, in writing.", text: "We review the house and put our best cash number in front of you, in writing." },
+      { title: "You stay in control.", text: "No obligation to accept. If listing would net you more, we will tell you." },
+      { title: "Maryland-focused.", text: "We only buy Maryland houses, so Maryland's rules are the only ones we work in." },
     ],
   },
 
   compare: {
-    eyebrow: "Compare",
+    eyebrow: "Compare your options",
     title: "A Cash Offer Is Not a Listing",
-    body: "Listing is the right move for some houses. A direct sale trades the top listing price for certainty and fewer moving parts.",
+    body: "Listing can make sense for a move-in-ready house. A cash sale trades the top listing price for certainty and fewer moving parts.",
     rows: [
-      { label: "List with an agent", text: "Repairs, showings, commission, buyer financing", ours: false },
-      { label: "Sell it yourself", text: "Calls, strangers, contracts, paperwork", ours: false },
-      { label: "Dofrane cash offer", text: "As is, no commission, your closing date", ours: true },
+      { label: "Traditional listing", text: "Repairs, showings, commission, a buyer's loan approval", ours: false },
+      { label: "For sale by owner", text: "Your calls, your showings, your contracts", ours: false },
+      { label: "Dofrane cash offer", text: "As is, no commission, cash at closing, your date", ours: true },
     ],
   },
 
   area: {
-    eyebrow: "Where we look",
-    title: "Making Offers Across Maryland",
-    body: "Montgomery and Prince George's counties first. Somewhere else in Maryland? Start anyway, and we will confirm.",
+    eyebrow: "Where we buy in Maryland",
+    title: "Cash Offers Across Central Maryland",
+    body: "Baltimore City and the counties around it, down to the DC line. Somewhere else in Maryland? Start anyway and we will confirm.",
     places: [
-      "Montgomery County",
+      "Baltimore City",
+      "Baltimore County",
+      "Anne Arundel County",
+      "Howard County",
       "Prince George's County",
-      "Rockville",
-      "Silver Spring",
-      "Bethesda",
-      "Gaithersburg",
-      "Germantown",
+      "Montgomery County",
+      "Hampden",
+      "Canton",
+      "Towson",
+      "Dundalk",
+      "Catonsville",
+      "Annapolis",
+      "Glen Burnie",
+      "Columbia",
+      "Ellicott City",
       "Bowie",
       "Laurel",
-      "College Park",
       "Hyattsville",
-      "Upper Marlboro",
+      "Silver Spring",
+      "Rockville",
+      "Gaithersburg",
+      "Germantown",
     ],
   },
 
@@ -122,19 +150,23 @@ export const PAGE_COPY = {
     eyebrow: "Questions",
     title: "What Sellers Ask First",
     items: [
-      { q: "Do I have to fix anything first?", a: "No. We price the house as it stands today." },
-      { q: "Are there fees or commissions?", a: "No agent commission." },
-      { q: "How fast can we close?", a: "On the date you pick, once the title is clear." },
-      { q: "What if I am not ready to sell yet?", a: "Get the number anyway. There is no obligation and no pressure to decide." },
+      { q: "Do I need to fix anything before you make a cash offer?", a: "No. We make a cash offer on the house as it stands, open code violations included." },
+      {
+        q: "Are there fees or commissions?",
+        a: "No agent commission. We pay our own closing costs. Maryland transfer and recordation taxes are split as the contract states.",
+      },
+      { q: "How fast can you close?", a: "On the date you choose, as soon as 14 days once title is clear." },
+      { q: "What if I am not ready to sell yet?", a: "Get the cash number anyway. No obligation and no pressure." },
     ],
   },
 
   footer: {
-    line: "Written cash offers on Maryland houses, as they stand.",
-    legal: "© 2026 Dofrane Acquisitions. No obligation to accept an offer.",
-    // Counsel-owned. Verbatim from the live page; each line isolated for a one-edit swap.
+    line: "Cash offers on Maryland houses as they stand, from Baltimore City to Montgomery County.",
+    legal: "© 2026 Dofrane Acquisitions. No obligation to accept any offer.",
+    // Counsel-owned. L1 updated 2026-09-14 from "before settlement" to "before you sign" (Md. Real Prop. § 10-715);
+    // each line isolated for a one-edit swap once the attorney review returns.
     disclosures: [
-      "An offer made through this page may involve the assignment of a contract for the purchase of the property. Any such assignment is disclosed in writing before settlement.",
+      "An offer made through this page may involve the assignment of a contract for the purchase of the property. Any such assignment is disclosed to you in writing before you sign.",
       "Dofrane Acquisitions is not a real estate broker and does not provide brokerage services. We do not represent you in the sale of your property.",
       "An offer made here is not an appraisal and is not a valuation of your property.",
       "Calls are recorded only with the consent of all parties to the call.",
