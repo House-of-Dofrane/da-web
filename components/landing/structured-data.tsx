@@ -1,4 +1,5 @@
 import { PAGE_COPY } from "@/lib/page-copy";
+import { serviceAreaCounties } from "@/lib/service-areas";
 
 const SITE_URL = "https://dofraneacquisitions.com";
 
@@ -13,7 +14,10 @@ export function StructuredData() {
     url: SITE_URL,
     description:
       "Maryland real estate cash buyer. Written cash offers on Maryland houses as they stand: no repairs, no agent commission, no showings.",
-    areaServed: { "@type": "State", name: "Maryland" },
+    areaServed: [
+      { "@type": "State", name: "Maryland" },
+      ...serviceAreaCounties.map((c) => ({ "@type": "AdministrativeArea", name: c.name, containedInPlace: { "@type": "State", name: "Maryland" } })),
+    ],
     knowsAbout: ["cash home buying", "as-is home sales", "Maryland real estate"],
   };
   const website = {

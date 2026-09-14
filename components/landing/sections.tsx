@@ -13,6 +13,7 @@ import {
   Truck,
 } from 'lucide-react';
 import { LeadForm } from '@/components/lead-form';
+import { ServiceAreaMapLazy } from '@/components/landing/service-area-map-lazy';
 import { OfferCta } from '@/components/landing/offer-cta';
 import { ParallaxSection } from '@/components/ui/parallax-section';
 import { PAGE_COPY as C } from '@/lib/page-copy';
@@ -313,7 +314,9 @@ export function ServiceArea() {
   return (
     <section id="service-area" data-section="area" className="bg-background px-4 py-20 sm:py-24">
       <SectionHead eyebrow={C.area.eyebrow} title={C.area.title} body={C.area.body} />
-      <ul className="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-2">
+      <ServiceAreaMapLazy />
+      {/* The full list stays in the DOM as real text: crawlable, screen-reader navigable, no JavaScript needed. */}
+      <ul aria-label="Maryland counties and places where we buy" className="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-2">
         {C.area.places.map((place) => (
           <li key={place} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground">
             {place}
