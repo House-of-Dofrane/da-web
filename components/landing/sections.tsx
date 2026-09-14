@@ -54,7 +54,7 @@ export function Header() {
   return (
     <header data-section="nav" className="border-b border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] bg-oxblood px-4">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6">
-        <span className="text-sm font-bold uppercase tracking-[0.24em] text-ivory">{C.brand}</span>
+        <a href="/" className="text-sm font-bold uppercase tracking-[0.24em] text-ivory focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">{C.brand}</a>
         <ul className="hidden items-center gap-7 lg:flex">
           {C.header.badges.map((badge, i) => {
             const Icon = icons[i];
@@ -215,7 +215,7 @@ export function Situations() {
 
 export function Process() {
   return (
-    <section data-section="process" className="bg-[color-mix(in_srgb,var(--da-gold)_22%,var(--da-ivory))] px-4 py-20 sm:py-24">
+    <section id="how-it-works" data-section="process" className="bg-[color-mix(in_srgb,var(--da-gold)_22%,var(--da-ivory))] px-4 py-20 sm:py-24">
       <SectionHead eyebrow={C.process.eyebrow} title={C.process.title} body={C.process.body} />
       <ol className="mx-auto mt-12 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {C.process.steps.map((step, i) => (
@@ -311,7 +311,7 @@ export function Compare() {
 
 export function ServiceArea() {
   return (
-    <section data-section="area" className="bg-background px-4 py-20 sm:py-24">
+    <section id="service-area" data-section="area" className="bg-background px-4 py-20 sm:py-24">
       <SectionHead eyebrow={C.area.eyebrow} title={C.area.title} body={C.area.body} />
       <ul className="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-2">
         {C.area.places.map((place) => (
@@ -326,7 +326,7 @@ export function ServiceArea() {
 
 export function Faq() {
   return (
-    <section data-section="faq" className="bg-secondary/60 px-4 py-20 sm:py-24">
+    <section id="questions" data-section="faq" className="bg-secondary/60 px-4 py-20 sm:py-24">
       <SectionHead eyebrow={C.faq.eyebrow} title={C.faq.title} />
       <div className="mx-auto mt-10 grid max-w-3xl gap-3">
         {C.faq.items.map((item) => (
@@ -355,6 +355,12 @@ export function Footer() {
         <div className="mt-8 flex justify-center">
           <OfferCta tone="inverted" />
         </div>
+        <nav aria-label="Page sections" className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[color-mix(in_srgb,var(--da-ivory)_80%,var(--da-oxblood))]">
+          <a href="#offer" className="underline-offset-4 hover:text-gold hover:underline">Get a cash offer</a>
+          <a href="#how-it-works" className="underline-offset-4 hover:text-gold hover:underline">How it works</a>
+          <a href="#service-area" className="underline-offset-4 hover:text-gold hover:underline">Where we buy</a>
+          <a href="#questions" className="underline-offset-4 hover:text-gold hover:underline">Questions</a>
+        </nav>
         <div className="mt-12 grid gap-3 border-t border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] pt-8 text-left text-xs leading-relaxed text-[color-mix(in_srgb,var(--da-ivory)_66%,var(--da-oxblood))] md:grid-cols-2">
           {C.footer.disclosures.map((line, i) => (
             <p key={i} data-disc={`L${i + 1}`}>

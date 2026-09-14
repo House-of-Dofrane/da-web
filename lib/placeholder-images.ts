@@ -9,10 +9,10 @@ const unsplash = (id: string, width: number) =>
 
 export const IMAGES = {
   // Rowhouse street, brick and stone fronts (unsplash.com/photos/IRTgks185UA)
-  hero: { src: unsplash("1672059928425-9dfb125307b2", 2000), alt: "" },
+  hero: { src: unsplash("1672059928425-9dfb125307b2", 2000), alt: "A street of brick and stone rowhouses in Baltimore" },
   // Red brick rowhouse with a green door (unsplash.com/photos/VjHIQ_kysoA)
   heroLayer: { src: unsplash("1672059928436-9ddeb37b7b99", 1000), alt: "" },
-  proof: { src: unsplash("1672059928436-9ddeb37b7b99", 800), alt: "" },
+  proof: { src: unsplash("1672059928436-9ddeb37b7b99", 800), alt: "A red brick rowhouse with a green front door" },
   // Stone rowhouse with a stoop and garden (unsplash.com/photos/TJv2A90kzwM)
-  band: { src: unsplash("1672059928459-2233cbcafd50", 2000), alt: "" },
+  band: { src: unsplash("1672059928459-2233cbcafd50", 2000), alt: "A stone rowhouse with a front stoop and small garden" },
 } as const;

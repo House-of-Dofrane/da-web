@@ -153,7 +153,7 @@ export function LeadForm({ className }: { className?: string }) {
   if (status === 'done') {
     return (
       <div className={cn('rounded-2xl bg-card p-6 sm:p-8', className)} role="status" aria-live="polite">
-        <h3 className="text-xl font-bold tracking-tight text-foreground">{LEAD_COPY.thanks.title}</h3>
+        <h2 className="text-xl font-bold tracking-tight text-foreground">{LEAD_COPY.thanks.title}</h2>
         <p className="mt-2 text-base text-muted-foreground">{LEAD_COPY.thanks.body}</p>
       </div>
     );
@@ -232,7 +232,7 @@ export function LeadForm({ className }: { className?: string }) {
         </div>
       </div>
 
-      <h3 className="text-xl font-bold tracking-tight">{copy.title}</h3>
+      <h2 className="text-xl font-bold tracking-tight">{copy.title}</h2>
       <p className="mt-1 text-sm text-muted-foreground">{copy.hint}</p>
 
       <div ref={stepRef} className="mt-5 grid gap-4">
