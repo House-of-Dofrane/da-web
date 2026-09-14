@@ -62,6 +62,10 @@ Preview SEO is capped by one audit, `is-crawlable`: Vercel sends `x-robots-tag: 
 | server-side caching for static content | done | prerendered HTML, `x-nextjs-prerender: 1`, immutable assets |
 | Lighthouse ≥ 90 on all four | done on production terms | 95 / 100 / 100 on preview; SEO 66 on preview only because of the preview `noindex` header (local run below) |
 
+## Service-area map iteration (2026-09-14 18:00 ET, `3efc018` → `7a5ab87`)
+
+"Where we buy" now renders an interactive MapLibre map (free CARTO tiles, no key) above the unchanged chip list. Verified on the preview: all 22 area names present in the server-rendered HTML with no JavaScript; `Organization.areaServed` = Maryland + 6 counties; `maplibre` absent from the initial HTML (lazy-loaded on scroll, `ssr:false`, height reserved, CLS 0); 22 markers mount, 6 county-tier; hover opens "Baltimore County · county"; tap opens and an outside tap closes; all 22 pins inside the map after the bounds fit. Lighthouse mobile after the map: **94 / 100 / 100 / 66** (before: 95 / 100 / 100 / 66; the one point is run noise, LCP 3.0 s). Two bugs fixed on the way: an IntersectionObserver-only reveal that never fires in a background tab (Round 03 lesson, now measured directly on mount), and the given centre/zoom cutting Baltimore City off the top. Coordinates cross-checked: Annapolis / Anne Arundel, Bowie and Gaithersburg corrected.
+
 ## Local run (same build, no preview header)
 
 Same build served with `next start` on this laptop, Lighthouse mobile: **Performance 87 · Accessibility 100 · Best Practices 100 · SEO 100**, zero failing SEO audits. Performance is lower locally than on Vercel (87 vs 95) because a local `next start` has no edge cache and the machine was under load; the Vercel figure is the one production will resemble. Raw reports: job tmp `lighthouse_before.json`, `lighthouse_after.json`, `lighthouse_local.json`.
