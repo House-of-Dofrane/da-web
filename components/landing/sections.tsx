@@ -59,7 +59,7 @@ export function Header() {
           {/* "Night" mark: ivory artwork built for a dark ground — sits on the oxblood header.
               Explicit width/height reserve space so it never shifts layout on load. The adjacent
               wordmark supplies the link's accessible name, so the mark itself is decorative. */}
-          <Image src="/logo/da-logo-mark-night.svg" alt="" aria-hidden width={32} height={32} priority className="h-7 w-7 md:h-8 md:w-8" />
+          <Image src="/logo/da-logo-mark-night.svg" alt="" aria-hidden width={64} height={64} priority className="h-14 w-14 md:h-16 md:w-16" />
           <span className="text-sm font-bold uppercase tracking-[0.24em] text-ivory">{C.brand}</span>
         </a>
         <ul className="hidden items-center gap-7 lg:flex">
