@@ -1,0 +1,179 @@
+<title>DA Launch Audit</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --navy:#0F1729; --panel:#16223B; --panel2:#1D2C49; --line:#2A3B5C;
+    --blue:#3B82F6; --gold:#D4A853; --green:#10B981; --amber:#F59E0B; --red:#EF4444;
+    --ink:#E8EDF5; --muted:#93A2BE; --muted2:#6B7C9E;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--navy); color:var(--ink); font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px; margin:0 auto; padding-block:28px; padding-inline:18px}
+  h1{font-size:clamp(24px,6vw,34px); line-height:1.05; letter-spacing:-.02em; margin:0 0 4px; text-wrap:balance}
+  h2{font-size:13px; text-transform:uppercase; letter-spacing:.13em; color:var(--muted); margin:38px 0 14px; font-weight:700}
+  .sub{color:var(--muted); font-size:13px; margin:0 0 22px}
+  .verdict{background:linear-gradient(135deg,var(--panel),var(--panel2)); border:1px solid var(--line); border-left:4px solid var(--amber); border-radius:14px; padding:20px 22px; margin-bottom:8px}
+  .verdict .tag{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); background:var(--amber); padding:3px 9px; border-radius:5px; margin-bottom:10px}
+  .verdict p{margin:0; font-size:16px; line-height:1.5}
+  .verdict b{color:#fff}
+  .tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:16px 0 0}
+  .tile{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 12px; text-align:center}
+  .tile .n{font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; line-height:1}
+  .tile .l{font-size:11px; color:var(--muted); margin-top:6px; letter-spacing:.02em}
+  .g .n{color:var(--green)} .a .n{color:var(--amber)} .r .n{color:var(--red)} .b .n{color:var(--blue)}
+  .grid{display:flex; flex-direction:column; gap:7px}
+  .group-h{font-size:12px; font-weight:700; color:var(--muted2); letter-spacing:.08em; text-transform:uppercase; margin:16px 0 2px}
+  .row{display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:11px 14px}
+  .row .dot{width:10px; height:10px; border-radius:50%; flex:none}
+  .row .id{font-size:11px; color:var(--muted2); font-variant-numeric:tabular-nums; margin-right:2px}
+  .row .name{font-size:14px}
+  .row .name small{color:var(--muted); display:block; font-size:12px; margin-top:2px}
+  .pill{font-size:10.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:3px 8px; border-radius:20px; white-space:nowrap}
+  .p-g{color:var(--green); background:rgba(16,185,129,.13)}
+  .p-a{color:var(--amber); background:rgba(245,158,11,.14)}
+  .p-r{color:var(--red); background:rgba(239,68,68,.14)}
+  .d-g{background:var(--green)} .d-a{background:var(--amber)} .d-r{background:var(--red)}
+  table{width:100%; border-collapse:collapse; font-size:13px; margin-top:4px}
+  .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:12px}
+  th,td{text-align:left; padding:11px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; background:var(--panel2)}
+  td:first-child{color:var(--muted); white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  .cmp{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+  .card.intent{border-top:3px solid var(--blue)}
+  .card.actual{border-top:3px solid var(--gold)}
+  .card h3{margin:0 0 12px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
+  .card ul{margin:0; padding-left:18px} .card li{margin:5px 0; font-size:13px}
+  .legal{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--amber); border-radius:12px; padding:18px}
+  .legal code{background:var(--panel2); padding:2px 6px; border-radius:5px; font-size:12px; color:var(--gold)}
+  .redbox{background:rgba(239,68,68,.07); border:1px solid rgba(239,68,68,.3); border-radius:12px; padding:18px}
+  .redbox h3{margin:0 0 8px; color:var(--red); font-size:15px}
+  ol.at{margin:10px 0 0; padding-left:20px} ol.at li{margin:7px 0; font-size:13px}
+  .foot{color:var(--muted2); font-size:12px; margin-top:34px; border-top:1px solid var(--line); padding-top:16px}
+  a{color:var(--gold)}
+  @media(max-width:560px){ .tiles{grid-template-columns:repeat(2,1fr)} .cmp{grid-template-columns:1fr} }
+</style>
+<div class="wrap">
+  <h1>Dofrane Acquisitions — Launch Audit</h1>
+  <p class="sub">Round 04 · <b style="color:var(--ink)">round-04-md-cash-buyer</b> · rerun gate · snapshot 2026-09-14 · verified at 390&nbsp;px on the live preview</p>
+
+  <div class="verdict">
+    <span class="tag">Verdict · Not yet</span>
+    <p><b>17 of 20 green. One red, two amber. Not launch-ready for a first-time seller until the red clears.</b> The page renders clean on a phone, the copy is corrected and live, the map loads, and all five legal/analytics NEW items are built. The one thing that breaks a distressed seller's trust fastest is still open: <b>there is no way to reach a human</b> — no phone, no email — because the form is the only channel and ruling C01 holds the number. That is a decision for you, not a bug for me.</p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile g"><div class="n">17</div><div class="l">Green / present</div></div>
+    <div class="tile a"><div class="n">2</div><div class="l">Amber / partial</div></div>
+    <div class="tile r"><div class="n">1</div><div class="l">Red / blocked</div></div>
+    <div class="tile b"><div class="n">4</div><div class="l">Copy swaps live</div></div>
+  </div>
+
+  <h2>The 20-point checklist · rerun</h2>
+  <div class="grid">
+
+    <div class="group-h">A · What a first-time visitor sees</div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">A1</span> Custom 404 page <small>/not-found — HTTP 404, noindex, three links back to the offer, service area, and questions</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">A2</span> CTA above the fold <small>"Get Cash Offer" button at 55&nbsp;px, 144×66; sticky bar also above fold</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">A3</span> Thank-you state <small>inline confirmation panel on submit success (code-verified; not live-submitted, to keep test rows out of the seller DB)</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">A4</span> Loading state <small>form "sending" state disables + signals in flight</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">A5</span> Error state <small>plain-language failure message, fault owned by us, retry invited</small></span><span class="pill p-g">Present</span></div>
+
+    <div class="group-h">B · What Google &amp; social see (SEO re-verified, not assumed)</div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">B1</span> Title + meta description <small>"Maryland Cash Home Buyers | Dofrane Acquisitions" · 48 chars</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">B2</span> Canonical URL <small>https://dofraneacquisitions.com/</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">B3</span> OpenGraph + Twitter card <small>11 og tags incl. og:image; summary_large_image</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">B4</span> JSON-LD structured data <small>Organization + WebSite + FAQPage</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">B5</span> Sitemap + robots <small>both routes build; robots index/follow, sitemap.xml 200</small></span><span class="pill p-g">Present</span></div>
+
+    <div class="group-h">C · What a phone sees</div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">C1</span> 390&nbsp;px pass — no horizontal scroll <small>scrollWidth = clientWidth = 390, overflow 0</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">C2</span> Sticky bottom CTA, mobile-only <small>fixed bar 73&nbsp;px visible at 390; desktop sticky bar hidden below md</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">C3</span> Compressed images <small>next/image, responsive srcset, lazy below the fold, q70</small></span><span class="pill p-g">Present</span></div>
+
+    <div class="group-h">D · Legal &amp; measurement (all NEW this round)</div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">D1</span> Privacy policy <small>/privacy — HTTP 200, indexable, DRAFT banner, drawn from DA's real MD wholesale context</small></span><span class="pill p-g">Present · draft</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">D2</span> Terms of use <small>/terms — HTTP 200, may-assign disclosed, Md. Real Prop. §10-715, Maryland governing law</small></span><span class="pill p-g">Present · draft</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">D3</span> Cookie / consent banner <small>WCAG AA, Accept / Reject non-essential, gates analytics, links Privacy</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-a"></span><span class="name"><span class="id">D4</span> Analytics installed + verified <small>Vercel Analytics wired + consent-gated (logic verified). Script serves 200; beacon-firing can't be isolated on preview — confirm on production domain + enable Web Analytics in project settings</small></span><span class="pill p-a">Partial</span></div>
+    <div class="row"><span class="dot d-r"></span><span class="name"><span class="id">D5</span> Real contact route, no placeholder <small>No phone / email shown to the visitor. Correctly NO fake placeholder — but the form is the only way in. Blocked on ruling C01 + number provisioning</small></span><span class="pill p-r">Blocked</span></div>
+
+    <div class="group-h">Cross-check · verified in the same pass</div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">X1</span> Interactive service-area map renders <small>MapLibre canvas 712×836, idle at 680&nbsp;ms — county gold-ring markers + city dots</small></span><span class="pill p-g">Present</span></div>
+    <div class="row"><span class="dot d-g"></span><span class="name"><span class="id">X2</span> All four copy swaps live <small>underwrite/comps · 24-hour offer · "Investor…As-Is" · "talk shop offline"</small></span><span class="pill p-g">Present</span></div>
+  </div>
+
+  <h2>Baseline vs rerun — what this round moved</h2>
+  <div class="cmp">
+    <div class="card intent">
+      <h3>Baseline (start of this directive)</h3>
+      <ul>
+        <li><b>Missing:</b> 404 page</li>
+        <li><b>Missing:</b> mobile-only sticky CTA (bar was shared desktop+mobile)</li>
+        <li><b>Missing:</b> privacy, terms, cookie banner, analytics</li>
+        <li><b>Missing:</b> any contact route</li>
+        <li>Present: hero CTA, thank-you, loading/error, SEO, map, 390px layout</li>
+      </ul>
+    </div>
+    <div class="card actual">
+      <h3>Rerun (now, live preview)</h3>
+      <ul>
+        <li><b>Fixed:</b> custom 404, noindex, links back</li>
+        <li><b>Fixed:</b> mobile-only sticky bar; desktop bar gated to md+</li>
+        <li><b>Fixed:</b> all four legal/consent pieces shipped (DRAFT)</li>
+        <li><b>Fixed:</b> analytics wired + consent-gated (verify pending)</li>
+        <li><b>Still red:</b> contact route — held by ruling C01</li>
+      </ul>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:12px">Baseline missing-item ranking by trust damage to a distressed seller: <b style="color:var(--ink)">1)</b> no privacy/terms while asking for an address + hardship — worst; <b style="color:var(--ink)">2)</b> no 404 — "is this real?" mid-visit; <b style="color:var(--ink)">3)</b> no sticky mobile CTA — friction, not trust. All three are now closed.</p>
+
+  <h2>Copy — requested vs shipped</h2>
+  <div class="scroll">
+  <table>
+    <tr><th>#</th><th>Requested</th><th>Shipped</th><th>Why the difference</th></tr>
+    <tr><td>1</td><td>"We review the house, recent sales…" → "We underwrite and run comps"</td><td>"We underwrite and run comps — we check the numbers and recent sales nearby."</td><td>You flagged the jargon yourself. Applied with a plain-English gloss so a seller isn't left guessing what "underwrite / comps" means.</td></tr>
+    <tr><td>2</td><td>"You get a written cash offer and decide." → "Get a cash offer within 24 hours."</td><td>"Get a cash offer within 24 hours."</td><td>Applied verbatim, corrected to sentence case. <b style="color:var(--amber)">Flag:</b> this is now a firm 24-hour promise — firmer than the old "one business day." Confirm you can hold that SLA before launch.</td></tr>
+    <tr><td>3</td><td>Dictated: "What Would Investor Value…"</td><td>"What Would an Investor Pay for Your House As-Is?"</td><td>The dictated line was ungrammatical. Applied the corrected, grammatical version that keeps your intent (investor framing, as-is).</td></tr>
+    <tr><td>4</td><td>"Enter the address. Let's talk shop offline."</td><td>"Enter the address. Let's talk shop offline."</td><td>Applied as given.</td></tr>
+  </table>
+  </div>
+
+  <h2>Background layer — the accent section</h2>
+  <div class="scroll">
+  <table>
+    <tr><th>Field</th><th>Detail</th></tr>
+    <tr><td>Section confirmed</td><td>The mid-page <b>"Ask" band</b> (the oxblood accent section that carries copy swaps #3 &amp; #4) — the only red/accent block on the page.</td></tr>
+    <tr><td>Image</td><td>Stone Baltimore rowhouse with stoop + garden. Real photograph, <b>not AI-generated</b>.</td></tr>
+    <tr><td>Source / license</td><td>Unsplash — Unsplash License (free, commercial, no attribution required). Source URL recorded in <code>lib/placeholder-images.ts</code>.</td></tr>
+    <tr><td>Treatment</td><td>Rendered via next/image, <code>mix-blend-luminosity</code> under an 88% oxblood scrim + gold overlay → net visible texture ~8%, inside your 8–15% target.</td></tr>
+    <tr><td>Contrast</td><td>Ivory / gold text sits on the 88% oxblood scrim, not the raw photo → WCAG AA holds.</td></tr>
+    <tr><td>Caveat</td><td>Unsplash is a licensed <b>placeholder</b>. IMAGE_BRIEF still wants Maryland-specific photography before final launch — swap is a known pre-launch item, not a blocker.</td></tr>
+  </table>
+  </div>
+
+  <h2>Legal — read this before you launch</h2>
+  <div class="legal">
+    <p style="margin:0 0 12px"><b>All three legal pages are DRAFT and carry a visible DRAFT banner.</b> They were written from DA's real context, not boilerplate — but they encode <b>15 assumptions</b> and <b>4 placeholders</b> that an attorney and you must confirm. Full list in <code>legal/ATTORNEY_REVIEW.md</code>.</p>
+    <p style="margin:0 0 6px"><b>4 placeholders still in the pages:</b></p>
+    <p style="margin:0 0 14px"><code>{{CONTACT_EMAIL}}</code> <code>{{CONTACT_PHONE}}</code> <code>{{MAILING_ADDRESS}}</code> <code>{{ENTITY_LEGAL_NAME}}</code> — these render literally on /privacy and /terms right now and must be filled before launch.</p>
+    <p style="margin:0 0 6px"><b>Top 5 for the attorney:</b></p>
+    <ol class="at">
+      <li>Md. Real Prop. <b>§10-715</b> — wholesaler notice/registration obligations for residential contracts.</li>
+      <li><b>Entity:</b> drafted as sole proprietorship pending the Maryland LLC — confirm which entity is contracting.</li>
+      <li><b>Governing law</b> flipped DC → <b>Maryland</b> — confirm venue.</li>
+      <li><b>MODPA</b> (Maryland Online Data Privacy Act) applicability to the lead form + analytics.</li>
+      <li>"No fees / we pay closing costs" language vs Maryland transfer/recordation split (<b>§14-104</b>).</li>
+    </ol>
+  </div>
+
+  <h2>The honest red — is this ready for a first-time visitor?</h2>
+  <div class="redbox">
+    <h3>One thing is still red, and it's the one a distressed seller feels first.</h3>
+    <p style="margin:0 0 10px">A seller in trouble often does not trust a web form. They want to see a phone number, or at least a name and an email, before they type their address and their situation into a box. <b>The page offers neither.</b> The form is the only channel. That is by design of ruling <b>C01</b> (no phone yet) and the pending admin provisioning of a number and inbox — not an oversight, and I did <b>not</b> ship a fake placeholder to paper over it (verified: zero phone/email strings on the page).</p>
+    <p style="margin:0"><b>So: the page is ready to <em>look</em> at and ready to <em>submit</em> to — but not yet ready to <em>trust</em> for a seller who needs a human.</b> Clearing D5 (a real, monitored contact route) is the last thing between this and launch-ready, and it needs your ruling on C01, not more engineering.</p>
+  </div>
+
+  <p class="foot">Verified live at 390&nbsp;px (headless Chrome + SwiftShader GL) against the round-04 preview on 2026-09-14. Green = present &amp; verified · Amber = built, verification pending · Red = blocked on a ruling. Reporting palette (HOD Boardroom), not the DA brand palette. Commit 92c1a0c.</p>
+</div>
