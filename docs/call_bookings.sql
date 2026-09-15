@@ -2,9 +2,11 @@
 -- DELIBERATELY SEPARATE from wholesale.sellers: these are cold, non-urgent inquiries, NOT the
 -- DNC-scrubbed urgent seller pipeline, and must not be merged or scored the same way.
 --
--- STATUS: designed, NOT applied. Placement (Finance Core `fdjnkqrqkmsdibehcbuq`, schema `wholesale`
--- alongside the DA desk) and RLS need a one-line go before applying to the live DB. Nothing writes
--- to it until the Calendly webhook -> n8n/Zapier glue exists, so applying early is prep only.
+-- STATUS: APPLIED 2026-09-14 to Finance Core `fdjnkqrqkmsdibehcbuq`, schema `wholesale`, via the
+-- migrations create_wholesale_call_bookings + create_record_call_booking_rpc. RLS on; policies
+-- seat_all (hod_wholesale ALL) + da_readonly_ro (SELECT), matching the schema convention. The write
+-- path is public.record_call_booking(jsonb) (SECURITY DEFINER), verified end-to-end (insert +
+-- idempotent upsert on calendly_event_id). This file is the reference copy of that DDL.
 
 create table if not exists wholesale.call_bookings (
   id                          uuid primary key default gen_random_uuid(),
