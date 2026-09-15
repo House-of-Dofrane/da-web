@@ -20,7 +20,7 @@ export const PAGE_COPY = {
     eyebrow: "Maryland cash home buyers",
     headline: ["A Cash Offer for Your Maryland House, As Is.", "No repairs. No agent. No buyer's loan to fall through."],
     subhead:
-      "Local cash buyers from Baltimore to Bethesda. Give us the address and we put a written cash offer in front of you. We close it, or we bring the buyer who does.",
+      "Local cash buyers from Baltimore to Bethesda. Give us the address, and we provide a written cash offer to you in 24 hours.",
     bullets: [
       { label: "Sold as is.", text: "Leave the repairs and the cleanout to us." },
       { label: "No commission.", text: "No agent fee comes out of your cash, and we pay our own closing costs." },
@@ -118,7 +118,7 @@ export const PAGE_COPY = {
   },
 
   area: {
-    eyebrow: "Where we buy in Maryland",
+    eyebrow: "WHERE WE BUY?",
     title: "Cash Offers Across Central Maryland",
     body: "Baltimore City and the counties around it, down to the DC line. Somewhere else in Maryland? Start anyway and we will confirm.",
     places: [
