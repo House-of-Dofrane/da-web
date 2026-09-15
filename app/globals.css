@@ -46,6 +46,9 @@
   --color-ivory: var(--da-ivory);
   --color-ivory-alt: var(--da-ivory-alt);
   --color-midnight: var(--da-midnight);
+  --color-gold: var(--da-gold);
+  --color-gold-ink: var(--da-gold-ink);
+  --color-gold-tint: var(--da-gold-tint);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -55,10 +58,10 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Light surfaces: ivory ground, oxblood ink, midnight accent.
+/* Light surfaces: ivory ground, oxblood ink, gold-ink accent (60/30/10, 2026-09-13).
    NAME CLASH: brand-tokens.css defines --muted as a TEXT colour (oxblood 66% over ivory).
    shadcn uses --muted as a SURFACE. It is redefined here for shadcn, and the brand text value
-   lives on as --muted-foreground. Midnight and oxblood never touch (1.03). */
+   lives on as --muted-foreground. Midnight is not used on this page. */
 :root {
   --background: var(--da-ivory);
   --foreground: var(--da-oxblood);
@@ -66,7 +69,7 @@
   --card-foreground: var(--da-oxblood);
   --popover: var(--da-ivory);
   --popover-foreground: var(--da-oxblood);
-  --primary: var(--da-midnight);
+  --primary: var(--da-oxblood);
   --primary-foreground: var(--da-ivory);
   --secondary: var(--da-ivory-alt);
   --secondary-foreground: var(--da-oxblood);
@@ -77,24 +80,24 @@
   --destructive: var(--da-oxblood);
   --border: color-mix(in srgb, var(--da-oxblood) 16%, var(--da-ivory));
   --input: color-mix(in srgb, var(--da-oxblood) 48%, var(--da-ivory));
-  --ring: var(--da-midnight);
-  --chart-1: var(--da-midnight);
+  --ring: var(--da-oxblood);
+  --chart-1: var(--da-oxblood);
   --chart-2: var(--da-oxblood);
-  --chart-3: color-mix(in srgb, var(--da-midnight) 60%, var(--da-ivory));
+  --chart-3: color-mix(in srgb, var(--da-oxblood) 40%, var(--da-ivory));
   --chart-4: color-mix(in srgb, var(--da-oxblood) 60%, var(--da-ivory));
   --chart-5: var(--da-ivory-alt);
   --radius: 0.75rem;
   --sidebar: var(--da-ivory-alt);
   --sidebar-foreground: var(--da-oxblood);
-  --sidebar-primary: var(--da-midnight);
+  --sidebar-primary: var(--da-oxblood);
   --sidebar-primary-foreground: var(--da-ivory);
   --sidebar-accent: var(--da-ivory);
   --sidebar-accent-foreground: var(--da-oxblood);
   --sidebar-border: color-mix(in srgb, var(--da-oxblood) 16%, var(--da-ivory));
-  --sidebar-ring: var(--da-midnight);
+  --sidebar-ring: var(--da-oxblood);
 }
 
-/* Dark surfaces: oxblood ground, ivory ink. The accent is ivory-alt (13.57), never midnight. */
+/* Dark surfaces: oxblood ground, ivory ink, ivory-alt accent. */
 .dark {
   --background: var(--da-oxblood);
   --foreground: var(--da-ivory);
@@ -129,14 +132,57 @@
   --sidebar-ring: var(--da-ivory-alt);
 }
 
+/* 40+ typography scale (2026-09-14). Helvetica runs tight; this opens up size, leading and tracking
+   for older eyes. NOTE: ink stays brand oxblood (--foreground), not the pasted #1a1a1a — DA already
+   avoids stark black and the palette law fixes the ink. */
+:root {
+  --font-size-h1: 44px;
+  --font-size-h2: 32px;
+  --font-size-h3: 22px;
+  --font-size-body: 19px;
+  --font-size-cta: 18px;
+  --font-size-small: 15px;
+  --line-height-heading: 1.25;
+  --line-height-body: 1.6;
+  --letter-spacing-body: 0.01em;
+  --letter-spacing-heading: -0.01em;
+}
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1: 34px;
+    --font-size-h2: 26px;
+    --font-size-h3: 20px;
+    --font-size-body: 16px;
+    --font-size-cta: 16px;
+    --font-size-small: 14px;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    /* Lift the whole rem-based type scale toward the 40+ range; mobile holds at the 16px base so
+       small screens keep the high-legibility minimum without the layout enlarging. */
+    font-size: 112.5%;
+  }
+  @media (max-width: 768px) {
+    html {
+      font-size: 100%;
+    }
+  }
+  body {
+    @apply bg-background text-foreground;
+    line-height: var(--line-height-body);
+    letter-spacing: var(--letter-spacing-body);
+  }
+  /* Headings keep Helvetica's font-size from their utilities but take the opened-up 40+ leading and
+     a hair of negative tracking so large Helvetica caps don't look loose. */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: var(--letter-spacing-heading);
   }
 }

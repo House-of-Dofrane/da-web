@@ -2,6 +2,7 @@
 
 import { FlowButton } from '@/components/ui/flow-button';
 import { LEAD_COPY } from '@/lib/lead-copy';
+import { trackFunnel } from '@/lib/track';
 
 // Every "Get Cash Offer" outside the form: scrolls the form into view and puts the cursor in the
 // address field, so the seller lands on step 1 ready to type.
@@ -12,6 +13,7 @@ export function OfferCta({ tone = 'default', className }: { tone?: 'default' | '
       tone={tone}
       className={className}
       onClick={() => {
+        trackFunnel('offer_cta_click', { where: tone === 'inverted' ? 'footer' : 'section' });
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         document.getElementById('offer')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
         window.setTimeout(

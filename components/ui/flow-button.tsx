@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 // FlowButton, as supplied. The hover morph (pill -> 12px radius), the circle expansion and the
 // two-arrow hand-off keep their exact durations, easings and positions. Ruling R5 maps the colours
-// onto the DA palette: #111111 -> oxblood, white -> ivory. `tone="inverted"` is for dark surfaces.
+// onto the DA palette (60/30/10): the hover fill is gold, text and arrows oxblood; `tone="inverted"` is gold on oxblood.
 // Additions, flagged: native button props (type, disabled, onClick) so it can submit a form, a
 // keyboard focus ring, and a disabled state.
 
@@ -14,16 +14,16 @@ type Tone = 'default' | 'inverted';
 
 const tones: Record<Tone, { button: string; arrow: string; circle: string; focus: string }> = {
   default: {
-    button: 'border-[var(--da-oxblood)]/40 text-[var(--da-oxblood)] hover:text-[var(--da-ivory)]',
-    arrow: 'stroke-[var(--da-oxblood)] group-hover:stroke-[var(--da-ivory)]',
-    circle: 'bg-[var(--da-oxblood)]',
-    focus: 'focus-visible:outline-[var(--da-midnight)]',
+    button: 'border-[var(--da-oxblood)]/40 text-[var(--da-oxblood)] hover:text-[var(--da-oxblood)]',
+    arrow: 'stroke-[var(--da-oxblood)] group-hover:stroke-[var(--da-oxblood)]',
+    circle: 'bg-[var(--da-gold)]',
+    focus: 'focus-visible:outline-[var(--da-oxblood)]',
   },
   inverted: {
-    button: 'border-[var(--da-ivory)]/40 text-[var(--da-ivory)] hover:text-[var(--da-oxblood)]',
-    arrow: 'stroke-[var(--da-ivory)] group-hover:stroke-[var(--da-oxblood)]',
-    circle: 'bg-[var(--da-ivory)]',
-    focus: 'focus-visible:outline-[var(--da-ivory-alt)]',
+    button: 'border-[var(--da-gold)]/60 text-[var(--da-gold)] hover:text-[var(--da-oxblood)]',
+    arrow: 'stroke-[var(--da-gold)] group-hover:stroke-[var(--da-oxblood)]',
+    circle: 'bg-[var(--da-gold)]',
+    focus: 'focus-visible:outline-[var(--da-gold)]',
   },
 };
 

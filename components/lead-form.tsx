@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { trackFunnel } from '@/lib/track';
 import { FlowButton } from '@/components/ui/flow-button';
 import { captureAttribution } from '@/lib/attribution';
-import { CONSENT_TEXT, LEAD_COPY } from '@/lib/lead-copy';
+import { CONSENT_TEXT, CONSENT_TEXT_SMS, LEAD_COPY } from '@/lib/lead-copy';
 import { CONDITIONS, OCCUPANCY, STEPS, TIMELINES, type Attribution } from '@/lib/lead-schema';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +18,7 @@ type Values = {
   phone: string;
   email: string;
   consent: boolean;
+  consentText: boolean;
   website: string;
 };
 
@@ -34,6 +36,7 @@ const INITIAL: Values = {
   phone: '',
   email: '',
   consent: false,
+  consentText: false,
   website: '',
 };
 
@@ -48,11 +51,12 @@ const STEP_OF: Record<Field, number> = {
   phone: 2,
   email: 2,
   consent: 2,
+  consentText: 2,
   website: 2,
 };
 
 const inputClass =
-  'h-12 w-full rounded-lg border border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] px-3.5 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] duration-150 focus-visible:border-[var(--da-midnight)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[var(--da-midnight)]/20 aria-invalid:border-[var(--da-oxblood)]';
+  'h-12 w-full rounded-lg border border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] px-3.5 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] duration-150 focus-visible:border-[var(--da-oxblood)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[var(--da-oxblood)]/20 aria-invalid:border-[var(--da-oxblood)]';
 
 export function LeadForm({ className }: { className?: string }) {
   const [step, setStep] = useState(0);
@@ -62,6 +66,14 @@ export function LeadForm({ className }: { className?: string }) {
   const attribution = useRef<Attribution>({});
   const stepRef = useRef<HTMLDivElement>(null);
   const movedRef = useRef(false);
+  const startedRef = useRef(false);
+
+  // First interaction with the form = the seller entered the funnel's engagement stage. Fire once.
+  function onFirstInteraction() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackFunnel('form_start');
+  }
 
   useEffect(() => {
     attribution.current = captureAttribution();
@@ -115,6 +127,7 @@ export function LeadForm({ className }: { className?: string }) {
     }
 
     setStatus('sending');
+    trackFunnel('lead_submit_attempt');
     try {
       const res = await fetch('/api/lead', {
         method: 'POST',
@@ -124,6 +137,8 @@ export function LeadForm({ className }: { className?: string }) {
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; issues?: { path: string; message: string }[] };
       if (res.ok && data.ok) {
         setStatus('done');
+        // Conversion event (no PII: the ZIP's market bucket only).
+        trackFunnel('lead_submitted', { zip: values.zip });
         return;
       }
       if (res.status === 422 && Array.isArray(data.issues) && data.issues.length > 0) {
@@ -142,15 +157,17 @@ export function LeadForm({ className }: { className?: string }) {
         return;
       }
       setStatus('failed');
+      trackFunnel('lead_failed', { reason: 'server' });
     } catch {
       setStatus('failed');
+      trackFunnel('lead_failed', { reason: 'network' });
     }
   }
 
   if (status === 'done') {
     return (
       <div className={cn('rounded-2xl bg-card p-6 sm:p-8', className)} role="status" aria-live="polite">
-        <h3 className="text-xl font-bold tracking-tight text-foreground">{LEAD_COPY.thanks.title}</h3>
+        <h2 className="text-xl font-bold tracking-tight text-foreground">{LEAD_COPY.thanks.title}</h2>
         <p className="mt-2 text-base text-muted-foreground">{LEAD_COPY.thanks.body}</p>
       </div>
     );
@@ -177,8 +194,8 @@ export function LeadForm({ className }: { className?: string }) {
               className={cn(
                 'flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3.5 py-2.5 text-base transition-[border-color,background-color] duration-150',
                 checked
-                  ? 'border-[var(--da-midnight)] bg-[var(--da-ivory)] text-foreground'
-                  : 'border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] text-foreground hover:border-[var(--da-midnight)]/60',
+                  ? 'border-[var(--da-gold-ink)] bg-[var(--da-gold-tint)] text-foreground'
+                  : 'border-input bg-[color-mix(in_srgb,#fff_78%,var(--da-ivory))] text-foreground hover:border-[var(--da-oxblood)]/60',
               )}
             >
               <input
@@ -187,7 +204,7 @@ export function LeadForm({ className }: { className?: string }) {
                 value={option}
                 checked={checked}
                 onChange={() => set(key, option)}
-                className="size-4 accent-[var(--da-midnight)]"
+                className="size-4 accent-[var(--da-gold-ink)]"
               />
               {(LEAD_COPY.options[key] as Record<string, string>)[option]}
             </label>
@@ -203,6 +220,7 @@ export function LeadForm({ className }: { className?: string }) {
       data-lead-form
       noValidate
       onSubmit={onSubmit}
+      onFocusCapture={onFirstInteraction}
       className={cn('rounded-2xl bg-card p-5 text-foreground sm:p-7', className)}
     >
       <div className="mb-5">
@@ -222,14 +240,14 @@ export function LeadForm({ className }: { className?: string }) {
               key={i}
               className={cn(
                 'h-1.5 rounded-full transition-colors duration-300',
-                i <= step ? 'bg-[var(--da-midnight)]' : 'bg-[color-mix(in_srgb,var(--da-oxblood)_16%,var(--da-ivory))]',
+                i <= step ? 'bg-[var(--da-gold-ink)]' : 'bg-[color-mix(in_srgb,var(--da-oxblood)_16%,var(--da-ivory))]',
               )}
             />
           ))}
         </div>
       </div>
 
-      <h3 className="text-xl font-bold tracking-tight">{copy.title}</h3>
+      <h2 className="text-xl font-bold tracking-tight">{copy.title}</h2>
       <p className="mt-1 text-sm text-muted-foreground">{copy.hint}</p>
 
       <div ref={stepRef} className="mt-5 grid gap-4">
@@ -358,11 +376,24 @@ export function LeadForm({ className }: { className?: string }) {
                   onChange={(e) => set('consent', e.target.checked)}
                   aria-invalid={Boolean(errors.consent)}
                   aria-describedby={describedBy('consent')}
-                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-midnight)]"
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-gold-ink)]"
                 />
                 <span>{CONSENT_TEXT}</span>
               </label>
               {errorText('consent')}
+            </div>
+            <div>
+              <label htmlFor="lead-consent-text" className="flex items-start gap-3 text-xs leading-relaxed text-muted-foreground">
+                <input
+                  id="lead-consent-text"
+                  name="consentText"
+                  type="checkbox"
+                  checked={values.consentText}
+                  onChange={(e) => set('consentText', e.target.checked)}
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--da-gold-ink)]"
+                />
+                <span>{CONSENT_TEXT_SMS}</span>
+              </label>
             </div>
           </>
         )}
@@ -385,7 +416,7 @@ export function LeadForm({ className }: { className?: string }) {
               setErrors({});
               setStep(step - 1);
             }}
-            className="h-11 rounded-full px-4 text-sm font-semibold text-muted-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--da-midnight)]"
+            className="h-11 rounded-full px-4 text-sm font-semibold text-muted-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--da-oxblood)]"
           >
             {LEAD_COPY.back}
           </button>

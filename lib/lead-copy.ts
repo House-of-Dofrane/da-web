@@ -4,6 +4,14 @@
 
 export const CONSENT_TEXT = "I am asking Dofrane Acquisitions to call or email me about this property.";
 
+// Second, separate box (TCPA Option C). Optional, unchecked by default, never a condition of the
+// offer. Wording follows the attorney-review draft (TCPA_CONSENT_LANGUAGE.md); attorney sign-off pending.
+export const CONSENT_TEXT_SMS =
+  "Optional: Dofrane Acquisitions may also text me, and may use automated or prerecorded calls, at the number above about this property. Not a condition of any offer. Message frequency varies; message and data rates may apply. Reply STOP to end, HELP for help.";
+
+// Bump whenever either consent wording changes; written to wholesale.consent_records.consent_version.
+export const CONSENT_VERSION = "r04-c1";
+
 export const LEAD_COPY = {
   cta: "Get Cash Offer",
   back: "Back",
