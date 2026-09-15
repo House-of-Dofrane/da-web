@@ -24,7 +24,8 @@ export function StickyBar({ brand }: { brand: string }) {
       aria-hidden={!shown}
       inert={!shown}
       className={cn(
-        'fixed inset-x-0 top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none',
+        // Desktop only: the mobile bottom CTA bar (MobileCtaBar) covers phones.
+        'fixed inset-x-0 top-0 z-40 hidden border-b border-border bg-background/95 backdrop-blur-md transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none md:block',
         shown ? 'translate-y-0' : '-translate-y-full',
       )}
     >

@@ -83,14 +83,14 @@ export const PAGE_COPY = {
     steps: [
       "Enter the Maryland address.",
       "Tell us about the house and the best way to reach you.",
-      "We review the house, recent sales in your neighborhood and your timeline.",
-      "You get a written cash offer and decide.",
+      "We underwrite and run comps — we check the numbers and recent sales nearby.",
+      "Get a cash offer within 24 hours.",
     ],
   },
 
   band: {
-    title: "What Would a Cash Buyer Pay for Your House As Is?",
-    body: "Start with the address. We take it from there, privately.",
+    title: "What Would an Investor Pay for Your House As-Is?",
+    body: "Enter the address. Let's talk shop offline.",
     note: "It takes about a minute.",
   },
 

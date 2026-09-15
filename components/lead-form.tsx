@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { track } from '@vercel/analytics';
 import { FlowButton } from '@/components/ui/flow-button';
 import { captureAttribution } from '@/lib/attribution';
 import { CONSENT_TEXT, CONSENT_TEXT_SMS, LEAD_COPY } from '@/lib/lead-copy';
@@ -127,6 +128,8 @@ export function LeadForm({ className }: { className?: string }) {
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; issues?: { path: string; message: string }[] };
       if (res.ok && data.ok) {
         setStatus('done');
+        // Conversion event (no PII: the ZIP's market bucket only).
+        track('lead_submitted', { zip: values.zip });
         return;
       }
       if (res.status === 422 && Array.isArray(data.issues) && data.issues.length > 0) {

@@ -13,6 +13,8 @@ export const IMAGES = {
   // Red brick rowhouse with a green door (unsplash.com/photos/VjHIQ_kysoA)
   heroLayer: { src: unsplash("1672059928436-9ddeb37b7b99", 1000), alt: "" },
   proof: { src: unsplash("1672059928436-9ddeb37b7b99", 800), alt: "A red brick rowhouse with a green front door" },
-  // Stone rowhouse with a stoop and garden (unsplash.com/photos/TJv2A90kzwM)
+  // Stone rowhouse with a stoop and garden (unsplash.com/photos/TJv2A90kzwM).
+  // Used as a translucent texture only in the mid-page band. License: Unsplash License (free,
+  // commercial use, no attribution required); source recorded here per the background-layer brief.
   band: { src: unsplash("1672059928459-2233cbcafd50", 2000), alt: "A stone rowhouse with a front stoop and small garden" },
 } as const;

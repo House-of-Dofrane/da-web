@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const SITE_URL = "https://dofraneacquisitions.com";
@@ -39,7 +40,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="dns-prefetch" href="https://b.basemaps.cartocdn.com" />
         <link rel="dns-prefetch" href="https://c.basemaps.cartocdn.com" />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {/* Vercel Analytics: cookieless, no personal data, no key. Fires a page-view beacon and the
+            custom 'lead_submitted' event from the form. */}
+        <Analytics />
+      </body>
     </html>
   );
 }

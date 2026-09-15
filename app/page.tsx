@@ -14,6 +14,7 @@ import {
   WhyDofrane,
 } from "@/components/landing/sections";
 import { StickyBar } from "@/components/landing/sticky-bar";
+import { MobileCtaBar } from "@/components/landing/mobile-cta-bar";
 import { StructuredData } from "@/components/landing/structured-data";
 import { PAGE_COPY } from "@/lib/page-copy";
 
@@ -28,6 +29,7 @@ export default function Home() {
         <p className="bg-oxblood px-4 py-2 text-center text-xs font-semibold text-ivory">{PAGE_COPY.previewBanner}</p>
       )}
       <StickyBar brand={PAGE_COPY.brand} />
+      <MobileCtaBar />
       <Header />
       <main>
         <Hero />

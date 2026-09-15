@@ -241,8 +241,12 @@ export function AskBand() {
       className="bg-oxblood text-ivory"
       background={
         <>
-          <Image src={IMAGES.band.src} alt={IMAGES.band.alt} fill sizes="100vw" className="object-cover" />
+          {/* Maryland rowhome as texture, not a photograph: mix-blend-luminosity sinks it into the
+              oxblood, the 88% scrim holds it at ~12% (AA-safe for ivory and gold type), and a faint
+              gold wash ties it to the section's accent. Licensed CC BY (Unsplash) — see IMAGES.band. */}
+          <Image src={IMAGES.band.src} alt="" aria-hidden fill sizes="100vw" className="object-cover opacity-70 mix-blend-luminosity" />
           <div className="absolute inset-0 bg-[color-mix(in_srgb,var(--da-oxblood)_88%,transparent)]" />
+          <div className="absolute inset-0 bg-[color-mix(in_srgb,var(--da-gold)_8%,transparent)] mix-blend-overlay" />
         </>
       }
       layers={[
