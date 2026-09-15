@@ -55,7 +55,13 @@ export function Header() {
   return (
     <header data-section="nav" className="border-b border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] bg-oxblood px-4">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6">
-        <a href="/" className="text-sm font-bold uppercase tracking-[0.24em] text-ivory focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">{C.brand}</a>
+        <a href="/" className="inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">
+          {/* "Night" mark: ivory artwork built for a dark ground — sits on the oxblood header.
+              Explicit width/height reserve space so it never shifts layout on load. The adjacent
+              wordmark supplies the link's accessible name, so the mark itself is decorative. */}
+          <Image src="/logo/da-logo-mark-night.svg" alt="" aria-hidden width={32} height={32} priority className="h-7 w-7 md:h-8 md:w-8" />
+          <span className="text-sm font-bold uppercase tracking-[0.24em] text-ivory">{C.brand}</span>
+        </a>
         <ul className="hidden items-center gap-7 lg:flex">
           {C.header.badges.map((badge, i) => {
             const Icon = icons[i];

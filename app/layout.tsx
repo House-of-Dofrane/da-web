@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ConsentedAnalytics } from "@/components/consented-analytics";
-import { CookieBanner } from "@/components/cookie-banner";
+import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import "./globals.css";
 
 export const SITE_URL = "https://dofraneacquisitions.com";
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col">
         {children}
-        <CookieBanner />
+        <CookieConsentBanner />
         {/* Vercel Analytics (cookieless, no key), gated behind the cookie banner's accept. Fires a
             page-view beacon and the custom 'lead_submitted' event from the form. */}
         <ConsentedAnalytics />
