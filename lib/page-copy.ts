@@ -1,15 +1,16 @@
 // Page copy: the R04 Maryland cash-buyer draft (Drive 07_Landing_Page/00_Brief/R04_COPY_DRAFT.md)
-// wired 2026-09-14 on the nine recommended defaults, pending Dofrane's "keep" on the preview.
+// wired 2026-09-14 on the nine recommended defaults; ruling L01 confirmed 2026-09-15 (Dofrane: "defaults").
 // Defaults applied: K1 may-assign disclosed · we pay our own closing costs, transfer/recordation per
 // contract [VERIFY] · fastest close 14 days once title is clear [VERIFY] · one business day response ·
 // street-level pricing claim kept [VERIFY] · "best cash number, in writing" (not "strongest") ·
 // tax card softened to carrying costs (PHIFA) · six-county coverage kept · consent Option C (form).
+// [VERIFY] items are still open verification, not part of the L01 ruling — see docs/LAUNCH_AUDIT.md.
 // Footer L1 says "before you sign" (Md. Real Prop. § 10-715 notice before contract), attorney review pending.
 // The ruling edits strings here only; no component changes. Section order follows STRUCTURE_MAP.md.
 
 export const PAGE_COPY = {
   brand: "Dofrane Acquisitions",
-  previewBanner: "Preview. R04 copy on the recommended defaults, awaiting Dofrane's keep.",
+  previewBanner: "Preview build. Copy confirmed (L01, 2026-09-15).",
 
   header: {
     badges: ["Maryland cash buyers", "Cash offer in writing", "No commission to you"],
