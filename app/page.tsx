@@ -13,6 +13,7 @@ import {
   TrustBar,
   WhyDofrane,
 } from "@/components/landing/sections";
+import { BookACall } from "@/components/landing/book-a-call";
 import { StickyBar } from "@/components/landing/sticky-bar";
 import { MobileCtaBar } from "@/components/landing/mobile-cta-bar";
 import { StructuredData } from "@/components/landing/structured-data";
@@ -43,6 +44,7 @@ export default function Home() {
         <Compare />
         <ServiceArea />
         <Faq />
+        <BookACall />
       </main>
       <Footer />
     </>

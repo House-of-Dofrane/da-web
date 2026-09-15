@@ -9,9 +9,13 @@ import {
   FileText,
   Hammer,
   KeyRound,
+  Mail,
   MapPin,
+  Phone,
   Truck,
 } from 'lucide-react';
+import { Footer as BrandFooter, type FooterContact } from '@/components/ui/footer';
+import { COMPANY_LEGAL_NAME, CONTACT_EMAIL, CONTACT_PHONE } from '@/lib/site-config';
 import { LeadForm } from '@/components/lead-form';
 import { ServiceAreaMapLazy } from '@/components/landing/service-area-map-lazy';
 import { OfferCta } from '@/components/landing/offer-cta';
@@ -360,31 +364,41 @@ export function Faq() {
 }
 
 export function Footer() {
+  // Contact row: built only from real, configured channels. CONTACT_PHONE/EMAIL are null (ruling
+  // C01 + no provisioned inbox), so the row is omitted rather than showing a placeholder.
+  const contactLinks: FooterContact[] = [
+    CONTACT_PHONE && { label: CONTACT_PHONE, href: `tel:${CONTACT_PHONE.replace(/[^\d+]/g, '')}`, icon: Phone },
+    CONTACT_EMAIL && { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`, icon: Mail },
+  ].filter(Boolean) as FooterContact[];
+
   return (
-    <footer data-section="footer" className="bg-oxblood px-4 py-16 text-ivory">
-      <div className="mx-auto max-w-4xl text-center">
-        <p className="text-sm font-bold uppercase tracking-[0.24em] text-gold">{C.brand}</p>
-        <p className="mx-auto mt-4 max-w-[52ch] text-[color-mix(in_srgb,var(--da-ivory)_80%,var(--da-oxblood))]">{C.footer.line}</p>
-        <div className="mt-8 flex justify-center">
-          <OfferCta tone="inverted" />
-        </div>
-        <nav aria-label="Page sections" className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[color-mix(in_srgb,var(--da-ivory)_80%,var(--da-oxblood))]">
-          <a href="#offer" className="underline-offset-4 hover:text-gold hover:underline">Get a cash offer</a>
-          <a href="#how-it-works" className="underline-offset-4 hover:text-gold hover:underline">How it works</a>
-          <a href="#service-area" className="underline-offset-4 hover:text-gold hover:underline">Where we buy</a>
-          <a href="#questions" className="underline-offset-4 hover:text-gold hover:underline">Questions</a>
-          <a href="/privacy" className="underline-offset-4 hover:text-gold hover:underline">Privacy</a>
-          <a href="/terms" className="underline-offset-4 hover:text-gold hover:underline">Terms</a>
-        </nav>
-        <div className="mt-12 grid gap-3 border-t border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] pt-8 text-left text-xs leading-relaxed text-[color-mix(in_srgb,var(--da-ivory)_66%,var(--da-oxblood))] md:grid-cols-2">
-          {C.footer.disclosures.map((line, i) => (
-            <p key={i} data-disc={`L${i + 1}`}>
-              {line}
-            </p>
-          ))}
-        </div>
-        <p className="mt-8 text-xs text-[color-mix(in_srgb,var(--da-ivory)_66%,var(--da-oxblood))]">{C.footer.legal}</p>
+    <BrandFooter
+      logoSrc="/logo/da-logo-mark-night.svg"
+      brandName={COMPANY_LEGAL_NAME}
+      tagline={C.footer.line}
+      contactLinks={contactLinks}
+      mainLinks={[
+        { label: 'Get a cash offer', href: '#offer' },
+        { label: 'How it works', href: '#how-it-works' },
+        { label: 'Where we buy', href: '#service-area' },
+        { label: 'Questions', href: '#questions' },
+      ]}
+      legalLinks={[
+        { label: 'Privacy', href: '/privacy' },
+        { label: 'Terms', href: '/terms' },
+      ]}
+      copyright={`© ${new Date().getFullYear()} ${COMPANY_LEGAL_NAME}. All rights reserved.`}
+    >
+      <div className="mt-8 flex justify-center">
+        <OfferCta tone="inverted" />
       </div>
-    </footer>
+      <div className="mt-12 grid gap-3 border-t border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] pt-8 text-left text-xs leading-relaxed text-[color-mix(in_srgb,var(--da-ivory)_66%,var(--da-oxblood))] md:grid-cols-2">
+        {C.footer.disclosures.map((line, i) => (
+          <p key={i} data-disc={`L${i + 1}`}>
+            {line}
+          </p>
+        ))}
+      </div>
+    </BrandFooter>
   );
 }
