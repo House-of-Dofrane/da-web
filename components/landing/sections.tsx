@@ -367,6 +367,8 @@ export function Footer() {
           <a href="#how-it-works" className="underline-offset-4 hover:text-gold hover:underline">How it works</a>
           <a href="#service-area" className="underline-offset-4 hover:text-gold hover:underline">Where we buy</a>
           <a href="#questions" className="underline-offset-4 hover:text-gold hover:underline">Questions</a>
+          <a href="/privacy" className="underline-offset-4 hover:text-gold hover:underline">Privacy</a>
+          <a href="/terms" className="underline-offset-4 hover:text-gold hover:underline">Terms</a>
         </nav>
         <div className="mt-12 grid gap-3 border-t border-[color-mix(in_srgb,var(--da-ivory)_18%,var(--da-oxblood))] pt-8 text-left text-xs leading-relaxed text-[color-mix(in_srgb,var(--da-ivory)_66%,var(--da-oxblood))] md:grid-cols-2">
           {C.footer.disclosures.map((line, i) => (
