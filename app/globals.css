@@ -132,14 +132,57 @@
   --sidebar-ring: var(--da-ivory-alt);
 }
 
+/* 40+ typography scale (2026-09-14). Helvetica runs tight; this opens up size, leading and tracking
+   for older eyes. NOTE: ink stays brand oxblood (--foreground), not the pasted #1a1a1a — DA already
+   avoids stark black and the palette law fixes the ink. */
+:root {
+  --font-size-h1: 44px;
+  --font-size-h2: 32px;
+  --font-size-h3: 22px;
+  --font-size-body: 19px;
+  --font-size-cta: 18px;
+  --font-size-small: 15px;
+  --line-height-heading: 1.25;
+  --line-height-body: 1.6;
+  --letter-spacing-body: 0.01em;
+  --letter-spacing-heading: -0.01em;
+}
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1: 34px;
+    --font-size-h2: 26px;
+    --font-size-h3: 20px;
+    --font-size-body: 16px;
+    --font-size-cta: 16px;
+    --font-size-small: 14px;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    /* Lift the whole rem-based type scale toward the 40+ range; mobile holds at the 16px base so
+       small screens keep the high-legibility minimum without the layout enlarging. */
+    font-size: 112.5%;
+  }
+  @media (max-width: 768px) {
+    html {
+      font-size: 100%;
+    }
+  }
+  body {
+    @apply bg-background text-foreground;
+    line-height: var(--line-height-body);
+    letter-spacing: var(--letter-spacing-body);
+  }
+  /* Headings keep Helvetica's font-size from their utilities but take the opened-up 40+ leading and
+     a hair of negative tracking so large Helvetica caps don't look loose. */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: var(--letter-spacing-heading);
   }
 }
