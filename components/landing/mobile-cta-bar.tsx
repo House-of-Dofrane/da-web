@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { LEAD_COPY } from '@/lib/lead-copy';
 import { cn } from '@/lib/utils';
+import { trackFunnel } from '@/lib/track';
 
 // Mobile-only sticky CTA, pinned to the bottom where a thumb reaches it. Appears once the hero has
 // scrolled away (same hero-end marker as the desktop top bar) and hides again over the footer so it
@@ -37,6 +38,7 @@ export function MobileCtaBar() {
   }, []);
 
   const toForm = () => {
+    trackFunnel('mobile_cta_click');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.getElementById('offer')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
     window.setTimeout(

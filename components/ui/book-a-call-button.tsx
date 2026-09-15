@@ -5,6 +5,7 @@ import { ArrowRight, CalendarDays } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { CALENDLY_BRAND, CALENDLY_URL } from "@/lib/site-config";
+import { trackFunnel } from "@/lib/track";
 
 // Loads Calendly's popup widget once, on demand (no library dependency, no cost until clicked).
 let calendlyLoad: Promise<void> | null = null;
@@ -50,6 +51,7 @@ export function BookACallButton({ className }: { className?: string }) {
 
   const open = useCallback(async () => {
     if (!CALENDLY_URL) return;
+    trackFunnel("book_a_call_click");
     await loadCalendly();
     (window as unknown as { Calendly?: { initPopupWidget: (o: { url: string }) => void } }).Calendly?.initPopupWidget({
       url: brandedUrl(CALENDLY_URL),

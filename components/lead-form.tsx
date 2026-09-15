@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { track } from '@vercel/analytics';
+import { trackFunnel } from '@/lib/track';
 import { FlowButton } from '@/components/ui/flow-button';
 import { captureAttribution } from '@/lib/attribution';
 import { CONSENT_TEXT, CONSENT_TEXT_SMS, LEAD_COPY } from '@/lib/lead-copy';
@@ -66,6 +66,14 @@ export function LeadForm({ className }: { className?: string }) {
   const attribution = useRef<Attribution>({});
   const stepRef = useRef<HTMLDivElement>(null);
   const movedRef = useRef(false);
+  const startedRef = useRef(false);
+
+  // First interaction with the form = the seller entered the funnel's engagement stage. Fire once.
+  function onFirstInteraction() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackFunnel('form_start');
+  }
 
   useEffect(() => {
     attribution.current = captureAttribution();
@@ -119,6 +127,7 @@ export function LeadForm({ className }: { className?: string }) {
     }
 
     setStatus('sending');
+    trackFunnel('lead_submit_attempt');
     try {
       const res = await fetch('/api/lead', {
         method: 'POST',
@@ -129,7 +138,7 @@ export function LeadForm({ className }: { className?: string }) {
       if (res.ok && data.ok) {
         setStatus('done');
         // Conversion event (no PII: the ZIP's market bucket only).
-        track('lead_submitted', { zip: values.zip });
+        trackFunnel('lead_submitted', { zip: values.zip });
         return;
       }
       if (res.status === 422 && Array.isArray(data.issues) && data.issues.length > 0) {
@@ -148,8 +157,10 @@ export function LeadForm({ className }: { className?: string }) {
         return;
       }
       setStatus('failed');
+      trackFunnel('lead_failed', { reason: 'server' });
     } catch {
       setStatus('failed');
+      trackFunnel('lead_failed', { reason: 'network' });
     }
   }
 
@@ -209,6 +220,7 @@ export function LeadForm({ className }: { className?: string }) {
       data-lead-form
       noValidate
       onSubmit={onSubmit}
+      onFocusCapture={onFirstInteraction}
       className={cn('rounded-2xl bg-card p-5 text-foreground sm:p-7', className)}
     >
       <div className="mb-5">
